@@ -1,0 +1,37 @@
+# 端口配置server:
+server:
+  port: 8088
+#mysql 链接配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/attence?useSSL=false&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+# Thymeleaf 相关配置
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML
+    servlet:
+      content-type: text/html
+##Mybaits相关配置
+#mybatis:
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    use-generated-keys: true
+#  type-aliases-package: com.attence.entity
+#  mapper-locations: classpath:com.attence.mapper/*.xml
+logging:
+  path: /attence/log
+mybatis-plus:
+  type-aliases-package: com.swf.attence.entity
+  global-config:
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+    sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+
+
