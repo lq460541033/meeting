@@ -13,10 +13,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class AttenceApplicationMybatisTests {
     @Autowired
     private IAdminMsgService iAdminMsgService;
+
     @Test
     public void contextLoads() {
-        AdminMsg adminMsg = iAdminMsgService.selectById(1);
-        System.out.println(adminMsg);
+       /* AdminMsg adminMsg = iAdminMsgService.selectById(1);
+        System.out.println(adminMsg);*/
+       AdminMsg adminMsg=new AdminMsg();
+
     }
 
 }
