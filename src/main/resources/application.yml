@@ -25,8 +25,6 @@ spring:
 #    use-generated-keys: true
 #  type-aliases-package: com.attence.entity
 #  mapper-locations: classpath:com.attence.mapper/*.xml
-logging:
-  path: /attence/log
 mybatis-plus:
   type-aliases-package: com.swf.attence.entity
   global-config:

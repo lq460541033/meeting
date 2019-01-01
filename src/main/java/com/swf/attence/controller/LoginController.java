@@ -1,5 +1,6 @@
 package com.swf.attence.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.swf.attence.entity.AdminMsg;
 import com.swf.attence.service.IAdminMsgService;
 import org.apache.shiro.SecurityUtils;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
@@ -28,14 +30,14 @@ import java.util.Map;
 public class LoginController {
 
     @PostMapping("/login")
-    public String login(@RequestParam("adminId") String adminId, @RequestParam("password") String password, Model model){
+    public String login(@RequestParam("adminid") String adminid, @RequestParam("password") String password, Model model){
         Subject subject = SecurityUtils.getSubject();
-        Session session = subject.getSession();
-        session.setAttribute("adminIdSession",adminId);
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(adminId, password);
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(adminid, password);
         try {
             subject.login(usernamePasswordToken);
-            return "/index.html";
+            Session session = subject.getSession();
+            session.setAttribute("adminIdSession",adminid);
+            return "/index";
         }catch (UnknownAccountException e) {
             /**
              * 登录失败:用户名不存在
@@ -55,7 +57,7 @@ public class LoginController {
      * 调转控制
      * @return
      */
-    @RequestMapping
+    @RequestMapping("/tologin")
     public String tologin(){
          return "/login";
     }

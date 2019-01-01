@@ -7,28 +7,28 @@
     <meta name="author" content="white.hou">
     <title>杭州仰天信息科技有限公司</title>
     <!-- Bootstrap core CSS -->
-    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.css}" rel="stylesheet">
+    <link href="/asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.css}" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="asserts/css/signin.css" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
+    <link href="/asserts/css/signin.css" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
 </head>
 <body class="text-center">
-<form class="form-signin" action="index.html" th:action="login" method="post">
-    <img class="mb-4" th:src="@{/asserts/img/bootstrap-solid.svg}" src="asserts/img/bootstrap-solid.svg" alt=""
+<form class="form-signin"  th:action="login" method="post">
+    <img class="mb-4" th:src="@{/asserts/img/logo.png}" src="/asserts/img/logo.png" alt=""
          width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <strong type="hidden" class="alert alert-warning" th:text="${msg}" th:if="${msg!=null}" >Warning!</strong>
-    <label class="sr-only">管理员账号</label>
-    <input type="text" name="adminId" class="form-control" placeholder="adminId"
+    <h2 class="h3 mb-3 font-weight-normal">考勤管理系统</h2>
+    <strong type="hidden" class="alert alert-warning" th:if="${msg!=null}" >Warning!</strong>
+    <label class="sr-only">请输入您的账号： </label>
+    <input type="text" name="adminid" class="form-control" placeholder="adminid"
            required="required" autofocus="autofocus">
-    <label class="sr-only">管理员密码</label>
+    <label class="sr-only">请输入您的密码： </label>
     <input type="password" name="password" class="form-control" placeholder="Password"
-         required="">
-<!--    <div class="checkbox mb-3">
+           required="required">
+  <!--  <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"/> [[#{login.remember}]]
         </label>
     </div>-->
-    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" >登录</button>
     <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
 </form>
 </body>
