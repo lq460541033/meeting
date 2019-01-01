@@ -37,19 +37,19 @@ public class LoginController {
             subject.login(usernamePasswordToken);
             Session session = subject.getSession();
             session.setAttribute("adminIdSession",adminid);
-            return "/index";
+            return "index";
         }catch (UnknownAccountException e) {
             /**
              * 登录失败:用户名不存在
              */
             model.addAttribute("msg", "用户名不存在，请校验后登录");
-            return "/login";
+            return "login";
         } catch (IncorrectCredentialsException e) {
             /**
              * 登录失败:密码错误
              */
             model.addAttribute("msg", "密码错误，请重新输入");
-            return "/login";
+            return "login";
         }
     }
 
@@ -59,7 +59,7 @@ public class LoginController {
      */
     @RequestMapping("/tologin")
     public String tologin(){
-         return "/login";
+         return "login";
     }
 
     /**
@@ -68,7 +68,7 @@ public class LoginController {
      */
     @RequestMapping("/noAuth")
     public  String noAuth(){
-        return "/noAuth";
+        return "noAuth";
     }
 
 }

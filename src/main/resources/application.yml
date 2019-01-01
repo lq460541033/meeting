@@ -1,6 +1,6 @@
 # 端口配置server:
 server:
-  port: 8088
+  port: 8089
 #mysql 链接配置
 spring:
   datasource:
