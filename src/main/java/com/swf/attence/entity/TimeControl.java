@@ -1,6 +1,8 @@
 package com.swf.attence.entity;
 
 import com.baomidou.mybatisplus.enums.IdType;
+
+import java.sql.Timestamp;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -28,9 +30,9 @@ public class TimeControl implements Serializable {
     @TableField("things_name")
     private String thingsName;
     @TableField("start_time")
-    private Date startTime;
+    private Timestamp startTime;
     @TableField("end_time")
-    private Date endTime;
+    private Timestamp endTime;
 
 
     public Integer getId() {
@@ -49,19 +51,19 @@ public class TimeControl implements Serializable {
         this.thingsName = thingsName;
     }
 
-    public Date getStartTime() {
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 
