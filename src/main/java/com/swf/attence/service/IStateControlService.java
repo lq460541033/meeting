@@ -1,5 +1,6 @@
 package com.swf.attence.service;
 
+import com.swf.attence.entity.CameraMsg;
 import com.swf.attence.entity.StateControl;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -12,5 +13,10 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2018-12-30
  */
 public interface IStateControlService extends IService<StateControl> {
-
+    /**
+     * 判断添加的请假序号是否存在，存在返回false。不存在返回true
+     * @param stateControl
+     * @return
+     */
+    boolean failidExist(StateControl stateControl);
 }

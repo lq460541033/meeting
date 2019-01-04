@@ -1,6 +1,8 @@
 package com.swf.attence.entity;
 
 import com.baomidou.mybatisplus.enums.IdType;
+
+import java.sql.Timestamp;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -35,12 +37,12 @@ public class StateControl implements Serializable {
      * 开始时间
      */
     @TableField("begin_time")
-    private Date beginTime;
+    private Timestamp beginTime;
     /**
      * 结束时间
      */
     @TableField("close_time")
-    private Date closeTime;
+    private Timestamp closeTime;
     /**
      * 简单描述
      */
@@ -75,7 +77,7 @@ public class StateControl implements Serializable {
         return beginTime;
     }
 
-    public void setBeginTime(Date beginTime) {
+    public void setBeginTime(Timestamp beginTime) {
         this.beginTime = beginTime;
     }
 
@@ -83,7 +85,7 @@ public class StateControl implements Serializable {
         return closeTime;
     }
 
-    public void setCloseTime(Date closeTime) {
+    public void setCloseTime(Timestamp closeTime) {
         this.closeTime = closeTime;
     }
 

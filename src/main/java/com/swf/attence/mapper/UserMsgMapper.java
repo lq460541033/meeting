@@ -3,6 +3,8 @@ package com.swf.attence.mapper;
 import com.swf.attence.entity.UserMsg;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -13,4 +15,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface UserMsgMapper extends BaseMapper<UserMsg> {
 
+    List<UserMsg> selectUserMsgAndDeptMsg();
+    List<UserMsg> selectUserMsgAndDeptMsgById(Integer id);
+
+    List<UserMsg> selectUserMsgAndDeptMsgByUserid(String userid);
 }

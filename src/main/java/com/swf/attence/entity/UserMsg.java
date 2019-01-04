@@ -1,9 +1,11 @@
 package com.swf.attence.entity;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -28,8 +30,14 @@ public class UserMsg implements Serializable {
      * 用户姓名
      */
     private String username;
+
+    private  Integer gender;
     private String deptid;
     private String userpic;
+
+
+    @TableField(exist = false)
+    private List<DeptMsg> dept;
 
 
     public Integer getId() {
@@ -71,16 +79,32 @@ public class UserMsg implements Serializable {
     public void setUserpic(String userpic) {
         this.userpic = userpic;
     }
+    public Integer getGender() {
+        return gender;
+    }
+    public List<DeptMsg> getDept() {
+        return dept;
+    }
+
+    public void setDept(List<DeptMsg> dept) {
+        this.dept = dept;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
 
     public static final String ID = "id";
 
     public static final String USERID = "userid";
 
     public static final String USERNAME = "username";
+    public static final String GENDER = "gender";
 
     public static final String DEPTID = "deptid";
 
     public static final String USERPIC = "userpic";
+    public static final String DEPT = "dept";
 
     @Override
     public String toString() {
@@ -88,8 +112,10 @@ public class UserMsg implements Serializable {
         ", id=" + id +
         ", userid=" + userid +
         ", username=" + username +
+         ", gender=" + gender +
         ", deptid=" + deptid +
         ", userpic=" + userpic +
+         ", dept=" + dept +
         "}";
     }
 }

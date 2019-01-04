@@ -31,5 +31,6 @@ mybatis-plus:
     logic-delete-value: 0
     logic-not-delete-value: 1
     sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+  mapper-locations: classpath:com.swf.attence.mapper/*.xml
 
 

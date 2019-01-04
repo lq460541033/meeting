@@ -1,7 +1,6 @@
 package com.swf.attence.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.swf.attence.entity.CameraMsg;
@@ -10,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import javax.jws.WebParam;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -45,7 +43,7 @@ public class CameraController {
         model.addAttribute("isFirstPage",cameraMsgPageInfo.isIsFirstPage());
         model.addAttribute("totalPages",cameraMsgPageInfo.getPages());
         model.addAttribute("isLastPage",cameraMsgPageInfo.isIsLastPage());
-        return "camera_list";
+        return "camera/camera_list";
     }
 
     /**
@@ -54,7 +52,7 @@ public class CameraController {
      */
     @GetMapping("/camera")
     public String toInsertCamera(){
-        return "camera_add";
+        return "camera/camera_add";
     }
 
     /**
@@ -89,7 +87,7 @@ public class CameraController {
     public String toUpdateCamera(@PathVariable("id") Integer id, Model model){
         CameraMsg cameraMsg = iCameraMsgService.selectById(id);
         model.addAttribute("camera",cameraMsg);
-        return "camera_add";
+        return "camera/camera_add";
     }
 
     /**

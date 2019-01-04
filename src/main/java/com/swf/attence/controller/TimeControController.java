@@ -3,13 +3,11 @@ package com.swf.attence.controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.swf.attence.entity.CameraMsg;
 import com.swf.attence.entity.TimeControl;
 import com.swf.attence.service.ITimeControlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,11 +20,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * @date: 2019/1/1_20:42
  */
 @Controller
-public class timeControController {
+public class TimeControController {
     @Autowired
     private ITimeControlService iTimeControlService;
     /**
-     * 分页列出所有设备
+     * 分页列出所有事务
      * @param pageNum
      * @param pageSize
      * @param model
@@ -44,7 +42,7 @@ public class timeControController {
         model.addAttribute("isFirstPage",timeControlsPageInfo.isIsFirstPage());
         model.addAttribute("totalPages",timeControlsPageInfo.getPages());
         model.addAttribute("isLastPage",timeControlsPageInfo.isIsLastPage());
-        return "timeControl_list";
+        return "timeControl/timeControl_list";
     }
 
     /**
@@ -57,7 +55,7 @@ public class timeControController {
     public String toUpdateTime(@PathVariable("id")Integer id,Model model){
         TimeControl timeControl = iTimeControlService.selectById(id);
         model.addAttribute("timeControl",timeControl);
-        return "timeControl_add";
+        return "timeControl/timeControl_add";
     }
 
     /**

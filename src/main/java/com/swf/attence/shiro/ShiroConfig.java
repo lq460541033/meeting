@@ -34,10 +34,15 @@ public class ShiroConfig {
          *    perms:该资源必须得到资源权限才能访问
          *    role:该资源必须得到角色权限才能访问
          */
-        shiroFilterFactoryBean.setLoginUrl("/tologin");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/noAuth");
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/","authc");
+        filterMap.put("/camera/*","perms[super_admin]");
+        filterMap.put("/stateControl/*","perms[super_admin]");
+        filterMap.put("/timeControl/*","perms[super_admin]");
+        filterMap.put("/userMsgControl/*","perms[super_admin]");
+        filterMap.put("/index.html","perms[super_admin]");
+        shiroFilterFactoryBean.setLoginUrl("/tologin");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/noAuth");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         return shiroFilterFactoryBean;
     }
