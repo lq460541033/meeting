@@ -37,7 +37,7 @@ public class UserMsg implements Serializable {
 
 
     @TableField(exist = false)
-    private List<DeptMsg> dept;
+    private DeptMsg dept;
 
 
     public Integer getId() {
@@ -82,11 +82,11 @@ public class UserMsg implements Serializable {
     public Integer getGender() {
         return gender;
     }
-    public List<DeptMsg> getDept() {
+    public DeptMsg getDept() {
         return dept;
     }
 
-    public void setDept(List<DeptMsg> dept) {
+    public void setDept(DeptMsg dept) {
         this.dept = dept;
     }
 

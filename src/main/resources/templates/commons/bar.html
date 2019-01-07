@@ -20,11 +20,12 @@
     <ul>
         <li>
          <img src="/asserts/img/logo.png" style="width: 100px">
-                <a href="http://qi30008817.cn.zhsho.com/" style="border-color: #c69500">杭州仰天信息科技有限公司</a>
+                <a href="http://qi30008817.cn.zhsho.com/" style="border-color: #c69500;font-size: xx-large" >杭州仰天信息科技有限公司</a>
             </li>
     </ul>
     <ul class="text-area text-black-50">
-        <li>用户名：[[${session.adminIdSession}]]</li>
+        <li class="nav-item text-nowrap">用户名：[[${session.adminIdSession}]]</li>
+        <li class="nav-item text-nowrap"> <a class="nav-link" href="#" disabled>登出</a></li>
     </ul>
 </nav>
 <!--侧边栏-->
@@ -33,7 +34,7 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link active" href="#" th:href="@{/userMsgs}"
-                   th:class="${activeUri=='users'?'nav-link active':'nav-link'}">
+                   th:class="${activeUri=='userMsgs'?'nav-link active':'nav-link'}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                          class="feather feather-users">
@@ -47,7 +48,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link active"
-                   th:class="${activeUri=='attences'?'nav-link active':'nav-link'}"
+                   th:class="${activeUri=='index.html'?'nav-link active':'nav-link'}"
                    href="#" th:href="@{/attences}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -61,7 +62,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" th:href="@{/timeControls}">
+                <a class="nav-link" href="#" th:href="@{/timeControls}" th:class="${activeUri=='timeControls'?'nav-link active':'nav-link'}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                          class="feather feather-home">

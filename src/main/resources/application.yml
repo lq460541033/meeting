@@ -18,6 +18,10 @@ spring:
     mode: HTML
     servlet:
       content-type: text/html
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/static,classpath:/resources/,file:F:/Attence相关/
 ##Mybaits相关配置
 #mybatis:
 #  configuration:
