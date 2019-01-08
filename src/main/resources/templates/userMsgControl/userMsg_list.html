@@ -66,30 +66,25 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="page:${pageInfo.list}">
-                        <td th:text="${page.id}">
+                    <tr th:each="userMsg:${pageInfo.list}">
+                        <td th:text="${userMsg.id}">
                         </td>
-                        <td th:text="${page.userid}">
+                        <td th:text="${userMsg.userid}">
                         </td>
-                        <td th:text="${page.username}">
+                        <td th:text="${userMsg.username}">
                         </td>
-                        <td th:text="${page.gender}==1?'男':'女'">
+                        <td th:text="${userMsg.gender}==1?'男':'女'">
                         </td>
-                        <td th:text="${page.deptid}">
+                        <td th:text="${userMsg.deptid}">
                         </td>
-                        <td th:text="${page.dept.deptname}">部门</td>
+                        <td th:text="${userMsg.dept.deptname}">部门</td>
                         <td>
-                            <img th:src="@{/userpic/{userpic}(userpic=${page.userpic})}"
+                            <img th:src="@{/userpic/{userpic}(userpic=${userMsg.userpic})}"
                                  class="img-rounded" width="80px">
                         </td>
-                       <!-- <td th:text="${pageInfo.userid}"></td>
-                        <td th:text="${pageInfo.username}"></td>
-                        <td th:text="${pageInfo.gender}==1?'男':'女'"></td>
-                        <td th:text="${pageInfo.deptid}"></td>
-                        <td th:text="${pageInfo.DtMsg.deptName}"></td>-->
                         <td>
-                            <a class="btn btn-sm btn-primary" th:href="@{/page/}+${page.id}">编辑</a>
-                            <button th:attr="del_uri=@{/page/}+${page.id}" class="btn btn-sm btn-danger deleteBtn">
+                            <a class="btn btn-sm btn-primary" th:href="@{/userMsg/}+${userMsg.id}">编辑</a>
+                            <button th:attr="del_uri=@{/userMsg/}+${userMsg.id}" class="btn btn-sm btn-danger deleteBtn">
                                 删除
                             </button>
                         </td>

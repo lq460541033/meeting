@@ -55,13 +55,7 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <!--需要区分是员工修改还是添加；-->
-            <form th:action="@{/templates/userMsg}" method="post" autocomplete="off" id="from-addOrUpdate">
-                <!--发送put请求修改员工数据-->
-                <!--
-                1、SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
-                2、页面创建一个post表单
-                3、创建一个input项，name="_method";值就是我们指定的请求方式
-                -->
+            <form th:action="@{/userMsg}" method="post" autocomplete="off" id="from-addOrUpdate">
                 <input type="hidden" name="_method" value="put" th:if="${userMsg!=null}"/>
                 <strong type="hidden" class="alert alert-warning" th:if="${msg!=null}">Warning!</strong>
                 <input type="hidden" name="id" th:if="${userMsg!=null}" th:value="${id}">
@@ -82,7 +76,29 @@
                         <input type="radio" id="woman" value="0" name="gender" required>女
                     </label>
                 </div>
-                <button type="submit" class="btn btn-primary" th:text="${userMsg!=null}?'修改':'添加'">添加</button>
+               <div class="form-group">
+                   <label for="deptid">请选择科室： </label>
+                   <select class="form-control" id="deptid">
+                         <option th:each="deptMsg:${deptMsgs}" th:value="${deptMsg.deptid}" th:text="${deptMsg.deptname}" ></option>
+                   </select>
+               </div>
+                <div class="form-group">
+                    <span>请选择1M以内图片</span>
+                        <div>
+                        <span class="btn default btn-file">
+                            <input type="file" name="uploadImg" id="uploadImg" class="file-loading btn btn-primary btn-sm" />
+                        </span>
+                            <!--<a href="#" class="btn btn-info btn-sm file-input-new">更改</a>
+                            <a href="#" class="btn btn-danger btn-sm fileinput-remove">移除</a>-->
+                        </div>
+                    </div>
+          <!--      <div class="custom-file form-group">
+                    <label class="custom-file-control btn btn-primary btn-info" for="userpic">选择照片</label>
+                    <input type="file" class="custom-file-input" id="userpic" name="userpic"
+                     th:src="@{/userpic/{userpic}(${!userMsg.userpic=null}?userpic=${userMsg.userpic}:userpic=0000.png)}">
+                </div>-->
+                <button type="submit" class="btn btn-primary" th:text="${userMsg!=null}?'修改':'添加'"
+                        style="display: none" id="sub">添加</button>
             </form>
         </main>
     </div>
@@ -102,6 +118,28 @@
 <script type="text/javascript"
         th:src="@{/webjars/bootstrap-fileinput/4.4.8/js/locales/zh.js}"></script>
 
+<script>
+  $("#uploadImg").fileinput({
+      language: 'zh', //设置语言
+      uploadUrl: "/userMsg/uploadImg", //上传的地址
+      allowedFileTypes : [ 'image' ],//配置允许文件上传的类型
+      allowedPreviewTypes : [ 'image' ],//配置所有的被预览文件类型
+      allowFileTypes:['jpg', 'gif', 'png','jpeg'],
+      uploadAsync: true, //默认异步上传
+      showUpload: true, //是否显示上传按钮
+      showRemove : true, //显示移除按钮
+      autoReplace: true,
+      showPreview : true, //是否显示预览
+      showCaption: true,//是否显示标题
+      browseClass: "btn btn-primary", //按钮样式
+      dropZoneEnabled: false,//是否显示拖拽区域
+      maxFileCount: 1, //表示允许同时上传的最大文件个数
+      validateInitialCount:true
+  }).on("fileuploaded",function () {
+      document.getElementById("sub").style.display="block";
+      $('.file-caption-name').val();
+  })
+</script>
 <!-- Icons -->
 <script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
 <script>

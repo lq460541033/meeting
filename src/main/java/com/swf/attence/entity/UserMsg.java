@@ -104,7 +104,6 @@ public class UserMsg implements Serializable {
     public static final String DEPTID = "deptid";
 
     public static final String USERPIC = "userpic";
-    public static final String DEPT = "dept";
 
     @Override
     public String toString() {
@@ -115,7 +114,6 @@ public class UserMsg implements Serializable {
          ", gender=" + gender +
         ", deptid=" + deptid +
         ", userpic=" + userpic +
-         ", dept=" + dept +
         "}";
     }
 }
