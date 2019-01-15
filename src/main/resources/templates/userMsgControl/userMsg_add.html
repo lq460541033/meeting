@@ -47,13 +47,13 @@
     <div class="row">
         <!--引入侧边栏-->
         <div th:replace="commons/bar::#sidebar(activeUri='userMsgs')"></div>
-
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <!--需要区分是员工修改还是添加；-->
             <form th:action="@{/userMsg}" method="post" autocomplete="off" id="from-addOrUpdate">
                 <input type="hidden" name="_method" value="put" th:if="${userMsg!=null}"/>
                 <strong type="hidden" class="alert alert-warning" th:if="${msg!=null}">Warning!</strong>
                 <input type="hidden" name="id" th:if="${userMsg!=null}" th:value="${id}">
+                <div>
                 <div class="form-group">
                     <label>用户工号</label>
                     <input name="userid" type="text" class="form-control" required id="userid"
@@ -64,6 +64,7 @@
                     <input name="username" type="text" class="form-control" required
                            th:value="${userMsg!=null}?${userMsg.username}" style="width: 200px">
                 </div>
+                </div>
                 <div class="form-group">
                     <label>用户性别</label>
                     <label class="radio-inline">
@@ -72,14 +73,19 @@
                     </label>
                 </div>
                 <div class="form-group">
-                    <label for="deptid">请选择科室： </label>
+                    <label for="deptid">请选择科室</label>
                     <select class="form-control " id="deptid" name="deptid">
                         <option th:each="deptMsg:${deptMsgs}" th:value="${deptMsg.deptid}"
                                 th:text="${deptMsg.deptname}" class="mb-auto"></option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <span>请选择1M以内图片</span>
+                    <label th:text="${userMsg!=null}?'原图片为： ':''"></label>
+                    <img type="hidden" th:if="${userMsg!=null}" th:src="@{/userpic/{userpic}(userpic=${userMsg.userpic})}"
+                         class="img-fluid" width="80px" readonly>
+                </div>
+                <div class="form-group">
+                    <span>请选择您要添加的图片</span>
                     <div>
                         <span class="btn default btn-file">
                             <input type="file" id="uploadImg" name="userpic1"
@@ -112,7 +118,7 @@
         uploadUrl: "/userMsg/uploadImg", //上传的地址
         allowedFileTypes: ['image'],//配置允许文件上传的类型
         allowedPreviewTypes: ['image'],//配置所有的被预览文件类型
-        allowFileTypes: ['jpg', 'gif', 'png', 'jpeg'],
+        allowFileTypes: ['jpg', 'png', 'jpeg'],
         uploadAsync: true, //默认异步上传
         showUpload: true, //是否显示上传按钮
         showRemove: true, //显示移除按钮
@@ -148,6 +154,13 @@
         if (userFullId!==picUserId){
             alert("您输入的工号和已上传图片名不一致，请检查");
             document.getElementById("userid").value="";
+       /*     var a;
+            a=confirm("您输入的工号和已上传图片名不一致,是否清除已上传图片信息重新上传");
+            if (a===true){
+            } else {
+                document.getElementById("userid").value="";
+                alert("用户工号已清除，请重新输入")
+            }*/
         }
     }
 </script>

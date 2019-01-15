@@ -111,8 +111,11 @@ public class UserMsgController {
      * @return
      */
    @DeleteMapping("/userMsg/{id}")
-   public  String deleteUserMsg(@PathVariable("id") Integer id){
+   public  String deleteUserMsg(@PathVariable("id") Integer id,Model model){
+      /* UserMsg userMsg = iUserMsgService.selectById(id);*/
+       iUserMsgService.delImgFromUserpic(id);
        iUserMsgService.deleteById(id);
+       /*model.addAttribute("deleteUserMsg","该员工——工号: "+userMsg.getUserid()+" 姓名： "+userMsg.getUsername()+" 个人图片: "+userMsg.getUserpic()+"已删除完成");*/
        return "redirect:/userMsgs";
    }
 

@@ -51,14 +51,6 @@
         from user_msg u
         LEFT JOIN
         dept_msg d  on u.deptid=d.deptid
-        <!--   <where>
-               <if test="u.id!=null and !&quot;&quot;.equals(u.id.trim())">
-                   and u.id=#{id}
-               </if>
-               <if test="u.userid!=null and !&quot;&quot;.equals(u.userid.trim())">
-                   and  u.userid=#{userid}
-               </if>
-           </where>-->
         where u.userid=#{userid}
     </select>
 </mapper>

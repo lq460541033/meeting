@@ -16,7 +16,7 @@ import java.util.List;
 public interface UserMsgMapper extends BaseMapper<UserMsg> {
 
     List<UserMsg> selectUserMsgAndDeptMsg();
-    List<UserMsg> selectUserMsgAndDeptMsgById(Integer id);
+/*    List<UserMsg> selectUserMsgAndDeptMsgById(Integer id);*/
 
-    List<UserMsg> selectUserMsgAndDeptMsgByUserid(String userid);
+    UserMsg selectUserMsgAndDeptMsgByUserid(String userid);
 }

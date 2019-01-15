@@ -6,6 +6,7 @@ import com.swf.attence.service.IStateControlService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
  * @since 2018-12-30
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class StateControlServiceImpl extends ServiceImpl<StateControlMapper, StateControl> implements IStateControlService {
     @Autowired
    private  StateControlMapper stateControlMapper;
