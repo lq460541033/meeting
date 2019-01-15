@@ -8,13 +8,8 @@
     <meta name="description" content="添加设备">
     <meta name="author" content="white.hou">
     <title>编辑用户</title>
-    <!-- Bootstrap core CSS -->
     <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.css}" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <!--  <link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">-->
     <link th:href="@{/webjars/bootstrap-fileinput/4.4.8/css/fileinput.css}" rel="stylesheet"
-          type="text/css">
-    <link th:href="@{/webjars/bootstrap-datetimepicker/2.4.2/css/bootstrap-datetimepicker.min.css}" rel="stylesheet"
           type="text/css">
     <style type="text/css">
         /* Chart.js */
@@ -61,7 +56,7 @@
                 <input type="hidden" name="id" th:if="${userMsg!=null}" th:value="${id}">
                 <div class="form-group">
                     <label>用户工号</label>
-                    <input name="userid" type="text" class="form-control" required
+                    <input name="userid" type="text" class="form-control" required id="userid"
                            th:value="${userMsg!=null}?${userMsg.userid}" style="width: 200px">
                 </div>
                 <div class="form-group">
@@ -76,37 +71,31 @@
                         <input type="radio" id="woman" value="0" name="gender" required>女
                     </label>
                 </div>
-               <div class="form-group">
-                   <label for="deptid">请选择科室： </label>
-                   <select class="form-control" id="deptid">
-                         <option th:each="deptMsg:${deptMsgs}" th:value="${deptMsg.deptid}" th:text="${deptMsg.deptname}" ></option>
-                   </select>
-               </div>
+                <div class="form-group">
+                    <label for="deptid">请选择科室： </label>
+                    <select class="form-control " id="deptid" name="deptid">
+                        <option th:each="deptMsg:${deptMsgs}" th:value="${deptMsg.deptid}"
+                                th:text="${deptMsg.deptname}" class="mb-auto"></option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <span>请选择1M以内图片</span>
-                        <div>
+                    <div>
                         <span class="btn default btn-file">
-                            <input type="file" name="uploadImg" id="uploadImg" class="file-loading btn btn-primary btn-sm" />
+                            <input type="file" id="uploadImg" name="userpic1"
+                                   class="file-loading btn btn-primary btn-sm"/>
                         </span>
-                            <!--<a href="#" class="btn btn-info btn-sm file-input-new">更改</a>
-                            <a href="#" class="btn btn-danger btn-sm fileinput-remove">移除</a>-->
-                        </div>
+                        <input type="hidden" name="userpic" value="" id="realUserpic">
                     </div>
-          <!--      <div class="custom-file form-group">
-                    <label class="custom-file-control btn btn-primary btn-info" for="userpic">选择照片</label>
-                    <input type="file" class="custom-file-input" id="userpic" name="userpic"
-                     th:src="@{/userpic/{userpic}(${!userMsg.userpic=null}?userpic=${userMsg.userpic}:userpic=0000.png)}">
-                </div>-->
+                    <!--<input type="hidden" th:value="${ImgUploadMsg}" id="ImgUploadMsg">-->
+                </div>
                 <button type="submit" class="btn btn-primary" th:text="${userMsg!=null}?'修改':'添加'"
-                        style="display: none" id="sub">添加</button>
+                        style="display: none" id="sub" onclick="checkUserId()">添加
+                </button>
             </form>
         </main>
     </div>
 </div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
         th:src="@{/webjars/jquery/3.2.1/jquery.js}"></script>
 <script type="text/javascript" src="asserts/js/popper.min.js"
@@ -117,34 +106,50 @@
         th:src="@{/webjars/bootstrap-fileinput/4.4.8/js/fileinput.min.js}"></script>
 <script type="text/javascript"
         th:src="@{/webjars/bootstrap-fileinput/4.4.8/js/locales/zh.js}"></script>
-
 <script>
-  $("#uploadImg").fileinput({
-      language: 'zh', //设置语言
-      uploadUrl: "/userMsg/uploadImg", //上传的地址
-      allowedFileTypes : [ 'image' ],//配置允许文件上传的类型
-      allowedPreviewTypes : [ 'image' ],//配置所有的被预览文件类型
-      allowFileTypes:['jpg', 'gif', 'png','jpeg'],
-      uploadAsync: true, //默认异步上传
-      showUpload: true, //是否显示上传按钮
-      showRemove : true, //显示移除按钮
-      autoReplace: true,
-      showPreview : true, //是否显示预览
-      showCaption: true,//是否显示标题
-      browseClass: "btn btn-primary", //按钮样式
-      dropZoneEnabled: false,//是否显示拖拽区域
-      maxFileCount: 1, //表示允许同时上传的最大文件个数
-      validateInitialCount:true
-  }).on("fileuploaded",function () {
-      document.getElementById("sub").style.display="block";
-      $('.file-caption-name').val();
-  })
+    $("#uploadImg").fileinput({
+        language: 'zh', //设置语言
+        uploadUrl: "/userMsg/uploadImg", //上传的地址
+        allowedFileTypes: ['image'],//配置允许文件上传的类型
+        allowedPreviewTypes: ['image'],//配置所有的被预览文件类型
+        allowFileTypes: ['jpg', 'gif', 'png', 'jpeg'],
+        uploadAsync: true, //默认异步上传
+        showUpload: true, //是否显示上传按钮
+        showRemove: true, //显示移除按钮
+        autoReplace: true,
+        showPreview: true, //是否显示预览
+        showCaption: true,//是否显示标题
+        browseClass: "btn btn-primary", //按钮样式
+      /*  layoutTemplates:{
+          actionUpload:true,
+          actionZoom:true,
+          actionDelete:true
+        },*/
+        dropZoneEnabled: false,//是否显示拖拽区域
+        maxFileCount: 1, //表示允许同时上传的最大文件个数
+        validateInitialCount: true
+    }).on("fileuploaded", function (event,data,previewId,index) {
+        var a=data.files[0].name;
+        $("#realUserpic").val(a);
+        var data=data.jqXHR.responseJSON;
+       /* var ImgUploadMsg=$("#ImgUploadMsg").val();*/
+        if (data===true){
+            alert("图片保存成功");
+            document.getElementById("sub").style.display = "block";
+        }else {
+            alert("图片上传失败，请移除后重新选择")
+        }
+    })
 </script>
-<!-- Icons -->
-<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
-<script>
-    feather.replace()
+<script type="text/javascript">
+    function checkUserId() {
+        var userFullId=document.getElementById("userid").value;
+        var picUserId=document.getElementById("realUserpic").value.split(".")[0];
+        if (userFullId!==picUserId){
+            alert("您输入的工号和已上传图片名不一致，请检查");
+            document.getElementById("userid").value="";
+        }
+    }
 </script>
 </body>
-
 </html>

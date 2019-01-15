@@ -11,11 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -32,7 +28,7 @@ public class UserMsgController {
     @Autowired
     private IDeptMsgService iDeptMsgService;
 
-    public static  final  String PATH="F:\\Attence相关\\userpic\\";
+
 
     /**
      * 分页
@@ -93,7 +89,7 @@ public class UserMsgController {
      * @return
      */
    @PostMapping("/userMsg")
-   public String insertUserMsg(UserMsg userMsg,Model model){
+   public String insertUserMsg(UserMsg userMsg){
        iUserMsgService.insert(userMsg);
        return "redirect:/userMsgs";
    }
@@ -120,21 +116,5 @@ public class UserMsgController {
        return "redirect:/userMsgs";
    }
 
-   @PostMapping("/userMsg/uploadImg")
-   public String uploadImsg( @RequestParam MultipartFile multipartFile,Model model){
-       multipartFile.getOriginalFilename();
-       if (!multipartFile.isEmpty()){
-           try {
-               Files.copy(multipartFile.getInputStream(), Paths.get(PATH, multipartFile.getOriginalFilename()));
-               model.addAttribute("ImgUploadMsg","success");
-           } catch (IOException e) {
-               e.printStackTrace();
-               model.addAttribute("ImgUploadMsg","error");
-           }
-       }else {
-           model.addAttribute("ImgUploadMsg","error");
-       }
-       return "userMsgControl/userMsg_add";
-   }
 
 }
