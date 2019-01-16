@@ -1,5 +1,6 @@
 package com.swf.attence.controller;
 
+import com.swf.attence.service.IUserMsgService;
 import com.swf.attence.service.ImageUpload;
 import com.swf.attence.service.impl.ImgUploadImpl;
 import org.apache.shiro.session.Session;
@@ -20,31 +21,23 @@ import java.nio.file.Paths;
  * @date: 2019/1/15_18:16
  */
 @RestController
-public class ImageController {
+public class UploadController {
     @Autowired
     private ImageUpload imageUpload;
+    @Autowired
+    private IUserMsgService iUserMsgService;
 
     private static  final  String PATH="F:\\Attence相关\\userpic\\";
+
+    /**
+     * 图片上传
+     * @param multipartFile
+     * @param model
+     * @return
+     */
     @PostMapping("/userMsg/uploadImg")
     @ResponseBody
     public String uploadImsg(@RequestParam(value = "userpic1",required = false) MultipartFile multipartFile, Model model){
-       /* String originalFilename = multipartFile.getOriginalFilename();
-        if (!multipartFile.isEmpty()){
-            try {
-                Files.copy(multipartFile.getInputStream(), Paths.get(PATH, originalFilename));
-                model.addAttribute("ImgUploadMsg","图片保存成功");
-                System.out.println("图片保存成功");
-                return "true";
-            } catch (IOException e) {
-                e.printStackTrace();
-                model.addAttribute("ImgUploadMsg","上传错误，请重新上传");
-            }
-        }else {
-            model.addAttribute("ImgUploadMsg","图片已存在");
-        }
-        return "false";
-    }
-*/
         if (imageUpload.imgUpload(multipartFile, PATH)){
             return "true";
         }else {
@@ -52,4 +45,19 @@ public class ImageController {
         }
       }
 
+    /**
+     * 文件上传 解析后将数据存入数据库
+     * @param multipartFile
+     * @return
+     */
+    @PostMapping("/userMsg/uploadFiles")
+      public String uploadFiles(@RequestParam(value = "uploadFiles",required = false) MultipartFile multipartFile) throws Exception {
+        String originalFilename = multipartFile.getOriginalFilename();
+        Boolean aBoolean = iUserMsgService.insertIntoDatebase(originalFilename, multipartFile);
+        if (aBoolean){
+            return "true";
+        }else {
+            return "false";
+        }
+    }
     }

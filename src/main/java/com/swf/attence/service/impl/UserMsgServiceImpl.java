@@ -10,6 +10,8 @@ import com.swf.attence.service.IUserMsgService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.swf.attence.service.ImageUpload;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.opc.internal.ContentType;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -97,6 +99,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
     @Override
     public Boolean insertIntoDatebase(String fileName, MultipartFile file) throws Exception {
         boolean notNull = false;
+        List<UserMsg> userMsgs = new ArrayList<>();
         if (!fileName.matches("^.+\\.(?i)(xls)$") && !fileName.matches("^.+\\.(?i)(xlsx)$")) {
             throw new MyException("上传文件格式不正确");
         }
@@ -126,12 +129,13 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
             /**
              * 用户名
              */
+            row.getCell(0).setCellType(Cell.CELL_TYPE_STRING);
             String userid = row.getCell(0).getStringCellValue();
             UserMsg userMsg = userMsgMapper.selectUserMsgAndDeptMsgByUserid(userid);
             if (userid == null || userid.isEmpty()) {
                 throw new MyException("导入失败（第" + (i + 1) + "行，用户工号未填写)");
-            } else if (userMsg.getUserid().equals(userid)) {
-                throw new MyException("导入失败（第" + (i + 1) + "行，用户工号已存在)");
+            } else if (userMsg!=null) {
+                throw new MyException("导入失败（第" + (i + 1) + "行，该用户已存在)");
             }
             /**
              * 用户姓名
@@ -191,9 +195,13 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
             try {
                 File file1 = new File(userpic);
                 FileInputStream fileInputStream = new FileInputStream(file1);
-                MockMultipartFile mockMultipartFile = new MockMultipartFile(file1.getName(), fileInputStream);
-                if (imageUpload.imgUpload(mockMultipartFile, PATH)) {
-                    userMsg1.setUserpic(mockMultipartFile.getOriginalFilename());
+                String name = file1.getName();
+                MockMultipartFile mockMultipartFile = new MockMultipartFile(name,fileInputStream);
+                if (imageUpload.fileUpload(mockMultipartFile, PATH)) {
+                    userMsg1.setUserpic(name);
+                    userMsgs.add(userMsg1);
+                    userMsgMapper.insert(userMsg1);
+                    notNull=true;
                 } else {
                     throw new MyException("（第" + (i + 1) + "行用户照片导入失败");
                 }

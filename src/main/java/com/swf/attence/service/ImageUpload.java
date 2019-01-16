@@ -15,4 +15,12 @@ public interface ImageUpload {
      * @return
      */
     Boolean imgUpload(MultipartFile file,String path);
+
+    /**
+     * 批量上传 图片上传
+     * @param file
+     * @param path
+     * @return
+     */
+    Boolean fileUpload(MultipartFile file,String path);
 }

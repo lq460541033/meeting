@@ -29,4 +29,19 @@ public class ImgUploadImpl implements ImageUpload {
         }
         return false;
     }
+
+    @Override
+    public Boolean fileUpload(MultipartFile file,String path) {
+        if(!file.isEmpty()){
+            try{
+                Files.copy(file.getInputStream(), Paths.get(path,file.getName()));
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return false;
+    }
+
 }
