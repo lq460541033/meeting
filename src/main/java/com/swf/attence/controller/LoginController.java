@@ -71,4 +71,11 @@ public class LoginController {
         return "noAuth";
     }
 
+    @RequestMapping("/loginout")
+    public String loginOut(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "login";
+    }
+
 }
