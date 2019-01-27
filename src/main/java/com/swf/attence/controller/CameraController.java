@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.swf.attence.entity.CameraMsg;
+import com.swf.attence.hikConfig.ClientDemo;
 import com.swf.attence.service.ICameraMsgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class CameraController {
     @Autowired
     private ICameraMsgService iCameraMsgService;
+
+
+
 
     /**
      * 分页列出所有设备

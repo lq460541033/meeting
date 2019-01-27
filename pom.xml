@@ -127,6 +127,15 @@
             <artifactId>spring-test</artifactId>
             <version>5.0.10.RELEASE</version>
         </dependency>
+        <!--以下为海康sdk解析配置-->
+        <!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna -->
+
     </dependencies>
 
     <build>

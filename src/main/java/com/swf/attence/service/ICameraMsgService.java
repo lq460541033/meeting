@@ -18,4 +18,11 @@ public interface ICameraMsgService extends IService<CameraMsg> {
      * @return
      */
     boolean cameraidExist(CameraMsg cameraMsg);
+
+    /**
+     * 设备的初始化、注册,成功注册返回true
+     * @return
+     */
+    boolean cameraInitAndcameraRegister();
+
 }
