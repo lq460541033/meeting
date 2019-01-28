@@ -23,6 +23,12 @@ public interface ICameraMsgService extends IService<CameraMsg> {
      * 设备的初始化、注册,成功注册返回true
      * @return
      */
-    boolean cameraInitAndcameraRegister();
+    boolean cameraInitAndcameraRegisterAndsetupAlarmChan();
+
+    /**
+     * 下发人脸信息
+     * @return
+     */
+    boolean uploadUserPicAndUserMessage();
 
 }

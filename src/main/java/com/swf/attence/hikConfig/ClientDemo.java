@@ -3,9 +3,10 @@ package com.swf.attence.hikConfig;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import org.dom4j.DocumentException;
+import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
-
+@Component
 public class ClientDemo {
     static HCNetSDK hCNetSDK = HCNetSDK.INSTANCE;
     HCNetSDK.NET_DVR_DEVICEINFO_V30 m_strDeviceInfo;//设备信息

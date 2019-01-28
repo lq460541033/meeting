@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.swf.attence.entity.CameraMsg;
 import com.swf.attence.hikConfig.ClientDemo;
+import com.swf.attence.hikConfig.FDLibBox;
 import com.swf.attence.mapper.CameraMsgMapper;
 import com.swf.attence.service.ICameraMsgService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -24,6 +25,10 @@ import java.util.List;
 public class CameraMsgServiceImpl extends ServiceImpl<CameraMsgMapper, CameraMsg> implements ICameraMsgService {
     @Autowired
     private CameraMsgMapper cameraMsgMapper;
+    @Autowired
+    private ClientDemo clientDemo;
+    @Autowired
+    private FDLibBox fdLibBox;
 
     /**
      * 检查添加的设备id是否存在，存在返回false，不存在返回true
@@ -43,17 +48,20 @@ public class CameraMsgServiceImpl extends ServiceImpl<CameraMsgMapper, CameraMsg
     }
 
     @Override
-    public boolean cameraInitAndcameraRegister() {
+    public boolean cameraInitAndcameraRegisterAndsetupAlarmChan() {
         Boolean register=false;
         Integer integer = cameraMsgMapper.selectCount(new EntityWrapper<CameraMsg>().eq("1", 1));
         for (int i=1;i<=integer;i++){
-            ClientDemo clientDemo=new ClientDemo();
             if ("初始化成功".equals(clientDemo.CameraInit())){
                 CameraMsg cameraMsg = cameraMsgMapper.selectById(i);
                 if(cameraMsg!=null){
                      if (clientDemo.register("admin", "admin123456", cameraMsg.getCameraid())){
-                         register=true;
-                         return register;
+                         if ("布防成功".equals(clientDemo.SetupAlarmChan())){
+                             register=true;
+                             return register;
+                         }else {
+                             System.out.println(clientDemo.SetupAlarmChan());
+                         }
                      }else {
                          return register;
                      }
@@ -63,6 +71,16 @@ public class CameraMsgServiceImpl extends ServiceImpl<CameraMsgMapper, CameraMsg
             }
         }
         return register;
+    }
+
+    @Override
+    public boolean uploadUserPicAndUserMessage() {
+        boolean uploadState=false;
+        Integer integer = cameraMsgMapper.selectCount(new EntityWrapper<CameraMsg>().eq("1", 1));
+        for (int i=1;i<=integer;i++){
+
+        }
+        return false;
     }
 
 

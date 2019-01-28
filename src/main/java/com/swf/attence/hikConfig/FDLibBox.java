@@ -7,6 +7,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.io.*;
@@ -15,7 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+@Component
 public class FDLibBox {
     public ClientDemo m_alarm;
     public static HCNetSDK hCNetSDK = HCNetSDK.INSTANCE;
