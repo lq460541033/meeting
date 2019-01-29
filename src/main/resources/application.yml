@@ -22,6 +22,12 @@ spring:
     static-path-pattern: /**
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/static,classpath:/resources/,file:F:/Attence相关/
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+#  main:
+#    allow-bean-definition-overriding: true
 ##Mybaits相关配置
 #mybatis:
 #  configuration:

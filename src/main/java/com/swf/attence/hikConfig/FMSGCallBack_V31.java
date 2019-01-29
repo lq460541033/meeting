@@ -2,10 +2,15 @@ package com.swf.attence.hikConfig;
 
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
+import com.swf.attence.entity.ICommand;
+import com.swf.attence.mapper.ICommandJpa;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,7 +18,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
+
     //报警信息回调函数
+
     @Override
     public void invoke(NativeLong lCommand, HCNetSDK.NET_DVR_ALARMER pAlarmer, Pointer pAlarmInfo, int dwBufLen, Pointer pUser)
     {
@@ -31,9 +38,7 @@ public class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
                 Pointer pFaceSnapMatch = strFaceSnapMatch.getPointer();
                 pFaceSnapMatch.write(0, pAlarmInfo.getByteArray(0, strFaceSnapMatch.size()), 0, strFaceSnapMatch.size());
                 strFaceSnapMatch.read();
-
-                sAlarmType = sAlarmType + "：签到比对报警，相识度：" + strFaceSnapMatch.fSimilarity + "，姓名：" + new String(strFaceSnapMatch.struBlackListInfo.struBlackListInfo.struAttribute.byName, "GBK").trim() + "，\n证件信息：" + new String(strFaceSnapMatch.struBlackListInfo.struBlackListInfo.struAttribute.byCertificateNumber).trim();
-
+                sAlarmType = sAlarmType + "：签到比对报警，相识度：" + strFaceSnapMatch.fSimilarity + "，姓名：" + new String(strFaceSnapMatch.struBlackListInfo.struBlackListInfo.struAttribute.byName, "UTF-8").trim() + "，\n证件信息：" + new String(strFaceSnapMatch.struBlackListInfo.struBlackListInfo.struAttribute.byCertificateNumber).trim();
                 //获取人脸库ID
                 byte[] FDIDbytes;
                 if ((strFaceSnapMatch.struBlackListInfo.dwFDIDLen > 0) && (strFaceSnapMatch.struBlackListInfo.pFDID != null)) {
@@ -55,7 +60,8 @@ public class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
                 //报警类型
                 //报警设备IP地址
                 sIP = new String(pAlarmer.sDeviceIP).split("\0", 2);
-                System.out.println("报警时间"+dateFormat.format(today)+"报警IP"+sIP[0]+"报警类型"+sAlarmType);
+                System.out.println("报警时间"+dateFormat.format(today)+"  报警IP"+sIP[0]+"   报警类型"+sAlarmType);
+
             }
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(ClientDemo.class.getName()).log(Level.SEVERE, null, ex);

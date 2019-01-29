@@ -192,7 +192,7 @@ public class ClientDemo {
         System.out.println(b);*/
        /* fdLibBox.UploadFaceLinData(1);*/
         clientDemo.SetupAlarmChan();
-        Thread.sleep(100000);
+        /*Thread.sleep(100000);*/
 
         /**
          * 调用SearchFDLib方法
