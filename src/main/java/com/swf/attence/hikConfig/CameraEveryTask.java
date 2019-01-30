@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -34,5 +35,24 @@ public class CameraEveryTask {
      */
     @Scheduled(cron = "0 0 0 * * ? ")
     public void dataAnalysis(){
+        /**
+         * 获取上一天日期
+         */
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(new Date());
+        instance.add(Calendar.DATE,-1);
+        Date time = instance.getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        String format = simpleDateFormat.format(time);
+    }
+
+    public static void main(String[] args) {
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(new Date());
+        instance.add(Calendar.DATE,-1);
+        Date time = instance.getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        String format = simpleDateFormat.format(time);
+        System.out.println(format);
     }
 }
