@@ -1,29 +1,33 @@
 package com.swf.attence.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.sql.Timestamp;
+
 /**
  * @author : white.hou
  * @description : 报警表的实体类
  * @date: 2019/1/29_11:25
  */
-@Entity
+
 public class ICommand {
-    @Id
-    private Integer id;
-    @Column
+
+    private String id;
+
     private String icommandTime;
-    @Column
+
     private String icommandCameraid;
-    @Column
+
     private String icommandUserid;
-    @Column
+
     private String icommandUsername;
 
     public ICommand() {
 
+    }
+
+    public ICommand(String icommandTime, String icommandCameraid, String icommandUserid, String icommandUsername) {
+        this.icommandTime = icommandTime;
+        this.icommandCameraid = icommandCameraid;
+        this.icommandUserid = icommandUserid;
+        this.icommandUsername = icommandUsername;
     }
 
     @Override
@@ -37,7 +41,7 @@ public class ICommand {
                 '}';
     }
 
-    public ICommand(Integer id, String icommandTime, String icommandCameraid, String icommandUserid, String icommandUsername) {
+    public ICommand(String id, String icommandTime, String icommandCameraid, String icommandUserid, String icommandUsername) {
         this.id = id;
         this.icommandTime = icommandTime;
         this.icommandCameraid = icommandCameraid;
@@ -45,11 +49,11 @@ public class ICommand {
         this.icommandUsername = icommandUsername;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

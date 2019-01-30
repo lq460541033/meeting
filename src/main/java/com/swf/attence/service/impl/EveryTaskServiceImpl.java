@@ -1,11 +1,14 @@
 package com.swf.attence.service.impl;
 
+import com.swf.attence.entity.ICommand;
 import com.swf.attence.service.IEveryTaskService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 每日建表服务类 建立的表名规则：icommandYYYYMMDD
@@ -39,8 +42,8 @@ public class EveryTaskServiceImpl implements IEveryTaskService {
             }else {
                 statement.executeUpdate("DROP TABLE IF EXISTS "+todayTable+";");
                 statement.executeUpdate("    CREATE TABLE `attence`.`"+todayTable+"`  (\n" +
-                        "  `id` int(0) NOT NULL,\n" +
-                        "  `icommand_time` datetime(0) NOT NULL COMMENT '报警时间',\n" +
+                        "  `id` varchar(255) NOT NULL ,\n" +
+                        "  `icommand_time` varchar(255) NOT NULL COMMENT '报警时间',\n" +
                         "  `icommand_cameraid` varchar(255) NOT NULL COMMENT '报警来源：摄像头ip',\n" +
                         "  `icommand_userid` varchar(255) NOT NULL COMMENT '用户工号 ',\n" +
                         "  `icommand_username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户姓名',\n" +
@@ -57,6 +60,56 @@ public class EveryTaskServiceImpl implements IEveryTaskService {
             e.printStackTrace();
         }
         return todayTableExist;
+    }
+
+    @Override
+    public Boolean insertEveryICommandIntoDateBase(ICommand iCommand) throws ClassNotFoundException, SQLException {
+         Boolean insertEveryICommandIntoDateBase=false;
+         Class.forName(driver);
+        Connection connection = DriverManager.getConnection(url, username, password);
+        Statement statement = connection.createStatement();
+        /**
+         * 获取当前表名
+         */
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        String day = dateFormat.format(new Date());
+        String todayTable=prefix + day;
+        ResultSet tables = connection.getMetaData().getTables(null, null, todayTable, null);
+        if (tables.next()){
+            statement.executeUpdate("DROP TABLE IF EXISTS "+todayTable+";");
+            statement.executeUpdate("    CREATE TABLE `attence`.`"+todayTable+"`  (\n" +
+                    "  `id` varchar(255) NOT NULL ,\n" +
+                    "  `icommand_time` varchar(255) NOT NULL COMMENT '报警时间',\n" +
+                    "  `icommand_cameraid` varchar(255) NOT NULL COMMENT '报警来源：摄像头ip',\n" +
+                    "  `icommand_userid` varchar(255) NOT NULL COMMENT '用户工号 ',\n" +
+                    "  `icommand_username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户姓名',\n" +
+                    "  PRIMARY KEY (`id`)\n" +
+                    ") ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci;");
+                String sql="INSERT INTO "+todayTable+"(" +
+                    "`id`, `icommand_time`, `icommand_cameraid`, `icommand_userid`, `icommand_username`) VALUES (?,?,?,?,?);";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,iCommand.getId());
+            preparedStatement.setString(2,iCommand.getIcommandTime());
+            preparedStatement.setString(3,iCommand.getIcommandCameraid());
+            preparedStatement.setString(4,iCommand.getIcommandUserid());
+            preparedStatement.setString(5,iCommand.getIcommandUsername());
+            preparedStatement.executeUpdate();
+            System.out.println("插入成功");
+        }
+/*
+        statement.executeUpdate("INSERT INTO "+todayTable+"(" +
+                    "`id`, `icommand_time`, `icommand_cameraid`, `icommand_userid`, `icommand_username`) VALUES ("+iCommand.getId()+" , "+iCommand.getIcommandTime()+","+
+                    iCommand.getIcommandCameraid()+","+iCommand.getIcommandUserid()+","+iCommand.getIcommandUsername()+");");*/
+        statement.close();
+        connection.close();
+        insertEveryICommandIntoDateBase=true;
+        return insertEveryICommandIntoDateBase;
+    }
+
+    @Override
+    public Boolean getEverydayDataAndAnalsis(String day) {
+
+        return null;
     }
 
 

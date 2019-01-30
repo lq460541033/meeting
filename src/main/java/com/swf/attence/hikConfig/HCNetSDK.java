@@ -23,6 +23,7 @@ import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.NativeLongByReference;
 import com.sun.jna.ptr.ShortByReference;
 import com.sun.jna.win32.StdCallLibrary;
+import com.swf.attence.entity.ICommand;
 
 import java.util.Arrays;
 import java.util.List;
