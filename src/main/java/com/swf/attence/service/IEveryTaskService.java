@@ -3,6 +3,7 @@ package com.swf.attence.service;
 import com.swf.attence.entity.ICommand;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * @author : white.hou
@@ -25,10 +26,31 @@ public interface IEveryTaskService {
     Boolean insertEveryICommandIntoDateBase(ICommand iCommand) throws ClassNotFoundException, SQLException;
 
     /**
-     * 获取昨日数据库中所有数据并分析
-     * 分析与time_control中规定时间比对
+     * 参数是已经处理完成的两个list 这个方法是把符合考勤要求的写入正式库中
+     * @param inCommandList
+     * @param outCommandList
      * @param day
      * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
      */
-    Boolean getEverydayDataAndAnalsis(String day);
+    Boolean everyDataAnalsis(String day,ArrayList<ICommand> inCommandList,ArrayList<ICommand> outCommandList);
+
+    /**
+     * 上一天"进'的数据  去重之后
+     * @param day
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
+    ArrayList<ICommand> getInICommand(String day) throws ClassNotFoundException, SQLException;
+
+    /**
+     * 获取上一天'出'的数据 去重之后
+     * @param day
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
+    ArrayList<ICommand> getOutICommand(String day) throws ClassNotFoundException, SQLException;
 }

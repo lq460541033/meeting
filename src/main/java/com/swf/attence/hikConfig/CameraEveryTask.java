@@ -2,10 +2,10 @@ package com.swf.attence.hikConfig;
 
 import com.swf.attence.service.IEveryTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,7 +34,7 @@ public class CameraEveryTask {
      * 3 存入正式表
      */
     @Scheduled(cron = "0 0 0 * * ? ")
-    public void dataAnalysis(){
+    public void dataAnalysis() throws SQLException, ClassNotFoundException {
         /**
          * 获取上一天日期
          */
@@ -44,6 +44,7 @@ public class CameraEveryTask {
         Date time = instance.getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         String format = simpleDateFormat.format(time);
+        iEveryTaskService.everyDataAnalsis(format,iEveryTaskService.getInICommand(format),iEveryTaskService.getOutICommand(format));
     }
 
     public static void main(String[] args) {
