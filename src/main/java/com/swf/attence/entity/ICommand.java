@@ -1,14 +1,17 @@
 package com.swf.attence.entity;
 
 
+import java.io.Serializable;
+
 /**
  * @author : white.hou
  * @description : 报警表的实体类
  * @date: 2019/1/29_11:25
  */
 
-public class ICommand {
+public class ICommand implements Serializable {
 
+    private static final long serialVersionUID = 2939567226722940553L;
     private String id;
 
     private String icommandTime;

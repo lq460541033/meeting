@@ -4,6 +4,7 @@ import com.swf.attence.entity.AttenceMsg;
 import com.swf.attence.mapper.AttenceMsgMapper;
 import com.swf.attence.service.IAttenceMsgService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +17,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AttenceMsgServiceImpl extends ServiceImpl<AttenceMsgMapper, AttenceMsg> implements IAttenceMsgService {
+    @Autowired
+   private AttenceMsgMapper attenceMsgMapper;
 
+    @Override
+    public boolean attenceMsgExist(AttenceMsg attenceMsg) {
+        AttenceMsg attenceMsg1 = attenceMsgMapper.selectOne(attenceMsg);
+        return attenceMsg1 != null;
+
+    }
 }

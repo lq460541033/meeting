@@ -26,14 +26,15 @@ public class CameraEveryTask {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         String day = dateFormat.format(new Date());
         iEveryTaskService.creatEveryDayTable(day);
+        System.out.println("今日: "+day+"数据表创建完成");
     }
 
     /**
-     * 每天凌晨对前一日数据分析，存入正式表
+     * 每天凌晨1时对前一日数据分析，存入正式表
      * 动作以下几个：1 从每日表中拉取指定数据（进、出） 2 根据第一次进的时间（ip）、最后一次出的时间（ip）与time_control表的规定事项比较
      * 3 存入正式表
      */
-    @Scheduled(cron = "0 0 0 * * ? ")
+    @Scheduled(cron = "0 0 1 1/1 * ? ")
     public void dataAnalysis() throws SQLException, ClassNotFoundException {
         /**
          * 获取上一天日期
@@ -45,6 +46,7 @@ public class CameraEveryTask {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         String format = simpleDateFormat.format(time);
         iEveryTaskService.everyDataAnalsis(format,iEveryTaskService.getInICommand(format),iEveryTaskService.getOutICommand(format));
+        System.out.println(format+"  数据分析完成，请登录查看");
     }
 
     public static void main(String[] args) {

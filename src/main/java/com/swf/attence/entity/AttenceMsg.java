@@ -34,13 +34,12 @@ public class AttenceMsg implements Serializable {
     private String cameraidIn;
     @TableField("check_out_time")
     private String checkOutTime;
-
     @TableField("cameraid_out")
     private String cameraidOut;
    /* @TableField("check_in_from")
     private String checkInFrom;*/
     /**
-     * 状态 考勤状态  0 考勤成功 1 考勤失败
+     * 状态 考勤状态  1考勤成功 0考勤失败
      */
     @TableField("check_state")
     private Integer checkState;

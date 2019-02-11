@@ -28,13 +28,13 @@ spring:
 #    show-sql: true
 #  main:
 #    allow-bean-definition-overriding: true
-##Mybaits相关配置
-#mybatis:
-#  configuration:
-#    map-underscore-to-camel-case: true
-#    use-generated-keys: true
-#  type-aliases-package: com.attence.entity
-#  mapper-locations: classpath:com.attence.mapper/*.xml
+#Mybaits相关配置
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+  type-aliases-package: com.swf.attence.entity
+  mapper-locations: classpath:com.swf.attence.mapper/*.xml
 mybatis-plus:
   type-aliases-package: com.swf.attence.entity
   global-config:

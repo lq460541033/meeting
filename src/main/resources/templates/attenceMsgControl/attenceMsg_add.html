@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="添加用户考勤信息">
+    <meta name="author" content="white.hou">
+
+    <title>编辑用户考勤信息</title>
+    <!-- Bootstrap core CSS -->
+    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="asserts/css/dashboard.css" th:href="@{/static/asserts/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+    <script>
+        function checkAttenceMsg() {
+
+        }
+    </script>
+</head>
+
+<body>
+<!--引入抽取的topbar-->
+<!--模板名：会使用thymeleaf的前后缀配置规则进行解析-->
+<div th:replace="commons/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--引入侧边栏-->
+        <div th:replace="commons/bar::#sidebar(activeUri='attenceMsgs')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <!--需要区分是员工修改还是添加；-->
+            <form th:action="@{/attenceMsg}" method="post">
+                <input type="hidden" name="_method" value="put" th:if="${attenceMsg!=null}"/>
+                <strong type="hidden" class="alert alert-warning" th:if="${msg!=null}" >Warning!</strong>
+                <input type="hidden" name="id" th:if="${attenceMsg!=null}" th:value="${id}">
+                <div class="form-group">
+                    <label>添加用户</label>
+                    <input name="userid" type="text" class="form-control" placeholder="1100" required="required"
+                           th:value="${attenceMsg!=null}?${attenceMsg.userid}">
+                </div>
+                <div class="form-group">
+                    <label>用户打卡进入时间</label>
+                    <input name="attenceMsgPosition" type="text" class="form-control" placeholder="2019-02-01 07:59:11" required="required"
+                           th:value="${attenceMsg!=null}?${attenceMsg.checkInTime}">
+                </div>
+                <div class="form-group">
+                    <label>用户打卡进入设备号</label>
+                    <input name="attenceMsgLocation" type="text" class="form-control" placeholder="192.168.0.101" required="required"
+                           th:value="${attenceMsg!=null}?${attenceMsg.cameraidIn}">
+                </div>
+                <div class="form-group">
+                    <label>用户打开离开时间</label>
+                    <input name="attenceMsgLocation" type="text" class="form-control" placeholder="2019-02-01 07:59:11" required="required"
+                           th:value="${attenceMsg!=null}?${attenceMsg.checkOutTime}">
+                </div>
+                <div class="form-group">
+                    <label>用户打卡离开设备号</label>
+                    <input name="attenceMsgLocation" type="text" class="form-control" placeholder="192.168.0.102" required="required"
+                           th:value="${attenceMsg!=null}?${attenceMsg.cameraidOut}">
+                </div>
+                <div class="form-group">
+                    <label>用户请假状态</label>
+                    <label class="radio-inline">
+                        <input type="radio" value="1" name="failid" required>已请假
+                        <input type="radio" value="0" name="failid" required>未请假
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>用户考勤状态</label>
+                    <label class="radio-inline">
+                        <input type="radio" value="1" name="checkState" required>考勤成功
+                        <input type="radio" value="0" name="checkState" required>考勤失败
+                    </label>
+                </div>
+                <button onclick="checkAttenceMsg()" class="btn btn-info">检查</button>
+                <button type="submit" class="btn btn-primary" th:text="${attenceMsg!=null}?'修改':'添加'" style="display: none">添加</button>
+            </form>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
+        th:src="@{/webjars/jquery/3.2.1/jquery.js}"></script>
+<script type="text/javascript" src="asserts/js/popper.min.js"
+        th:src="@{/webjars/popper.js/1.14.3/dist/popper.js}"></script>
+<script type="text/javascript" src="asserts/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.js}"></script>
+
+<!-- Icons -->
+<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/static/asserts/js/feather.min.js}"></script>
+
+</body>
+
+</html>

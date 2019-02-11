@@ -12,5 +12,10 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2018-12-30
  */
 public interface IAttenceMsgService extends IService<AttenceMsg> {
-
+    /**
+     * 添加的用户是否存在
+     * @param attenceMsg
+     * @return
+     */
+  boolean attenceMsgExist(AttenceMsg attenceMsg);
 }

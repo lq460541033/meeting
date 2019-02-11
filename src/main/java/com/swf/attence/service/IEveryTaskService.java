@@ -25,6 +25,7 @@ public interface IEveryTaskService {
      */
     Boolean insertEveryICommandIntoDateBase(ICommand iCommand) throws ClassNotFoundException, SQLException;
 
+    Boolean insertIntoDatabase(String todayTable,ICommand iCommand);
     /**
      * 参数是已经处理完成的两个list 这个方法是把符合考勤要求的写入正式库中
      * @param inCommandList
@@ -35,6 +36,8 @@ public interface IEveryTaskService {
      * @throws SQLException
      */
     Boolean everyDataAnalsis(String day,ArrayList<ICommand> inCommandList,ArrayList<ICommand> outCommandList);
+
+
 
     /**
      * 上一天"进'的数据  去重之后

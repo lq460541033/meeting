@@ -25,9 +25,6 @@ public class CameraController {
     @Autowired
     private ICameraMsgService iCameraMsgService;
 
-
-
-
     /**
      * 分页列出所有设备
      * @param pageNum

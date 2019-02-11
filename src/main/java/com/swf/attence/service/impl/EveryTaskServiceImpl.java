@@ -6,6 +6,7 @@ import com.swf.attence.entity.AttenceMsg;
 import com.swf.attence.entity.CameraMsg;
 import com.swf.attence.entity.ICommand;
 import com.swf.attence.entity.TimeControl;
+import com.swf.attence.mapper.ICommandMapper;
 import com.swf.attence.service.IAttenceMsgService;
 import com.swf.attence.service.ICameraMsgService;
 import com.swf.attence.service.IEveryTaskService;
@@ -30,6 +31,8 @@ public class EveryTaskServiceImpl implements IEveryTaskService {
     private ICameraMsgService iCameraMsgService;
     @Autowired
     private IAttenceMsgService iAttenceMsgService;
+    @Autowired
+    private ICommandMapper iCommandMapper;
 
     @Value(value = "${spring.datasource.driver-class-name}")
     private String driver;
@@ -120,6 +123,11 @@ public class EveryTaskServiceImpl implements IEveryTaskService {
         insertEveryICommandIntoDateBase = true;
         return insertEveryICommandIntoDateBase;
     }
+    @Override
+    public Boolean insertIntoDatabase(String todayTable, ICommand iCommand) {
+        iCommandMapper.insertIntoDatabase(todayTable,iCommand);
+        return true;
+    }
 
     @Override
     public Boolean everyDataAnalsis(String day, ArrayList<ICommand> inCommandList, ArrayList<ICommand> outCommandList) {
@@ -134,51 +142,49 @@ public class EveryTaskServiceImpl implements IEveryTaskService {
         List<TimeControl> timeControls = iTimeControlService.selectList(new EntityWrapper<TimeControl>().eq("things_name", "考勤"));
         System.out.println(timeControls);
         String inFormat = null;
-        for (TimeControl t : timeControls
-                ) {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-            /**
-             * 当天应该'进'的时间
-             */
-            inFormat = day + simpleDateFormat.format(t.getStartTime());
-        }
-        /**
-         * 比'进'规定时间小的所有List
-         */
-        for (ICommand ic : inCommandList
-                ) {
-            if (ic.getIcommandTime().compareTo(inFormat) > 0) {
-                inCommandList.remove(ic);
-            }
-        }
-        /**
-         * 查询出时间
-         */
         String outFormat = null;
         for (TimeControl t : timeControls
                 ) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
             /**
-             * 当天应该'出'的时间
+             * 当天应该'进 出'的时间
              */
+            inFormat = day + simpleDateFormat.format(t.getStartTime());
             outFormat = day + simpleDateFormat.format(t.getEndTime());
+        }
+        /**
+         * 比'进'规定时间小的所有List
+         */
+        ArrayList<ICommand> newInCommandList = new ArrayList<>();
+        newInCommandList.addAll(inCommandList);
+        for (ICommand ic : inCommandList
+                ) {
+            String replace = ic.getIcommandTime().replace("-", "").replace(" ", "");
+            int i = replace.compareTo(inFormat);
+            if (i>0){
+                newInCommandList.remove(ic);
+            }
         }
         /**
          * 比'出'规定时间小的所有List
          */
+        ArrayList<ICommand> newOutCommandList = new ArrayList<>();
+        newOutCommandList.addAll(outCommandList);
         for (ICommand ic : outCommandList
                 ) {
-            if (ic.getIcommandTime().compareTo(outFormat) < 0) {
-                outCommandList.remove(ic);
+            String outReplace = ic.getIcommandTime().replace("-", "").replace(" ", "");
+            int compare = outReplace.compareTo(outFormat);
+            if (compare < 0) {
+                newOutCommandList.remove(ic);
             }
         }
         /**
          * 符合规定的进出list存入attence_msg 状态为1
          */
-        for (int i = 0; i < outCommandList.size(); i++) {
-            ICommand outICommand = outCommandList.get(i);
-            for (int j = 0; j < inCommandList.size(); j++) {
-                ICommand inICommand = inCommandList.get(j);
+        for (int i = 0; i < newOutCommandList.size(); i++) {
+            ICommand outICommand = newOutCommandList.get(i);
+            for (int j = 0; j < newInCommandList.size(); j++) {
+                ICommand inICommand = newInCommandList.get(j);
                 if (inICommand.getIcommandUserid().equals(outICommand.getIcommandUserid())) {
                     AttenceMsg completeAttenceMsg = new AttenceMsg();
                     completeAttenceMsg.setUserid(inICommand.getIcommandUserid());
@@ -211,6 +217,7 @@ public class EveryTaskServiceImpl implements IEveryTaskService {
                         failedAttence.setCheckOutTime(outCommand.getIcommandTime());
                         failedAttence.setCameraidOut(outCommand.getIcommandCameraid());
                         failedAttence.setCheckState(0);
+                        System.out.println("工号: " + inCommand.getIcommandUserid() + "考勤失败");
                     }
                 }
             }
