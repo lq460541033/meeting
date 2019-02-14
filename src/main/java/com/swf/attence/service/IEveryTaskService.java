@@ -35,7 +35,7 @@ public interface IEveryTaskService {
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-    Boolean everyDataAnalsis(String day,ArrayList<ICommand> inCommandList,ArrayList<ICommand> outCommandList);
+    void everyDataAnalsis(String day,ArrayList<ICommand> inCommandList,ArrayList<ICommand> outCommandList);
 
 
 

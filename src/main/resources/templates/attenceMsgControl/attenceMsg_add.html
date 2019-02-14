@@ -11,9 +11,11 @@
     <title>编辑用户考勤信息</title>
     <!-- Bootstrap core CSS -->
     <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.css}" rel="stylesheet">
-
     <!-- Custom styles for this template -->
-    <link href="asserts/css/dashboard.css" th:href="@{/static/asserts/css/dashboard.css}" rel="stylesheet">
+    <link th:href="@{/webjars/bootstrap-datetimepicker/2.4.2/css/bootstrap-datetimepicker.css}" rel="stylesheet"
+          type="text/css">
+    <link th:href="@{/webjars/bootstrap-datetimepicker/2.4.2/css/bootstrap-datetimepicker.min.css}" rel="stylesheet"
+          type="text/css">
     <style type="text/css">
         /* Chart.js */
         @-webkit-keyframes chartjs-render-animation {
@@ -39,9 +41,39 @@
             animation: chartjs-render-animation 0.001s;
         }
     </style>
-    <script>
+    <script type="text/javascript">
         function checkAttenceMsg() {
+            var userid = $("#userid").val();
+            var cameraidIn = $("#cameraidIn").val();
+            var cameraidOut = $("#cameraidOut").val();
+            var checkIn =$("#from-checkInTime").val();
+            var checkOut =$("#from-checkOutTime").val();
+            $.ajax(
+                {
+                    url: "/attenceMsg/check",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        userid: userid,
+                        cameraidIn: cameraidIn,
+                        cameraidOut: cameraidOut
+                    },
+                    success: function (data) {
+                        $("#confirm-userid").val(data.useridMsg);
+                        $("#confirm-username").val(data.userNameMsg);
+                        $("#confirm-deptname").val(data.deptMsg);
+                        $("#confirm-cameraidIn").val(data.cameraIn);
+                        $("#confirm-cameraidOut").val(data.cameraOut);
+                        $("#confirm-checkInTime").val(checkIn);
+                        $("#confirm-checkOutTime").val(checkOut);
+                    }
+                }
+            )
+        }
 
+        function openD() {
+            document.getElementById("open-add").style.display = "block";
+            document.getElementById("close-add").style.display="none";
         }
     </script>
 </head>
@@ -55,37 +87,42 @@
     <div class="row">
         <!--引入侧边栏-->
         <div th:replace="commons/bar::#sidebar(activeUri='attenceMsgs')"></div>
-
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <!--需要区分是员工修改还是添加；-->
+            <!--模态框部分-->
+
             <form th:action="@{/attenceMsg}" method="post">
                 <input type="hidden" name="_method" value="put" th:if="${attenceMsg!=null}"/>
-                <strong type="hidden" class="alert alert-warning" th:if="${msg!=null}" >Warning!</strong>
+                <strong type="hidden" class="alert alert-warning" th:if="${msg!=null}">Warning!</strong>
                 <input type="hidden" name="id" th:if="${attenceMsg!=null}" th:value="${id}">
                 <div class="form-group">
-                    <label>添加用户</label>
+                    <label>请输入工号</label>
                     <input name="userid" type="text" class="form-control" placeholder="1100" required="required"
+                           id="userid"
                            th:value="${attenceMsg!=null}?${attenceMsg.userid}">
                 </div>
                 <div class="form-group">
                     <label>用户打卡进入时间</label>
-                    <input name="attenceMsgPosition" type="text" class="form-control" placeholder="2019-02-01 07:59:11" required="required"
-                           th:value="${attenceMsg!=null}?${attenceMsg.checkInTime}">
+                    <input name="checkInTime" class="form_datetime form-control" required="required"
+                           id="from-checkInTime"
+                           style="width: 200px" th:value="${attenceMsg!=null}?${attenceMsg.checkInTime}">
                 </div>
                 <div class="form-group">
                     <label>用户打卡进入设备号</label>
-                    <input name="attenceMsgLocation" type="text" class="form-control" placeholder="192.168.0.101" required="required"
-                           th:value="${attenceMsg!=null}?${attenceMsg.cameraidIn}">
+                    <input name="cameraidIn" type="text" class="form-control" placeholder="192.168.0.101"
+                           required="required"
+                           th:value="${attenceMsg!=null}?${attenceMsg.cameraidIn}" id="cameraidIn">
                 </div>
                 <div class="form-group">
-                    <label>用户打开离开时间</label>
-                    <input name="attenceMsgLocation" type="text" class="form-control" placeholder="2019-02-01 07:59:11" required="required"
-                           th:value="${attenceMsg!=null}?${attenceMsg.checkOutTime}">
+                    <label>用户打卡离开时间</label>
+                    <input name="checkOutTime" class="form_datetime form-control" required="required"
+                           id="from-checkOutTime"
+                           style="width: 200px" th:value="${attenceMsg!=null}?${attenceMsg.checkOutTime}">
                 </div>
                 <div class="form-group">
                     <label>用户打卡离开设备号</label>
-                    <input name="attenceMsgLocation" type="text" class="form-control" placeholder="192.168.0.102" required="required"
-                           th:value="${attenceMsg!=null}?${attenceMsg.cameraidOut}">
+                    <input name="cameraidOut" type="text" class="form-control" placeholder="192.168.0.102"
+                           required="required"
+                           th:value="${attenceMsg!=null}?${attenceMsg.cameraidOut}" id="cameraidOut">
                 </div>
                 <div class="form-group">
                     <label>用户请假状态</label>
@@ -98,11 +135,73 @@
                     <label>用户考勤状态</label>
                     <label class="radio-inline">
                         <input type="radio" value="1" name="checkState" required>考勤成功
-                        <input type="radio" value="0" name="checkState" required>考勤失败
+                        <input type="radio" value="2" name="checkState" required>迟到
+                        <input type="radio" value="3" name="checkState" required>早退
+                        <input type="radio" value="4" name="checkState" required>迟到 早退
                     </label>
                 </div>
-                <button onclick="checkAttenceMsg()" class="btn btn-info">检查</button>
-                <button type="submit" class="btn btn-primary" th:text="${attenceMsg!=null}?'修改':'添加'" style="display: none">添加</button>
+                <button class="btn btn-info" data-toggle="modal" data-target="#checkAttence" type="button" onclick="checkAttenceMsg()" style="display: block" id="close-add">检查</button>
+                <div class="modal fade" id="checkAttence">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <!--模态框头部-->
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">请确认您所要添加的考勤信息</h4>
+                            </div>
+                            <!--主体-->
+                            <div class="modal-body">
+                                <div class="input-group">
+                                    <span class="input-group-addon">用户工号</span>
+                                    <input type="text" class="form-control" placeholder="用户工号"
+                                           id="confirm-userid" readonly="readonly">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">用户姓名</span>
+                                    <input type="text" class="form-control" placeholder="用户姓名"
+                                           id="confirm-username" readonly="readonly">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">用户部门</span>
+                                    <input type="text" class="form-control" placeholder="用户部门"
+                                           id="confirm-deptname" readonly="readonly">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">用户进入时间</span>
+                                    <input type="text" class="form-control" placeholder="用户进入时间"
+                                           id="confirm-checkInTime" readonly="readonly">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">用户进入设备位置</span>
+                                    <input type="text" class="form-control" placeholder="用户进入设备位置"
+                                           id="confirm-cameraidIn" readonly="readonly">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">用户离开时间</span>
+                                    <input type="text" class="form-control" placeholder="用户进入时间"
+                                           id="confirm-checkOutTime" readonly="readonly">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">用户离开设备位置</span>
+                                    <input type="text" class="form-control" placeholder="用户离开设备位置"
+                                           id="confirm-cameraidOut" readonly="readonly">
+                                </div>
+                            </div>
+                            <!--底部-->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalControl1">
+                                    输入有误，重新输入
+                                </button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal" id="modalControl2"
+                                        onclick="openD()">
+                                    输入无误，继续添加
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large" th:text="${attenceMsg!=null}?'修改':'添加'"
+                        style="display: none" id="open-add">添加
+                </button>
             </form>
         </main>
     </div>
@@ -117,10 +216,49 @@
         th:src="@{/webjars/popper.js/1.14.3/dist/popper.js}"></script>
 <script type="text/javascript" src="asserts/js/bootstrap.min.js"
         th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.js}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/bootstrap-datetimepicker.js}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/locales/bootstrap-datetimepicker.fr.js}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
+<script type="text/javascript">
+    //日期插件
+    $("#from-checkInTime").datetimepicker({
+        format: 'yyyy-mm-dd hh:ii:ss',//显示格式
+        todayHighlight: 1,//今天高亮
+        keyboardNavigation: true,
+        maxView: 3,
+        minView: 0,//设置显示位置
+        language: 'zh-CN',
+        startView: 2,
+        forceParse: 0,
+        todayBtn: true,
+        showMeridian: 1,
+        autoclose: true//选择后自动关闭
+    }).on('changeDate', function (ev) {
+        var starttime = $("#from-checkInTime").val();
+        $("#from-checkOutTime").datetimepicker('setStartDate', starttime);
+        $("#from-checkInTime").datetimepicker('hide');
+    });
 
-<!-- Icons -->
-<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/static/asserts/js/feather.min.js}"></script>
-
+    $("#from-checkOutTime").datetimepicker({
+        format: 'yyyy-mm-dd hh:ii:ss',//显示格式
+        todayHighlight: 1,//今天高亮
+        keyboardNavigation: true,
+        maxView: 3,
+        minView: 0,//设置显示位置
+        language: 'zh-CN',
+        startView: 2,
+        forceParse: 0,
+        todayBtn: true,
+        showMeridian: 1,
+        autoclose: true//选择后自动关闭
+    }).on('changeDate', function (ev) {
+        $("#from-checkInTime").datetimepicker('setEndDate', $("#from-checkOutTime").val());
+        $("#from-checkOutTime").datetimepicker('hide')
+    })
+</script>
 </body>
 
 </html>

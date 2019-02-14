@@ -130,7 +130,7 @@ public class EveryTaskServiceImpl implements IEveryTaskService {
     }
 
     @Override
-    public Boolean everyDataAnalsis(String day, ArrayList<ICommand> inCommandList, ArrayList<ICommand> outCommandList) {
+    public void everyDataAnalsis(String day, ArrayList<ICommand> inCommandList, ArrayList<ICommand> outCommandList) {
         /**
          * 构造两个新list用来存放  除去那些符合条件的 对象数据
          */
@@ -155,53 +155,143 @@ public class EveryTaskServiceImpl implements IEveryTaskService {
         /**
          * 比'进'规定时间小的所有List
          */
-        ArrayList<ICommand> newInCommandList = new ArrayList<>();
-        newInCommandList.addAll(inCommandList);
+        ArrayList<ICommand> newInCommandList1 = new ArrayList<>(inCommandList);
+        /**
+         * 比'进'规定时间大的所有List
+         */
+        ArrayList<ICommand> newInCommandList2 = new ArrayList<>();
+        /**
+         * 如果时间大于规定时间 则从“比进规定时间小的集合中”移除该对象，这部分对象存入2
+         */
         for (ICommand ic : inCommandList
                 ) {
             String replace = ic.getIcommandTime().replace("-", "").replace(" ", "");
             int i = replace.compareTo(inFormat);
-            if (i>0){
-                newInCommandList.remove(ic);
+            if (i>=0){
+                newInCommandList1.remove(ic);
+                newInCommandList2.add(ic);
             }
         }
         /**
          * 比'出'规定时间小的所有List
          */
-        ArrayList<ICommand> newOutCommandList = new ArrayList<>();
-        newOutCommandList.addAll(outCommandList);
+        ArrayList<ICommand> newOutCommandList1 = new ArrayList<>(outCommandList);
+        /**
+         * 比'出'规定时间大的所有List
+         */
+        ArrayList<ICommand> newOutCommandList2 = new ArrayList<>();
+
         for (ICommand ic : outCommandList
                 ) {
             String outReplace = ic.getIcommandTime().replace("-", "").replace(" ", "");
             int compare = outReplace.compareTo(outFormat);
-            if (compare < 0) {
-                newOutCommandList.remove(ic);
+            if (compare <= 0) {
+                newOutCommandList1.remove(ic);
+                newOutCommandList2.add(ic);
             }
         }
         /**
-         * 符合规定的进出list存入attence_msg 状态为1
+         * 符合规定的进出list存入attence_msg 状态为1 即为考勤成功
+         * newInList1 小于等于 进
+         * newInList2  大于 进
+         * newOutList1 大于 出
+         * newOutList2 小于 出
+         *
+         * 这一部分处理的是  规定时间  出
+         *
          */
-        for (int i = 0; i < newOutCommandList.size(); i++) {
-            ICommand outICommand = newOutCommandList.get(i);
-            for (int j = 0; j < newInCommandList.size(); j++) {
-                ICommand inICommand = newInCommandList.get(j);
+        for (int a = 0; a < newOutCommandList1.size(); a++) {
+            ICommand outICommand = newOutCommandList1.get(a);
+            /**
+             * 这个for处理的是 进出均在规定时间的正常考勤数据
+             */
+            for (int b = 0; b < newInCommandList1.size(); b++) {
+                ICommand inICommand = newInCommandList1.get(b);
                 if (inICommand.getIcommandUserid().equals(outICommand.getIcommandUserid())) {
                     AttenceMsg completeAttenceMsg = new AttenceMsg();
                     completeAttenceMsg.setUserid(inICommand.getIcommandUserid());
                     completeAttenceMsg.setCheckInTime(inICommand.getIcommandTime());
                     completeAttenceMsg.setCameraidIn(inICommand.getIcommandCameraid());
-                    completeAttenceMsg.setCameraidOut(outICommand.getIcommandTime());
-                    completeAttenceMsg.setCheckOutTime(outICommand.getIcommandCameraid());
+                    completeAttenceMsg.setCameraidOut(outICommand.getIcommandCameraid());
+                    completeAttenceMsg.setCheckOutTime(outICommand.getIcommandTime());
                     completeAttenceMsg.setCheckState(1);
                     iAttenceMsgService.insert(completeAttenceMsg);
                     System.out.println("工号: " + inICommand.getIcommandUserid() + "考勤成功");
-                    return true;
                 }
             }
             /**
-             * List 的并集去掉正常考勤的部分放入attence_msg
+             * 这个for处理的是 迟到  但是按照规定时间下班的人
              */
-            inICommands.retainAll(outICommands);
+            for (int c=0;c<newInCommandList2.size();c++){
+                ICommand inICommand = newInCommandList1.get(c);
+                if (inICommand.getIcommandUserid().equals(outICommand.getIcommandUserid())) {
+                    AttenceMsg completeAttenceMsg = new AttenceMsg();
+                    completeAttenceMsg.setUserid(inICommand.getIcommandUserid());
+                    completeAttenceMsg.setCheckInTime(inICommand.getIcommandTime());
+                    completeAttenceMsg.setCameraidIn(inICommand.getIcommandCameraid());
+                    completeAttenceMsg.setCameraidOut(outICommand.getIcommandCameraid());
+                    completeAttenceMsg.setCheckOutTime(outICommand.getIcommandTime());
+                    completeAttenceMsg.setCheckState(2);
+                    iAttenceMsgService.insert(completeAttenceMsg);
+                    System.out.println("工号: " + inICommand.getIcommandUserid() + "迟到");
+                }
+            }
+        }
+
+        /**
+         * 这一部分处理的是 早退   也就是规定时间 进入 的员工
+         */
+        for (int d=0;d<newInCommandList1.size();d++){
+            ICommand iCommand = newInCommandList1.get(d);
+            for(int e=0;e<newOutCommandList2.size();e++){
+                ICommand iCommand1 = newOutCommandList2.get(e);
+                if (iCommand1.getIcommandUserid().equals(iCommand.getIcommandUserid())){
+                    AttenceMsg completeAttenceMsg = new AttenceMsg();
+                    completeAttenceMsg.setUserid(iCommand1.getIcommandUserid());
+                    completeAttenceMsg.setCheckInTime(iCommand1.getIcommandTime());
+                    completeAttenceMsg.setCameraidIn(iCommand1.getIcommandCameraid());
+                    completeAttenceMsg.setCameraidOut(iCommand.getIcommandCameraid());
+                    completeAttenceMsg.setCheckOutTime(iCommand.getIcommandTime());
+                    completeAttenceMsg.setCheckState(3);
+                    iAttenceMsgService.insert(completeAttenceMsg);
+                    System.out.println("工号: " + iCommand1.getIcommandUserid() + "早退");
+                }
+            }
+        }
+
+        /**
+         * 这一部分处理的是  不在规定时间 进 出 的人
+         */
+
+        for (int f=0;f<newOutCommandList2.size();f++){
+            ICommand iCommand = newOutCommandList2.get(f);
+            for (int g=0;g<newInCommandList2.size();g++){
+                ICommand iCommand1 = newInCommandList2.get(g);
+                if (iCommand1.getIcommandUserid().equals(iCommand.getIcommandUserid())){
+                    AttenceMsg completeAttenceMsg = new AttenceMsg();
+                    completeAttenceMsg.setUserid(iCommand1.getIcommandUserid());
+                    completeAttenceMsg.setCheckInTime(iCommand1.getIcommandTime());
+                    completeAttenceMsg.setCameraidIn(iCommand1.getIcommandCameraid());
+                    completeAttenceMsg.setCameraidOut(iCommand.getIcommandCameraid());
+                    completeAttenceMsg.setCheckOutTime(iCommand.getIcommandTime());
+                    completeAttenceMsg.setCheckState(4);
+                    iAttenceMsgService.insert(completeAttenceMsg);
+                    System.out.println("工号: " + iCommand1.getIcommandUserid() + "迟到  早退");
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+        /**
+         * List 的并集去掉正常考勤的部分放入attence_msg
+         */
+     /*       inICommands.retainAll(outICommands);
             inICommands.removeAll(inCommandList);
             outICommands.retainAll(inICommands);
             outICommands.removeAll(outCommandList);
@@ -218,13 +308,13 @@ public class EveryTaskServiceImpl implements IEveryTaskService {
                         failedAttence.setCameraidOut(outCommand.getIcommandCameraid());
                         failedAttence.setCheckState(0);
                         System.out.println("工号: " + inCommand.getIcommandUserid() + "考勤失败");
+                        return true;
                     }
                 }
-            }
-            return true;
+            }*/
+
         }
-        return false;
-    }
+
 
 
     @Override

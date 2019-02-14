@@ -71,10 +71,16 @@
                         <td th:text="${attenceMsg.cameraidIn}"></td>
                         <td th:text="${attenceMsg.checkOutTime}"></td>
                         <td th:text="${attenceMsg.cameraidOut}"></td>
-                        <td th:text="${attenceMsg.failid}"></td>
-                        <td th:text="${attenceMsg.checkState}==1?'考勤成功':'考勤失败'"></td>
+                        <td th:text="${attenceMsg.failid}==1?'已请假':''"></td>
+                        <!--<td th:text="${attenceMsg.checkState}==1?'考勤成功':'考勤失败'"></td>-->
                         <td>
-                            <a class="btn btn-sm btn-primary" th:href="@{/attenceMsg/}+${attenceMsg.id}" disabled="true">编辑</a>
+                            <a th:if="${attenceMsg.checkState}==1" th:text="'考勤成功'"></a>
+                            <a th:if="${attenceMsg.checkState}==2" th:text="'迟到'"></a>
+                            <a th:if="${attenceMsg.checkState}==3" th:text="'早退'"></a>
+                            <a th:if="${attenceMsg.checkState}==4" th:text="'迟到 早退"></a>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" th:href="@{/attenceMsg/}+${attenceMsg.id}" disabled>编辑</button>
                             <button th:attr="del_uri=@{/attenceMsg/}+${attenceMsg.id}" class="btn btn-sm btn-danger deleteBtn" disabled>
                                 删除
                             </button>

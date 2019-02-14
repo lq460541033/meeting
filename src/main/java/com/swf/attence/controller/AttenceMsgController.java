@@ -72,6 +72,4 @@ public class AttenceMsgController {
         }
         return "redirect:/attenceMsgs";
     }
-
-
 }
