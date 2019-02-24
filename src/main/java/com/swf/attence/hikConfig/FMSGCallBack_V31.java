@@ -36,6 +36,7 @@ public class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
     @Override
     public void invoke(NativeLong lCommand, HCNetSDK.NET_DVR_ALARMER pAlarmer, Pointer pAlarmInfo, int dwBufLen, Pointer pUser)
     {
+        System.out.println("已进入报警程序");
         try {
             String sAlarmType = new String();
             //报警时间
@@ -44,6 +45,7 @@ public class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
             String[] sIP = new String[2];
             sAlarmType = new String("lCommand=") + lCommand.intValue();
             //lCommand是传的报警类型
+            System.out.println(lCommand.intValue());
             if(lCommand.intValue()==HCNetSDK.COMM_SNAP_MATCH_ALARM){
                 HCNetSDK.NET_VCA_FACESNAP_MATCH_ALARM strFaceSnapMatch = new HCNetSDK.NET_VCA_FACESNAP_MATCH_ALARM();
                 strFaceSnapMatch.write();
@@ -110,7 +112,7 @@ public class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
                 }
             }
         } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(HikCameraRegister.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 }

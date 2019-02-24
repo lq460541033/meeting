@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 @Component
 public class FDLibBox {
     public ClientDemo m_alarm;
@@ -80,7 +81,8 @@ public class FDLibBox {
     }
 
     /**
-     *人脸库的查方法  注意是针对整个库
+     * 人脸库的查方法  注意是针对整个库
+     *
      * @return
      */
     public boolean SearchFDLib() {
@@ -153,6 +155,7 @@ public class FDLibBox {
 
     /**
      * 人脸库的增方法
+     *
      * @param FDLibName
      * @return
      * @throws UnsupportedEncodingException
@@ -234,6 +237,7 @@ public class FDLibBox {
 
     /**
      * 调用本函数前需要先使用SearchFDLib()，m_FDLibList才会被填充值  是人脸库的删
+     *
      * @param index
      * @return
      */
@@ -264,6 +268,7 @@ public class FDLibBox {
 
     /**
      * 被UploadFaceLinData调用，上传方法
+     *
      * @param index
      * @return
      */
@@ -294,6 +299,7 @@ public class FDLibBox {
 
     /**
      * 被UploadFaceLinData调用 用来上传图片和图片附加信息
+     *
      * @param userpicPath
      * @param userdataPath
      */
@@ -375,11 +381,12 @@ public class FDLibBox {
 
     /**
      * 下发人脸信息 ，index是指人脸库的索引 但是得先调用SearchFDLib 填充值到m_FDlibList
+     *
      * @param index
      * @param userpicPath
      * @param userdataPath
      */
-    public void UploadFaceLinData(int index,String userpicPath, String userdataPath) {
+    public synchronized void UploadFaceLinData(int index, String userpicPath, String userdataPath) {
         if (m_lUploadHandle.longValue() != -1) {
             if (hCNetSDK.NET_DVR_UploadClose(m_lUploadHandle)) {
                 System.out.println("NET_DVR_UploadClose success");
@@ -394,7 +401,6 @@ public class FDLibBox {
         } else {
             System.out.println("NET_DVR_UploadFile_V40 success");
         }
-
         Thread thread = new Thread() {
             public void run() {
                 UploadSend(userpicPath,userdataPath);
@@ -437,8 +443,10 @@ public class FDLibBox {
         thread.start();
     }
 
+
     /**
      * 被UploadFaceLinData调用，上传进度函数
+     *
      * @return
      */
     public NativeLong getUploadState() {
@@ -459,10 +467,9 @@ public class FDLibBox {
     }
 
     /**
-     *
      * @param index
      */
-    public void SetFaceAppendData(int index,String m_picID) {
+    public void SetFaceAppendData(int index, String m_picID) {
         HCNetSDK.NET_DVR_XML_CONFIG_INPUT struInput = new HCNetSDK.NET_DVR_XML_CONFIG_INPUT();
         struInput.dwSize = struInput.size();
         String id = m_FDLibList.get(index).szFDID;
@@ -503,7 +510,7 @@ public class FDLibBox {
     }
 
 
-    public void DeleteFaceAppendData(int index,String m_picID ) {
+    public void DeleteFaceAppendData(int index, String m_picID) {
         String id = m_FDLibList.get(index).szFDID;
 
         String str = "DELETE /ISAPI/Intelligent/FDLib/" + id + "/picture/" + m_picID;
@@ -540,12 +547,12 @@ public class FDLibBox {
         }
     }
 
-    public void GetFaceAppendData(int index,String m_picID) {
+    public void GetFaceAppendData(int index, String m_picID) {
         String id = m_FDLibList.get(index).szFDID;
         HCNetSDK.NET_DVR_XML_CONFIG_INPUT struInput = new HCNetSDK.NET_DVR_XML_CONFIG_INPUT();
         struInput.dwSize = struInput.size();
 
-        String str = "GET /ISAPI/Intelligent/FDLib/"+id+"/picture/"+m_picID;
+        String str = "GET /ISAPI/Intelligent/FDLib/" + id + "/picture/" + m_picID;
         HCNetSDK.BYTE_ARRAY ptrGetFaceAppendDataUrl = new HCNetSDK.BYTE_ARRAY(HCNetSDK.BYTE_ARRAY_LEN);
         System.arraycopy(str.getBytes(), 0, ptrGetFaceAppendDataUrl.byValue, 0, str.length());
         ptrGetFaceAppendDataUrl.write();
@@ -570,9 +577,9 @@ public class FDLibBox {
         struOutput.write();
 
         if (!hCNetSDK.NET_DVR_STDXMLConfig(m_alarm.lUserID, struInput, struOutput)) {
-            System.out.println(str +"failed with:" + m_alarm.lUserID + " " + hCNetSDK.NET_DVR_GetLastError());
+            System.out.println(str + "failed with:" + m_alarm.lUserID + " " + hCNetSDK.NET_DVR_GetLastError());
         } else {
-            System.out.println(str+"success");
+            System.out.println(str + "success");
             System.out.println("dwReturnXMLSize=" + struOutput.dwReturnedXMLSize);
             System.out.println();
         }

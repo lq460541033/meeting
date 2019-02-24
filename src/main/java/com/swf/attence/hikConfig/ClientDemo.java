@@ -6,6 +6,8 @@ import org.dom4j.DocumentException;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+
 @Component
 public class ClientDemo {
     static HCNetSDK hCNetSDK = HCNetSDK.INSTANCE;
@@ -108,6 +110,7 @@ public class ClientDemo {
                     return "设置回调函数失败!";
                 }
             }
+            System.out.println("设置回调函数成功");
             HCNetSDK.NET_DVR_SETUPALARM_PARAM m_strAlarmInfo = new HCNetSDK.NET_DVR_SETUPALARM_PARAM();
             m_strAlarmInfo.dwSize=m_strAlarmInfo.size();
             m_strAlarmInfo.byLevel=1;
@@ -181,39 +184,33 @@ public class ClientDemo {
     public static void main(String[] args) throws UnsupportedEncodingException, DocumentException, InterruptedException {
         ClientDemo clientDemo = new ClientDemo();
         clientDemo.CameraInit();
-
-        clientDemo.register("admin","admin123456","192.168.0.101");
-
+        clientDemo.register("admin","admin123456","10.21.244.166");
         FDLibBox fdLibBox = new FDLibBox(clientDemo);
-
-        /*String faceName="测试人脸库";
+      /*  String faceName="测试人脸库";
         fdLibBox.CreateFDLib(faceName);*/
         /*boolean b = fdLibBox.GetFaceCapabilities();
         System.out.println(b);*/
        /* fdLibBox.UploadFaceLinData(1);*/
         clientDemo.SetupAlarmChan();
-        /*Thread.sleep(100000);*/
-
+        Thread.sleep(100000);
         /**
          * 调用SearchFDLib方法
          */
-       /* HashMap<Object, Object> stringObjectHashMap = new HashMap<>();
-        if(fdLibBox.SearchFDLib()){*/
-           /* for (int i=0;i<fdLibBox.m_FDLibList.size();i++){
+    /*    HashMap<Object, Object> stringObjectHashMap = new HashMap<>();
+        if(fdLibBox.SearchFDLib()){
+            for (int i=0;i<fdLibBox.m_FDLibList.size();i++){
                 stringObjectHashMap.put("id"+i,fdLibBox.m_FDLibList.get(i).dwID);
                 stringObjectHashMap.put("name"+i,fdLibBox.m_FDLibList.get(i).szFDName);
                 stringObjectHashMap.put("ffid"+i,fdLibBox.m_FDLibList.get(i).szFDID);
             }
             System.out.println(stringObjectHashMap);
-             fdLibBox.DeleteFDLib(2);*/
-         /*  String realUserpicPath=userpicPath+"1101.png";
-           String realUserdataPaht=userdataPath+"1101.xml";
-           fdLibBox.UploadFaceLinData(1,realUserpicPath,realUserdataPaht);*/
-         /*fdLibBox.DeleteFaceAppendData(1,"2");*/
+           String realUserpicPath=userpicPath+"66666666.jpg";
+           String realUserdataPaht=userdataPath+"66666666.xml";
+           fdLibBox.UploadFaceLinData(0,realUserpicPath,"1111.xml");
+       *//* fdLibBox.DeleteFaceAppendData(0,"1111");*//*
 
+        }*/
         }
-
-
 
     }
 

@@ -17,6 +17,9 @@ public class HikCameraRegister implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         if (iCameraMsgService.cameraInitAndcameraRegisterAndsetupAlarmChan()){
             System.out.println("设备已全部注册成功");
+           /* if (iCameraMsgService.uploadUserPicAndUserMessage()){
+                System .out.println("已上传成功");
+            }*/
         }
     }
 }

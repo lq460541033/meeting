@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.swf.attence.entity.DeptMsg;
 import com.swf.attence.entity.UserMsg;
+import com.swf.attence.service.ICameraMsgService;
 import com.swf.attence.service.IDeptMsgService;
 import com.swf.attence.service.IUserMsgService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -27,7 +29,8 @@ public class UserMsgController {
     private IUserMsgService iUserMsgService;
     @Autowired
     private IDeptMsgService iDeptMsgService;
-
+    @Autowired
+    private ICameraMsgService iCameraMsgService;
 
 
     /**
@@ -89,8 +92,9 @@ public class UserMsgController {
      * @return
      */
    @PostMapping("/userMsg")
-   public String insertUserMsg(UserMsg userMsg){
+   public String insertUserMsg(UserMsg userMsg) throws IOException {
        iUserMsgService.insert(userMsg);
+       iCameraMsgService.uploadUserPicAndUserMessageByOne(userMsg);
        return "redirect:/userMsgs";
    }
 
@@ -115,6 +119,7 @@ public class UserMsgController {
       /* UserMsg userMsg = iUserMsgService.selectById(id);*/
        iUserMsgService.delImgFromUserpic(id);
        iUserMsgService.deleteById(id);
+
        /*model.addAttribute("deleteUserMsg","该员工——工号: "+userMsg.getUserid()+" 姓名： "+userMsg.getUsername()+" 个人图片: "+userMsg.getUserpic()+"已删除完成");*/
        return "redirect:/userMsgs";
    }

@@ -2,6 +2,10 @@ package com.swf.attence.service;
 
 import com.swf.attence.entity.CameraMsg;
 import com.baomidou.mybatisplus.service.IService;
+import com.swf.attence.entity.UserMsg;
+import org.dom4j.DocumentException;
+
+import java.io.IOException;
 
 /**
  * <p>
@@ -26,9 +30,27 @@ public interface ICameraMsgService extends IService<CameraMsg> {
     boolean cameraInitAndcameraRegisterAndsetupAlarmChan();
 
     /**
-     * 下发人脸信息
+     * 批量下发人脸信息
      * @return
      */
-    boolean uploadUserPicAndUserMessage();
+    boolean uploadUserPicAndUserMessage() throws  IOException;
+
+    /**
+     * 单个下发人脸信息
+     * @param userMsg
+     */
+    void uploadUserPicAndUserMessageByOne(UserMsg userMsg) throws IOException;
+
+    /**
+     * 操作xml 构造图片对应数据文档
+     * @param userMsg
+     * @return
+     */
+    void xmlControl(UserMsg userMsg) throws DocumentException, IOException;
+
+    /**
+     *
+     */
+    void deleteUserpicAndUserMsgByOne(UserMsg userMsg);
 
 }

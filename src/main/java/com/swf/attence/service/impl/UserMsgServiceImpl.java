@@ -6,6 +6,7 @@ import com.swf.attence.entity.DeptMsg;
 import com.swf.attence.entity.UserMsg;
 import com.swf.attence.mapper.DeptMsgMapper;
 import com.swf.attence.mapper.UserMsgMapper;
+import com.swf.attence.service.ICameraMsgService;
 import com.swf.attence.service.IUserMsgService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.swf.attence.service.ImageUpload;
@@ -48,6 +49,8 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
     private DeptMsgMapper deptMsgMapper;
     @Autowired
     private ImageUpload imageUpload;
+    @Autowired
+    private ICameraMsgService iCameraMsgService;
 
     private static final String PATH = "F:\\Attence相关\\userpic\\";
 
@@ -201,6 +204,10 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
                     userMsg1.setUserpic(name);
                     userMsgs.add(userMsg1);
                     userMsgMapper.insert(userMsg1);
+                    /**
+                     * 添加到设备
+                     */
+                    iCameraMsgService.uploadUserPicAndUserMessageByOne(userMsg1);
                     notNull=true;
                 } else {
                     throw new MyException("（第" + (i + 1) + "行用户照片导入失败");

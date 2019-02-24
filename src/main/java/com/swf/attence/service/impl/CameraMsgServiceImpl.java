@@ -3,15 +3,28 @@ package com.swf.attence.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.swf.attence.entity.CameraMsg;
+import com.swf.attence.entity.UserMsg;
 import com.swf.attence.hikConfig.ClientDemo;
 import com.swf.attence.hikConfig.FDLibBox;
 import com.swf.attence.mapper.CameraMsgMapper;
 import com.swf.attence.service.ICameraMsgService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.swf.attence.service.IUserMsgService;
+import org.dom4j.*;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
+
+import static com.swf.attence.controller.UploadController.PATH;
+import static com.swf.attence.controller.UploadController.USERDATAPATH;
 
 /**
  * <p>
@@ -28,7 +41,7 @@ public class CameraMsgServiceImpl extends ServiceImpl<CameraMsgMapper, CameraMsg
     @Autowired
     private ClientDemo clientDemo;
     @Autowired
-    private FDLibBox fdLibBox;
+    private IUserMsgService iUserMsgService;
 
     /**
      * 检查添加的设备id是否存在，存在返回false，不存在返回true
@@ -74,13 +87,57 @@ public class CameraMsgServiceImpl extends ServiceImpl<CameraMsgMapper, CameraMsg
     }
 
     @Override
-    public boolean uploadUserPicAndUserMessage() {
-        boolean uploadState=false;
-        Integer integer = cameraMsgMapper.selectCount(new EntityWrapper<CameraMsg>().eq("1", 1));
-        for (int i=1;i<=integer;i++){
-
+    public boolean uploadUserPicAndUserMessage() throws IOException {
+        FDLibBox fdLibBox = new FDLibBox(clientDemo);
+        if (fdLibBox.SearchFDLib()){
+            List<UserMsg> userMsgs = iUserMsgService.selectList(new EntityWrapper<UserMsg>().eq("1", 1));
+            for (UserMsg user:userMsgs
+                 ) {
+                String realUserpicPath=PATH+user.getUserpic();
+                String realUserdataPath=USERDATAPATH+user.getUserid()+".xml";
+                xmlControl(user);
+                fdLibBox.UploadFaceLinData(0,realUserpicPath,realUserdataPath);
+            }
+            return true;
         }
         return false;
+    }
+
+    @Override
+    public void deleteUserpicAndUserMsgByOne(UserMsg userMsg) {
+        FDLibBox fdLibBox = new FDLibBox(clientDemo);
+        if (fdLibBox.SearchFDLib()){
+            fdLibBox.DeleteFaceAppendData(0,userMsg.getUserid());
+        }
+    }
+
+    @Override
+    public void uploadUserPicAndUserMessageByOne(UserMsg userMsg) throws IOException {
+        FDLibBox fdLibBox = new FDLibBox(clientDemo);
+        if (fdLibBox.SearchFDLib()){
+                String realUserpicPath=PATH+userMsg.getUserpic();
+                String realUserdataPath=USERDATAPATH+userMsg.getUserid()+".xml";
+                xmlControl(userMsg);
+                fdLibBox.UploadFaceLinData(0,realUserpicPath,realUserdataPath);
+            }
+    }
+
+    @Override
+    public synchronized void xmlControl(UserMsg userMsg) throws  IOException {
+        Document document = DocumentHelper.createDocument();
+        Element element = document.addElement("FaceAppendData");
+        Element name = element.addElement("name");
+        name.setText(userMsg.getUsername());
+        Element certificateNumber = element.addElement("certificateNumber");
+        certificateNumber.setText(userMsg.getUserid());
+        OutputFormat outputFormat = OutputFormat.createPrettyPrint();
+        outputFormat.setEncoding("utf-8");
+        Writer out ;
+        out= new FileWriter(USERDATAPATH+userMsg.getUserid()+".xml");
+        XMLWriter xmlWriter = new XMLWriter(out, outputFormat);
+        xmlWriter.write(document);
+        xmlWriter.close();
+        System.out.println("成功生成工号为： "+userMsg.getUserid()+" 的数据文件");
     }
 
 
