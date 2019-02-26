@@ -5,11 +5,14 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.swf.attence.entity.TimeControl;
 import com.swf.attence.service.ITimeControlService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.acl.LastOwnerException;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -23,6 +26,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class TimeControController {
     @Autowired
     private ITimeControlService iTimeControlService;
+
+    private static final Logger logger = LoggerFactory.getLogger(TimeControController.class);
     /**
      * 分页列出所有事务
      * @param pageNum
@@ -75,6 +80,7 @@ public class TimeControController {
     @PostMapping("/timeControl")
     public String insertTime(TimeControl timeControl){
         iTimeControlService.insert(timeControl);
+        logger.info(timeControl+"添加成功");
         return "redirect:/timeControls";
     }
 
@@ -86,11 +92,13 @@ public class TimeControController {
     @PutMapping("/timeControl")
     public String updateTime(TimeControl timeControl){
         iTimeControlService.updateById(timeControl);
+        logger.info(timeControl+"修改成功");
         return "redirect:/timeControls";
     }
     @DeleteMapping("/timeControl/{id}")
     public String deleteTime(@PathVariable("id") Integer id){
         iTimeControlService.deleteById(id);
+        logger.info(id+"删除成功");
         return "redirect:/timeControls";
     }
 }

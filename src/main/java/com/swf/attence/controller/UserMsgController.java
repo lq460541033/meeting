@@ -8,6 +8,8 @@ import com.swf.attence.entity.UserMsg;
 import com.swf.attence.service.ICameraMsgService;
 import com.swf.attence.service.IDeptMsgService;
 import com.swf.attence.service.IUserMsgService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +34,7 @@ public class UserMsgController {
     @Autowired
     private ICameraMsgService iCameraMsgService;
 
-
+    private static final Logger logger = LoggerFactory.getLogger(UserMsgController.class);
     /**
      * 分页
      * @param pageNum
@@ -95,17 +97,19 @@ public class UserMsgController {
    public String insertUserMsg(UserMsg userMsg) throws IOException {
        iUserMsgService.insert(userMsg);
        iCameraMsgService.uploadUserPicAndUserMessageByOne(userMsg);
+       logger.info(userMsg+"添加成功");
        return "redirect:/userMsgs";
    }
 
     /**
-     * 添加单个用户
+     * 修改单个用户
      * @param userMsg
      * @return
      */
     @PutMapping("/userMsg")
     public String updateUserMsg(UserMsg userMsg){
         iUserMsgService.updateById(userMsg);
+        logger.info(userMsg+"修改成功");
         return "redirect:/userMsgs";
     }
 
@@ -119,7 +123,7 @@ public class UserMsgController {
       /* UserMsg userMsg = iUserMsgService.selectById(id);*/
        iUserMsgService.delImgFromUserpic(id);
        iUserMsgService.deleteById(id);
-
+       logger.info(id+"删除成功");
        /*model.addAttribute("deleteUserMsg","该员工——工号: "+userMsg.getUserid()+" 姓名： "+userMsg.getUsername()+" 个人图片: "+userMsg.getUserpic()+"已删除完成");*/
        return "redirect:/userMsgs";
    }

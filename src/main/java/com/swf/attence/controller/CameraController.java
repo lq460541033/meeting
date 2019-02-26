@@ -6,6 +6,8 @@ import com.github.pagehelper.PageInfo;
 import com.swf.attence.entity.CameraMsg;
 import com.swf.attence.hikConfig.ClientDemo;
 import com.swf.attence.service.ICameraMsgService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class CameraController {
     @Autowired
     private ICameraMsgService iCameraMsgService;
+
+    private static final Logger logger = LoggerFactory.getLogger(CameraController.class);
 
     /**
      * 分页列出所有设备
@@ -69,8 +73,10 @@ public class CameraController {
             if (b){
                 iCameraMsgService.insert(cameraMsg);
                 model.addAttribute("msg","添加成功");
+                logger.info(cameraMsg+"添加成功");
             }else {
                 model.addAttribute("msg","对不起，该设备号已存在，请检查您的输入");
+                logger.info(cameraMsg+" 设备已存在");
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -102,6 +108,7 @@ public class CameraController {
         System.out.println(b);
         try{
             iCameraMsgService.updateById(cameraMsg);
+            logger.info(cameraMsg+"修改成功");
         }catch (Exception e){
             e.printStackTrace();
         }

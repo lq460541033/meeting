@@ -7,6 +7,8 @@ import com.swf.attence.entity.UserMsg;
 import com.swf.attence.service.ICameraMsgService;
 import com.swf.attence.service.IDeptMsgService;
 import com.swf.attence.service.IUserMsgService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +34,8 @@ public class AjaxController {
     private ICameraMsgService iCameraMsgService;
     @Autowired
     private IDeptMsgService iDeptMsgService;
+
+    private static final Logger logger = LoggerFactory.getLogger(AjaxController.class);
 
     /**
      * ajax检查 添加用户考勤信息
@@ -68,9 +72,11 @@ public class AjaxController {
         String message;
          if (iUserMsgService.generateExcel(day)){
              message="已成功导出  "+day+"考勤数据";
+             logger.info(message);
              return message;
          }else {
              message="未知错误，请重试";
+             logger.info(message);
              return message;
          }
     }

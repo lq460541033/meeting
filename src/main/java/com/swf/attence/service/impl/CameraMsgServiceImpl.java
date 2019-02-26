@@ -2,6 +2,7 @@ package com.swf.attence.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.swf.attence.controller.CameraController;
 import com.swf.attence.entity.CameraMsg;
 import com.swf.attence.entity.UserMsg;
 import com.swf.attence.hikConfig.ClientDemo;
@@ -14,6 +15,8 @@ import org.dom4j.*;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +46,7 @@ public class CameraMsgServiceImpl extends ServiceImpl<CameraMsgMapper, CameraMsg
     @Autowired
     private IUserMsgService iUserMsgService;
 
+    private static final Logger logger = LoggerFactory.getLogger(CameraMsgServiceImpl.class);
     /**
      * 检查添加的设备id是否存在，存在返回false，不存在返回true
      * @param cameraMsg
@@ -119,6 +123,7 @@ public class CameraMsgServiceImpl extends ServiceImpl<CameraMsgMapper, CameraMsg
                 String realUserdataPath=USERDATAPATH+userMsg.getUserid()+".xml";
                 xmlControl(userMsg);
                 fdLibBox.UploadFaceLinData(0,realUserpicPath,realUserdataPath);
+                logger.info("图片已成功上传到摄像头");
             }
     }
 

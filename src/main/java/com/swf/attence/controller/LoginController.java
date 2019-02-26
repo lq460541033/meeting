@@ -10,6 +10,8 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +31,7 @@ import java.util.Map;
  */
 @Controller
 public class LoginController {
-
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
     @PostMapping("/login")
     public String login(@RequestParam("adminid") String adminid, @RequestParam("password") String password, Model model){
         Subject subject = SecurityUtils.getSubject();
@@ -38,6 +40,7 @@ public class LoginController {
             subject.login(usernamePasswordToken);
             Session session = subject.getSession();
             session.setAttribute("adminIdSession",adminid);
+            logger.info("用户"+adminid+"登录");
             return "index";
         }catch (UnknownAccountException e) {
             /**

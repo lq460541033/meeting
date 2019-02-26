@@ -7,6 +7,8 @@ import com.github.pagehelper.PageInfo;
 import com.swf.attence.entity.AttenceMsg;
 import com.swf.attence.entity.CameraMsg;
 import com.swf.attence.service.IAttenceMsgService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class AttenceMsgController {
     @Autowired
     private IAttenceMsgService iAttenceMsgService;
+
+    private static final Logger logger = LoggerFactory.getLogger(AttenceMsgController.class);
 
     /**
      * 分页展示正式考勤信息
@@ -67,8 +71,10 @@ public class AttenceMsgController {
         if(!iAttenceMsgService.attenceMsgExist(attenceMsg)){
             iAttenceMsgService.insert(attenceMsg);
             model.addAttribute("attenceMsg","添加成功");
+            logger.info(attenceMsg+"添加成功");
         }else {
             model.addAttribute("attenceMsg","错误，该用户已存在");
+            logger.info(attenceMsg+"已存在");
         }
         return "redirect:/attenceMsgs";
     }
