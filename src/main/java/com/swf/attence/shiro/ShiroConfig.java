@@ -1,6 +1,9 @@
 package com.swf.attence.shiro;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.util.ByteSource;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -49,24 +52,46 @@ public class ShiroConfig {
 
     /**
      * 创建DefaultWebSecurityManager
-     * @param userRealm
+     * @param adminRealm
      * @return
      */
     @Bean(name = "defaultWebSecurityManager")
-    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("userRealm") UserRealm userRealm){
+    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("adminRealm") AdminRealm adminRealm){
         DefaultWebSecurityManager defaultWebSecurityManager=new DefaultWebSecurityManager();
         /**
          * 关联Realm
          */
-        defaultWebSecurityManager.setRealm(userRealm);
+        defaultWebSecurityManager.setRealm(adminRealm);
         return defaultWebSecurityManager;
     }
     /**
      * 创建RootRealm
      * @return
      */
-    @Bean(name = "userRealm")
-    public UserRealm getUserRealm(){
-        return new UserRealm();
+    @Bean(name = "adminRealm")
+    public AdminRealm getAdminRealm(){
+        AdminRealm adminRealm = new AdminRealm();
+        adminRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+        return adminRealm;
     }
+
+    /**
+     * 密码加密
+     * @return
+     */
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher(){
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");
+        hashedCredentialsMatcher.setHashIterations(1024);
+        return hashedCredentialsMatcher;
+    }
+
+    public static void main(String[] args) {
+        String an="md5";
+        Object aa="admin123";
+        SimpleHash simpleHash = new SimpleHash(an, aa,null, 1024);
+        System.out.println(simpleHash);
+    }
+
 }

@@ -64,7 +64,7 @@ public class TimeControController {
      */
     @GetMapping("/timeControl")
     public String toInsertTime(){
-        return "timeControl_add";
+        return "timeControl/timeControl_add";
     }
 
     /**

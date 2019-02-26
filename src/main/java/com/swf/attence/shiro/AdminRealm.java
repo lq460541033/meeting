@@ -22,7 +22,7 @@ import java.util.Map;
  * @description :
  * @date: 2018/12/30_20:12
  */
-public class UserRealm extends AuthorizingRealm {
+public class AdminRealm extends AuthorizingRealm {
     @Autowired
     private IAdminMsgService iAdminMsgService;
 

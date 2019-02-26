@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,5 +54,24 @@ public class AjaxController {
         stringStringHashMap.put("cameraIn",msg.getCameraPosition());
         stringStringHashMap.put("cameraOut",msg1.getCameraPosition());
         return stringStringHashMap;
+    }
+
+    /**
+     * 导出考勤数据
+     * @param day
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "/generateReports",method = POST)
+    @ResponseBody
+    public String generateReports(@RequestParam("day") String day) throws IOException {
+        String message;
+         if (iUserMsgService.generateExcel(day)){
+             message="已成功导出  "+day+"考勤数据";
+             return message;
+         }else {
+             message="未知错误，请重试";
+             return message;
+         }
     }
 }

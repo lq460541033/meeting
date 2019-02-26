@@ -2,10 +2,12 @@ package com.swf.attence.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.swf.attence.config.MyException;
+import com.swf.attence.entity.AttenceMsg;
 import com.swf.attence.entity.DeptMsg;
 import com.swf.attence.entity.UserMsg;
 import com.swf.attence.mapper.DeptMsgMapper;
 import com.swf.attence.mapper.UserMsgMapper;
+import com.swf.attence.service.IAttenceMsgService;
 import com.swf.attence.service.ICameraMsgService;
 import com.swf.attence.service.IUserMsgService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -16,6 +18,9 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
@@ -23,9 +28,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -51,8 +54,11 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
     private ImageUpload imageUpload;
     @Autowired
     private ICameraMsgService iCameraMsgService;
+    @Autowired
+    private IAttenceMsgService iAttenceMsgService;
 
     private static final String PATH = "F:\\Attence相关\\userpic\\";
+    private static final String ATTENCEDATA = "F:\\Attence相关\\attencedata\\";
 
     @Override
     public List selectUserMsgAndDeptMsg() {
@@ -217,5 +223,75 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
             }
         }
         return notNull;
+    }
+
+    @Override
+    public boolean generateExcel(String day) throws IOException {
+        /**
+         * 工作区
+         */
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        /**
+         * sheet工作表
+         */
+        XSSFSheet sheet = workbook.createSheet("杭州仰天信息科技" + day + "考勤表");
+        /**
+         * 表行 0 开始
+         */
+        XSSFRow row = sheet.createRow(0);
+        /**
+         * 单元格 0 第一行第一列
+         */
+        XSSFCell cell = row.createCell(0);
+        cell.setCellValue("用户工号");
+        row.createCell(1).setCellValue("用户签入时间");
+        row.createCell(2).setCellValue("用户签入设备");
+        row.createCell(3).setCellValue("用户签出时间");
+        row.createCell(4).setCellValue("用户签出设备");
+        row.createCell(5).setCellValue("用户考勤状态");
+        row.createCell(6).setCellValue("用户请假状态");
+        List<AttenceMsg> attenceMsgs = iAttenceMsgService.selectList(new EntityWrapper<AttenceMsg>().like("check_in_time", day + "%"));
+        for (int i=1;i<=attenceMsgs.size();i++){
+            XSSFRow sheetRow = sheet.createRow(i);
+            /**
+             * 单元格 0 第一行第一列
+             */
+            XSSFCell rowCell = sheetRow.createCell(i);
+            AttenceMsg a = attenceMsgs.get(i - 1);
+            sheetRow.createCell(0).setCellValue(a.getUserid());
+                sheetRow.createCell(1).setCellValue(a.getCheckInTime());
+                sheetRow.createCell(2).setCellValue(a.getCameraidIn());
+                sheetRow.createCell(3).setCellValue(a.getCheckOutTime());
+                sheetRow.createCell(4).setCellValue(a.getCameraidOut());
+                if (a.getCheckState()==1){
+                    sheetRow.createCell(5).setCellValue("考勤成功");
+                }else if (a.getCheckState()==2){
+                    sheetRow.createCell(5).setCellValue("迟到");
+                }else if (a.getCheckState()==3){
+                    sheetRow.createCell(5).setCellValue("早退");
+                }
+                else if(a.getCheckState()==4){
+                    sheetRow.createCell(5).setCellValue("迟到  早退");
+                }
+                if (a.getFailid()==1){
+                    sheetRow.createCell(6).setCellValue("已请假");
+                }else {
+                    sheetRow.createCell(6).setCellValue("正常考勤，未请假");
+                }
+
+            }
+
+        /**
+         * 设置列宽  行高
+         */
+        for (int i=0;i<row.getPhysicalNumberOfCells();i++){
+            sheet.setColumnWidth(i,255*20);
+        }
+        row.setHeightInPoints(30);
+        FileOutputStream outputStream = new FileOutputStream(ATTENCEDATA + "杭州仰天信息科技" +day + ".xlsx");
+        workbook.write(outputStream);
+        outputStream.close();
+        System.out.println("已成功生成: "+day+"考勤报表");
+        return true;
     }
 }

@@ -4,6 +4,7 @@ import com.swf.attence.entity.UserMsg;
 import com.baomidou.mybatisplus.service.IService;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -49,4 +50,11 @@ public interface IUserMsgService extends IService<UserMsg> {
      * @throws Exception
      */
     Boolean insertIntoDatebase(String fileName, MultipartFile file) throws  Exception;
+
+    /**
+     * 根据传入时间 生成excel报表到指定目录
+     * @param day
+     * @return
+     */
+    boolean generateExcel(String day) throws IOException;
 }

@@ -72,4 +72,13 @@ public class AttenceMsgController {
         }
         return "redirect:/attenceMsgs";
     }
+
+    /**
+     * 跳转到生成报表界面
+     * @return
+     */
+    @GetMapping("/generate")
+    public String toGeneratReports(){
+        return "attenceMsgControl/attenceMsg_generate";
+    }
 }
