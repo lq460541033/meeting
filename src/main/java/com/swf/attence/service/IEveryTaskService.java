@@ -1,9 +1,11 @@
 package com.swf.attence.service;
 
+import com.swf.attence.entity.AttenceMsg;
 import com.swf.attence.entity.ICommand;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : white.hou
@@ -56,4 +58,6 @@ public interface IEveryTaskService {
      * @throws SQLException
      */
     ArrayList<ICommand> getOutICommand(String day) throws ClassNotFoundException, SQLException;
+
+
 }

@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * <p>
@@ -139,11 +140,33 @@ public class AttenceMsg implements Serializable {
 
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AttenceMsg that = (AttenceMsg) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(userid, that.userid) &&
+                Objects.equals(checkInTime, that.checkInTime) &&
+                Objects.equals(cameraidIn, that.cameraidIn) &&
+                Objects.equals(checkOutTime, that.checkOutTime) &&
+                Objects.equals(cameraidOut, that.cameraidOut) &&
+                Objects.equals(checkState, that.checkState) &&
+                Objects.equals(failid, that.failid);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, userid, checkInTime, cameraidIn, checkOutTime, cameraidOut, checkState, failid);
+    }
+
+    @Override
     public String toString() {
         return "AttenceMsg{" +
                 "id=" + id +
                 ", userid='" + userid + '\'' +
                 ", checkInTime='" + checkInTime + '\'' +
+
                 ", cameraidIn='" + cameraidIn + '\'' +
                 ", checkOutTime='" + checkOutTime + '\'' +
                 ", cameraidOut='" + cameraidOut + '\'' +

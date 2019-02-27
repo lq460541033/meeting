@@ -1,9 +1,11 @@
 package com.swf.attence.service;
 
+import com.swf.attence.entity.AttenceMsg;
 import com.swf.attence.entity.UserMsg;
 import com.baomidou.mybatisplus.service.IService;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -57,4 +59,14 @@ public interface IUserMsgService extends IService<UserMsg> {
      * @return
      */
     boolean generateExcel(String day) throws IOException;
+
+    /**
+     * 每日考勤数据展示
+     * @param num
+     * @param day
+     * @return
+     */
+    boolean generateEveryDayMsg(String day, int num) throws IOException;
+
+
 }

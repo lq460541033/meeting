@@ -7,10 +7,21 @@
         <id column="id" property="id" />
         <result column="userid" property="userid" />
         <result column="check_in_time" property="checkInTime" />
+        <result column="cameraid_in" property="cameraidIn" />
         <result column="check_out_time" property="checkOutTime" />
-        <result column="check_in_from" property="checkInFrom" />
+        <result column="cameraid_out" property="cameraidOut" />
         <result column="check_state" property="checkState" />
         <result column="failid" property="failid" />
     </resultMap>
 
+    <select id="selectByTimeAndState" resultMap="BaseResultMap">
+        SELECT
+            id,userid,check_in_time,cameraid_in,check_out_time,cameraid_out,check_state,failid
+        FROM
+            attence_msg
+        WHERE
+            check_in_time LIKE
+            #{day}
+            AND check_state = #{num}
+    </select>
 </mapper>

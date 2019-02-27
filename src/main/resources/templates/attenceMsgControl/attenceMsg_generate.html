@@ -72,6 +72,75 @@
             )
         }
     </script>
+    <script type="text/javascript">
+        window.onload = function(){
+            var arr = document.getElementsByTagName('button');
+            for(var i = 0;i<arr.length;i++){
+                arr[i].onclick = function generateByOneDayAndNum(){
+                    var num=this.value;
+                    var chooseDay = $("#generateByDay").val();
+                    $.ajax({
+                            url: "/generateEveryReports",
+                            type: "POST",
+                            dataType: "text",
+                            data: {
+                                day: chooseDay,
+                                num:num
+                            },
+                            success: function (data) {
+                                alert(data)
+                            }
+                        }
+                    )
+                }
+            }
+        };
+        window.onload = function(){
+            var arr = document.getElementsByTagName('button');
+            for(var i = 0;i<arr.length;i++){
+                arr[i].onclick = function generateByOneMonthAndNum(){
+                    var num=this.value;
+                    var chooseDay = $("#generateByMonth").val();
+                    $.ajax({
+                            url: "/generateEveryReports",
+                            type: "POST",
+                            dataType: "text",
+                            data: {
+                                day: chooseDay,
+                                num:num
+                            },
+                            success: function (data) {
+                                alert(data)
+                            }
+                        }
+                    )
+                }
+            }
+        };
+
+        window.onload = function(){
+            var arr = document.getElementsByTagName('button');
+            for(var i = 0;i<arr.length;i++){
+                arr[i].onclick = function generateByOneYearAndNum(){
+                    var num=this.value;
+                    var chooseDay = $("#generateByYear").val();
+                    $.ajax({
+                            url: "/generateEveryReports",
+                            type: "POST",
+                            dataType: "text",
+                            data: {
+                                day: chooseDay,
+                                num:num
+                            },
+                            success: function (data) {
+                                alert(data)
+                            }
+                        }
+                    )
+                }
+            }
+        }
+    </script>
 </head>
 <body class="text-center">
 <!-- 顶部栏引入-->
@@ -90,17 +159,35 @@
                         <input name="startTime" class="form_datetime form-control" required="required"
                                id="generateByDay"
                                style="width: 200px">
-                        <button class="btn btn-info" onclick="generateByOneDay()">按日导出</button>
+                            <button class="btn btn-info" onclick="generateByOneDay()">按日导出全部数据</button>
+                        <button class="btn btn-success btn-secondary btn-sm btn-small" onclick="generateByOneDayAndNum()" value="1" >考勤成功</button>
+                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneDayAndNum()" value="2">迟到</button>
+                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneDayAndNum()" value="3">早退</button>
+                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneDayAndNum()" value="4">迟到 + 早退</button>
+                        <button class="btn btn-danger btn-secondary btn-sm" onclick="generateByOneDayAndNum()" value="5">缺勤</button>
                     </td>
+                </tr>
+                <tr>
                     <td>
                         <input class="form_datetime form-control" required="required" id="generateByMonth"
                                style="width: 200px">
-                        <button class="btn btn-info" onclick="generateByOneMonth()">按月导出</button>
-
+                        <button class="btn btn-info" onclick="generateByOneMonth()">按月导出全部数据</button>
+                        <button class="btn btn-success btn-secondary btn-sm btn-small" onclick="generateByOneMonthAndNum()" value="1" >考勤成功</button>
+                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneMonthAndNum()" value="2">迟到</button>
+                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneMonthAndNum()" value="3">早退</button>
+                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneMonthAndNum()" value="4">迟到 + 早退</button>
+                        <button class="btn btn-danger btn-secondary btn-sm" onclick="generateByOneMonthAndNum()" value="5">缺勤</button>
                     </td>
+                </tr>
+                <tr>
                     <td><input class="form_datetime form-control" required="required" id="generateByYear"
                                style="width: 200px">
-                        <button class="btn btn-info" onclick="generateByOneYear()">按年导出</button>
+                        <button class="btn btn-info" onclick="generateByOneYear()">按年导出全部数据</button>
+                        <button class="btn btn-success btn-secondary btn-sm btn-small" onclick="generateByOneYearAndNum()" value="1" >考勤成功</button>
+                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneYearAndNum()" value="2">迟到</button>
+                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneYearAndNum()" value="3">早退</button>
+                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneYearAndNum()" value="4">迟到 + 早退</button>
+                        <button class="btn btn-danger btn-secondary btn-sm" onclick="generateByOneYearAndNum()" value="5">缺勤</button>
 
                     </td>
                 </tr>

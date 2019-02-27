@@ -1,39 +1,39 @@
-2019-02-26 14:58:59.846  INFO 9788 --- [main] com.swf.attence.AttenceApplication       : Starting AttenceApplication on Whitehou with PID 9788 (F:\attence\target\classes started by White.Hou in F:\attence)
-2019-02-26 14:58:59.849  INFO 9788 --- [main] com.swf.attence.AttenceApplication       : No active profile set, falling back to default profiles: default
-2019-02-26 14:59:00.641  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$fd2efb6f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:00.649  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$94417c4f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:00.670  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:00.706  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:00.711  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$e1e11aac] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:00.712  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:00.723  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:00.757  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:00.767  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:00.848  INFO 9788 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
-2019-02-26 14:59:01.267  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:01.270  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:01.272  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:01.274  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy62] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:01.278  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:01.302  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:01.720  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2019-02-26 14:59:01.915  INFO 9788 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
-2019-02-26 14:59:01.930  INFO 9788 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-02-26 14:59:01.931  INFO 9788 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
-2019-02-26 14:59:01.935  INFO 9788 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.17] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.18]
-2019-02-26 14:59:01.936  INFO 9788 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.17] using APR version [1.6.3].
-2019-02-26 14:59:01.936  INFO 9788 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
-2019-02-26 14:59:01.936  INFO 9788 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2019-02-26 14:59:02.975  INFO 9788 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2o  27 Mar 2018]
-2019-02-26 14:59:03.118  INFO 9788 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-02-26 14:59:03.119  INFO 9788 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3236 ms
-2019-02-26 14:59:03.438  INFO 9788 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-02-26 14:59:03.547  INFO 9788 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2019-02-26 14:59:03.648  INFO 9788 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
-2019-02-26 14:59:03.657  INFO 9788 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-2019-02-26 14:59:03.657  INFO 9788 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
-2019-02-26 14:59:03.658  INFO 9788 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
-2019-02-26 14:59:03.659  INFO 9788 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+2019-02-27 10:42:23.330  INFO 4080 --- [main] com.swf.attence.AttenceApplication       : Starting AttenceApplication on Whitehou with PID 4080 (F:\attence\target\classes started by White.Hou in F:\attence)
+2019-02-27 10:42:23.337  INFO 4080 --- [main] com.swf.attence.AttenceApplication       : No active profile set, falling back to default profiles: default
+2019-02-27 10:42:26.968  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$e37495e0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:26.982  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7a8716c0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:27.026  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:27.100  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:27.109  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$c826b51d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:27.113  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:27.139  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:27.230  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:27.252  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:27.568  INFO 4080 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 10:42:29.516  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:29.519  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:29.535  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:29.536  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy62] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:29.541  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:29.577  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:30.597  INFO 4080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:42:32.707  INFO 4080 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2019-02-27 10:42:32.816  INFO 4080 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-27 10:42:32.816  INFO 4080 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
+2019-02-27 10:42:32.874  INFO 4080 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.17] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.18]
+2019-02-27 10:42:32.875  INFO 4080 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.17] using APR version [1.6.3].
+2019-02-27 10:42:32.876  INFO 4080 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2019-02-27 10:42:32.880  INFO 4080 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2019-02-27 10:42:34.075  INFO 4080 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2o  27 Mar 2018]
+2019-02-27 10:42:34.329  INFO 4080 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-27 10:42:34.329  INFO 4080 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 10924 ms
+2019-02-27 10:42:35.065  INFO 4080 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 10:42:35.332  INFO 4080 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 10:42:35.532  INFO 4080 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 10:42:35.554  INFO 4080 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 10:42:35.556  INFO 4080 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 10:42:35.560  INFO 4080 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 10:42:35.564  INFO 4080 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -41,16 +41,763 @@
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-2019-02-26 14:59:03.659  INFO 9788 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-2019-02-26 14:59:03.659  INFO 9788 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
-2019-02-26 14:59:03.659  INFO 9788 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@591be8aa
-2019-02-26 14:59:03.665  INFO 9788 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2019-02-26 14:59:03.705  INFO 9788 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
-2019-02-26 14:59:03.705  INFO 9788 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
-2019-02-26 14:59:03.734  INFO 9788 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path ''
-2019-02-26 14:59:03.737  INFO 9788 --- [main] com.swf.attence.AttenceApplication       : Started AttenceApplication in 4.27 seconds (JVM running for 5.649)
-2019-02-26 15:02:46.627  INFO 9788 --- [http-nio-8089-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-02-26 15:02:46.628  INFO 9788 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-02-26 15:02:46.640  INFO 9788 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
-2019-02-26 15:02:51.164  INFO 9788 --- [http-nio-8089-exec-6] c.swf.attence.controller.AjaxController  : 已成功导出  考勤数据
-2019-02-26 15:02:56.491  INFO 9788 --- [http-nio-8089-exec-5] c.swf.attence.controller.AjaxController  : 已成功导出  2019考勤数据
+2019-02-27 10:42:35.564  INFO 4080 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 10:42:35.565  INFO 4080 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 10:42:35.565  INFO 4080 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@7ef41ca2
+2019-02-27 10:42:35.594  INFO 4080 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 10:42:35.679  INFO 4080 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 10:42:35.679  INFO 4080 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 10:42:35.730  INFO 4080 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path ''
+2019-02-27 10:42:35.733  INFO 4080 --- [main] com.swf.attence.AttenceApplication       : Started AttenceApplication in 13.182 seconds (JVM running for 17.717)
+2019-02-27 10:44:23.224  INFO 5708 --- [main] c.s.a.AttenceApplicationExcelTests       : Starting AttenceApplicationExcelTests on Whitehou with PID 5708 (started by White.Hou in F:\attence)
+2019-02-27 10:44:23.230  INFO 5708 --- [main] c.s.a.AttenceApplicationExcelTests       : No active profile set, falling back to default profiles: default
+2019-02-27 10:44:26.376  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$3361b4e2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:26.394  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ca7435c2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:26.475  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:26.637  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:26.658  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$1813d41f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:26.664  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:26.710  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:26.864  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:26.909  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:27.268  INFO 5708 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 10:44:28.288  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:28.302  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:28.305  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:28.309  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy75] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:28.312  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:28.359  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:29.167  INFO 5708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:44:30.831  INFO 5708 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 10:44:31.478  INFO 5708 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 10:44:32.105  INFO 5708 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 10:44:32.133  INFO 5708 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 10:44:32.133  INFO 5708 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 10:44:32.136  INFO 5708 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 10:44:32.139  INFO 5708 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 10:44:32.140  INFO 5708 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 10:44:32.140  INFO 5708 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 10:44:32.140  INFO 5708 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@7f8c3646
+2019-02-27 10:44:32.193  INFO 5708 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 10:44:32.542  INFO 5708 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 10:44:32.542  INFO 5708 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 10:44:32.576  INFO 5708 --- [main] c.s.a.AttenceApplicationExcelTests       : Started AttenceApplicationExcelTests in 10.591 seconds (JVM running for 14.317)
+2019-02-27 10:44:38.189  INFO 5708 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 10:44:38.191  INFO 5708 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-02-27 10:44:38.214  INFO 5708 --- [Thread-3] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2019-02-27 10:44:38.214  INFO 5708 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-02-27 10:44:38.216  INFO 5708 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 10:44:38.220  INFO 5708 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-02-27 10:44:38.221  INFO 5708 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-27 10:44:38.236  INFO 5708 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-02-27 10:46:38.844  INFO 2452 --- [main] c.s.a.AttenceApplicationExcelTests       : Starting AttenceApplicationExcelTests on Whitehou with PID 2452 (started by White.Hou in F:\attence)
+2019-02-27 10:46:38.847  INFO 2452 --- [main] c.s.a.AttenceApplicationExcelTests       : No active profile set, falling back to default profiles: default
+2019-02-27 10:46:41.946  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$849353c5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:41.966  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1ba5d4a5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:42.059  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:42.249  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:42.272  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$69457302] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:42.280  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:42.325  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:42.506  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:42.620  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:43.008  INFO 2452 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 10:46:44.358  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:44.379  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:44.382  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:44.388  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy75] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:44.395  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:44.458  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:45.626  INFO 2452 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:46:47.594  INFO 2452 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 10:46:48.312  INFO 2452 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 10:46:48.970  INFO 2452 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 10:46:49.008  INFO 2452 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 10:46:49.009  INFO 2452 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 10:46:49.011  INFO 2452 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 10:46:49.012  INFO 2452 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 10:46:49.013  INFO 2452 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 10:46:49.013  INFO 2452 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 10:46:49.013  INFO 2452 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@56835f2f
+2019-02-27 10:46:49.065  INFO 2452 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 10:46:49.366  INFO 2452 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 10:46:49.368  INFO 2452 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 10:46:49.396  INFO 2452 --- [main] c.s.a.AttenceApplicationExcelTests       : Started AttenceApplicationExcelTests in 11.611 seconds (JVM running for 16.942)
+2019-02-27 10:50:02.008  INFO 2452 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 10:50:02.010  INFO 2452 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-02-27 10:50:02.011  INFO 2452 --- [Thread-3] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2019-02-27 10:50:02.011  INFO 2452 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-02-27 10:50:02.011  INFO 2452 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 10:50:02.012  INFO 2452 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-02-27 10:50:02.012  INFO 2452 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-27 10:50:02.019  INFO 2452 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-02-27 10:50:29.110  INFO 8080 --- [main] c.s.a.AttenceApplicationExcelTests       : Starting AttenceApplicationExcelTests on Whitehou with PID 8080 (started by White.Hou in F:\attence)
+2019-02-27 10:50:29.112  INFO 8080 --- [main] c.s.a.AttenceApplicationExcelTests       : No active profile set, falling back to default profiles: default
+2019-02-27 10:50:30.981  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$64520c65] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:30.995  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$fb648d45] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:31.058  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:31.151  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:31.164  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$49042ba2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:31.168  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:31.198  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:31.302  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:31.327  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:31.532  INFO 8080 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 10:50:32.301  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:32.313  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:32.315  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:32.318  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy75] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:32.320  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:32.355  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:33.210  INFO 8080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:50:34.417  INFO 8080 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 10:50:34.793  INFO 8080 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 10:50:35.173  INFO 8080 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 10:50:35.195  INFO 8080 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 10:50:35.195  INFO 8080 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 10:50:35.197  INFO 8080 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 10:50:35.198  INFO 8080 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 10:50:35.198  INFO 8080 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 10:50:35.198  INFO 8080 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 10:50:35.198  INFO 8080 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@56b9d43f
+2019-02-27 10:50:35.241  INFO 8080 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 10:50:35.393  INFO 8080 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 10:50:35.394  INFO 8080 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 10:50:35.416  INFO 8080 --- [main] c.s.a.AttenceApplicationExcelTests       : Started AttenceApplicationExcelTests in 6.889 seconds (JVM running for 8.822)
+2019-02-27 10:51:10.877  INFO 8080 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 10:51:10.879  INFO 8080 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-02-27 10:51:10.880  INFO 8080 --- [Thread-3] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2019-02-27 10:51:10.881  INFO 8080 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-02-27 10:51:10.881  INFO 8080 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 10:51:10.882  INFO 8080 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-02-27 10:51:10.882  INFO 8080 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-27 10:51:10.889  INFO 8080 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-02-27 10:51:57.334  INFO 11016 --- [main] c.s.a.AttenceApplicationExcelTests       : Starting AttenceApplicationExcelTests on Whitehou with PID 11016 (started by White.Hou in F:\attence)
+2019-02-27 10:51:57.335  INFO 11016 --- [main] c.s.a.AttenceApplicationExcelTests       : No active profile set, falling back to default profiles: default
+2019-02-27 10:52:00.318  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$315d8f56] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:00.335  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c8701036] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:00.403  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:00.503  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:00.515  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$160fae93] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:00.518  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:00.552  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:00.656  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:00.678  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:00.853  INFO 11016 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 10:52:01.617  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:01.631  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:01.633  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:01.636  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy75] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:01.639  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:01.680  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:02.456  INFO 11016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 10:52:03.601  INFO 11016 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 10:52:03.966  INFO 11016 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 10:52:04.315  INFO 11016 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 10:52:04.336  INFO 11016 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 10:52:04.336  INFO 11016 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 10:52:04.337  INFO 11016 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 10:52:04.337  INFO 11016 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 10:52:04.338  INFO 11016 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 10:52:04.338  INFO 11016 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 10:52:04.338  INFO 11016 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@721fc2e3
+2019-02-27 10:52:04.368  INFO 11016 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 10:52:04.536  INFO 11016 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 10:52:04.537  INFO 11016 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 10:52:04.562  INFO 11016 --- [main] c.s.a.AttenceApplicationExcelTests       : Started AttenceApplicationExcelTests in 8.07 seconds (JVM running for 10.507)
+2019-02-27 10:53:04.923  INFO 11016 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 10:53:04.925  INFO 11016 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-02-27 10:53:04.925  INFO 11016 --- [Thread-3] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2019-02-27 10:53:04.926  INFO 11016 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-02-27 10:53:04.926  INFO 11016 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 10:53:04.926  INFO 11016 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-02-27 10:53:04.927  INFO 11016 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-27 10:53:04.932  INFO 11016 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-02-27 11:04:00.987  INFO 16860 --- [main] com.swf.attence.AttenceApplication       : Starting AttenceApplication on Whitehou with PID 16860 (F:\attence\target\classes started by White.Hou in F:\attence)
+2019-02-27 11:04:00.991  INFO 16860 --- [main] com.swf.attence.AttenceApplication       : No active profile set, falling back to default profiles: default
+2019-02-27 11:04:02.675  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$bf497087] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:02.686  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$565bf167] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:02.712  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:02.769  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:02.778  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$a3fb8fc4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:02.785  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:02.805  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:02.855  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:02.866  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:02.969  INFO 16860 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 11:04:03.377  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:03.380  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:03.381  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:03.383  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy62] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:03.384  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:03.404  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:03.846  INFO 16860 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:04:04.140  INFO 16860 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2019-02-27 11:04:04.158  INFO 16860 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-27 11:04:04.158  INFO 16860 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
+2019-02-27 11:04:04.163  INFO 16860 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.17] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.18]
+2019-02-27 11:04:04.163  INFO 16860 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.17] using APR version [1.6.3].
+2019-02-27 11:04:04.163  INFO 16860 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2019-02-27 11:04:04.163  INFO 16860 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2019-02-27 11:04:05.231  INFO 16860 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2o  27 Mar 2018]
+2019-02-27 11:04:05.395  INFO 16860 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-27 11:04:05.396  INFO 16860 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4335 ms
+2019-02-27 11:04:05.734  INFO 16860 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:04:05.860  INFO 16860 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 11:04:05.981  INFO 16860 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 11:04:05.990  INFO 16860 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 11:04:05.990  INFO 16860 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 11:04:05.990  INFO 16860 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 11:04:05.991  INFO 16860 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 11:04:05.991  INFO 16860 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 11:04:05.991  INFO 16860 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 11:04:05.991  INFO 16860 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@7f4e5a39
+2019-02-27 11:04:05.998  INFO 16860 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 11:04:06.039  INFO 16860 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 11:04:06.039  INFO 16860 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 11:04:06.072  INFO 16860 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path ''
+2019-02-27 11:04:06.075  INFO 16860 --- [main] com.swf.attence.AttenceApplication       : Started AttenceApplication in 5.796 seconds (JVM running for 7.878)
+2019-02-27 11:04:27.586  INFO 16860 --- [http-nio-8089-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-02-27 11:04:27.586  INFO 16860 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-02-27 11:04:27.591  INFO 16860 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-02-27 11:04:28.001  INFO 16860 --- [http-nio-8089-exec-1] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02考勤成功考勤数据
+2019-02-27 11:09:14.146  INFO 16860 --- [http-nio-8089-exec-3] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02考勤成功考勤数据
+2019-02-27 11:22:00.617  INFO 8076 --- [main] c.s.a.AttenceApplicationExcelTests       : Starting AttenceApplicationExcelTests on Whitehou with PID 8076 (started by White.Hou in F:\attence)
+2019-02-27 11:22:00.618  INFO 8076 --- [main] c.s.a.AttenceApplicationExcelTests       : No active profile set, falling back to default profiles: default
+2019-02-27 11:22:02.044  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$b5e8359a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:02.054  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4cfab67a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:02.091  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:02.149  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:02.157  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$9a9a54d7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:02.160  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:02.185  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:02.278  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:02.302  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:02.505  INFO 8076 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 11:22:03.148  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:03.154  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:03.155  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:03.159  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy75] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:03.162  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:03.189  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:03.859  INFO 8076 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:22:04.702  INFO 8076 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:22:04.969  INFO 8076 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 11:22:05.206  INFO 8076 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 11:22:05.221  INFO 8076 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 11:22:05.221  INFO 8076 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 11:22:05.222  INFO 8076 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 11:22:05.223  INFO 8076 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 11:22:05.223  INFO 8076 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 11:22:05.223  INFO 8076 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 11:22:05.223  INFO 8076 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@59b32539
+2019-02-27 11:22:05.246  INFO 8076 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 11:22:05.336  INFO 8076 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 11:22:05.336  INFO 8076 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 11:22:05.349  INFO 8076 --- [main] c.s.a.AttenceApplicationExcelTests       : Started AttenceApplicationExcelTests in 5.288 seconds (JVM running for 6.816)
+2019-02-27 11:22:09.165  INFO 8076 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 11:22:09.167  INFO 8076 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-02-27 11:22:09.167  INFO 8076 --- [Thread-3] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2019-02-27 11:22:09.167  INFO 8076 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-02-27 11:22:09.167  INFO 8076 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 11:22:09.168  INFO 8076 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-02-27 11:22:09.169  INFO 8076 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:22:09.174  INFO 8076 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-02-27 11:23:17.501  INFO 6292 --- [main] c.s.a.AttenceApplicationExcelTests       : Starting AttenceApplicationExcelTests on Whitehou with PID 6292 (started by White.Hou in F:\attence)
+2019-02-27 11:23:17.503  INFO 6292 --- [main] c.s.a.AttenceApplicationExcelTests       : No active profile set, falling back to default profiles: default
+2019-02-27 11:23:18.799  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$ccd723bf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:18.806  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$63e9a49f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:18.840  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:18.897  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:18.906  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$b18942fc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:18.910  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:18.928  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:18.982  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:19.007  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:19.166  INFO 6292 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 11:23:19.766  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:19.774  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:19.776  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:19.780  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy75] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:19.783  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:19.811  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:20.493  INFO 6292 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:23:21.312  INFO 6292 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:23:21.556  INFO 6292 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 11:23:21.783  INFO 6292 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 11:23:21.799  INFO 6292 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 11:23:21.799  INFO 6292 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 11:23:21.800  INFO 6292 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 11:23:21.800  INFO 6292 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 11:23:21.801  INFO 6292 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 11:23:21.801  INFO 6292 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 11:23:21.801  INFO 6292 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@5b47731f
+2019-02-27 11:23:21.819  INFO 6292 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 11:23:21.906  INFO 6292 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 11:23:21.907  INFO 6292 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 11:23:21.919  INFO 6292 --- [main] c.s.a.AttenceApplicationExcelTests       : Started AttenceApplicationExcelTests in 4.971 seconds (JVM running for 6.175)
+2019-02-27 11:23:25.730  INFO 6292 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 11:23:25.732  INFO 6292 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-02-27 11:23:25.733  INFO 6292 --- [Thread-3] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2019-02-27 11:23:25.733  INFO 6292 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-02-27 11:23:25.733  INFO 6292 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 11:23:25.737  INFO 6292 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-02-27 11:23:25.738  INFO 6292 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:23:25.743  INFO 6292 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-02-27 11:24:30.485  INFO 484 --- [main] c.s.a.AttenceApplicationMybatisTests     : Starting AttenceApplicationMybatisTests on Whitehou with PID 484 (started by White.Hou in F:\attence)
+2019-02-27 11:24:30.485  INFO 484 --- [main] c.s.a.AttenceApplicationMybatisTests     : No active profile set, falling back to default profiles: default
+2019-02-27 11:24:31.777  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$6b2b6f28] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:31.787  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$23df008] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:31.824  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:31.880  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:31.888  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$4fdd8e65] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:31.891  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:31.908  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:31.973  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:31.994  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:32.135  INFO 484 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 11:24:32.747  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:32.754  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:32.756  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:32.758  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy75] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:32.760  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:32.790  INFO 484 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:39.940  INFO 7112 --- [main] c.s.a.AttenceApplicationExcelTests       : Starting AttenceApplicationExcelTests on Whitehou with PID 7112 (started by White.Hou in F:\attence)
+2019-02-27 11:24:39.942  INFO 7112 --- [main] c.s.a.AttenceApplicationExcelTests       : No active profile set, falling back to default profiles: default
+2019-02-27 11:24:41.279  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$f7597dc8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:41.287  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$8e6bfea8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:41.319  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:41.374  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:41.381  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$dc0b9d05] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:41.385  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:41.505  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:41.563  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:41.582  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:41.722  INFO 7112 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 11:24:42.382  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:42.391  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:42.393  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:42.396  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy75] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:42.398  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:42.428  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:43.142  INFO 7112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:24:44.000  INFO 7112 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:24:44.257  INFO 7112 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 11:24:44.483  INFO 7112 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 11:24:44.499  INFO 7112 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 11:24:44.499  INFO 7112 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 11:24:44.500  INFO 7112 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 11:24:44.501  INFO 7112 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 11:24:44.501  INFO 7112 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 11:24:44.501  INFO 7112 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 11:24:44.501  INFO 7112 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@18a19e
+2019-02-27 11:24:44.523  INFO 7112 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 11:24:44.611  INFO 7112 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 11:24:44.611  INFO 7112 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 11:24:44.626  INFO 7112 --- [main] c.s.a.AttenceApplicationExcelTests       : Started AttenceApplicationExcelTests in 5.175 seconds (JVM running for 6.319)
+2019-02-27 11:24:48.390  INFO 7112 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 11:24:48.391  INFO 7112 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-02-27 11:24:48.392  INFO 7112 --- [Thread-3] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2019-02-27 11:24:48.392  INFO 7112 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-02-27 11:24:48.392  INFO 7112 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 11:24:48.393  INFO 7112 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-02-27 11:24:48.393  INFO 7112 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:24:48.398  INFO 7112 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-02-27 11:26:23.496  INFO 15396 --- [main] c.s.a.AttenceApplicationExcelTests       : Starting AttenceApplicationExcelTests on Whitehou with PID 15396 (started by White.Hou in F:\attence)
+2019-02-27 11:26:23.498  INFO 15396 --- [main] c.s.a.AttenceApplicationExcelTests       : No active profile set, falling back to default profiles: default
+2019-02-27 11:26:24.876  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$bc267142] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:24.885  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5338f222] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:24.915  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:24.975  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:24.986  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$a0d8907f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:24.988  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:25.008  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:25.082  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:25.110  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:25.267  INFO 15396 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 11:26:25.905  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:25.916  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:25.919  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:25.923  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy75] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:25.925  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:25.951  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:26.649  INFO 15396 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:26:27.446  INFO 15396 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:26:27.714  INFO 15396 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 11:26:27.947  INFO 15396 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 11:26:27.961  INFO 15396 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 11:26:27.961  INFO 15396 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 11:26:27.962  INFO 15396 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 11:26:27.962  INFO 15396 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 11:26:27.963  INFO 15396 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 11:26:27.963  INFO 15396 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 11:26:27.963  INFO 15396 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@1c067c0d
+2019-02-27 11:26:27.983  INFO 15396 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 11:26:28.074  INFO 15396 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 11:26:28.075  INFO 15396 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 11:26:28.088  INFO 15396 --- [main] c.s.a.AttenceApplicationExcelTests       : Started AttenceApplicationExcelTests in 5.154 seconds (JVM running for 6.428)
+2019-02-27 11:26:31.888  INFO 15396 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 11:26:31.889  INFO 15396 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-02-27 11:26:31.889  INFO 15396 --- [Thread-3] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2019-02-27 11:26:31.889  INFO 15396 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-02-27 11:26:31.890  INFO 15396 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 11:26:31.890  INFO 15396 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-02-27 11:26:31.891  INFO 15396 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:26:31.896  INFO 15396 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-02-27 11:27:01.476  INFO 16764 --- [main] c.s.a.AttenceApplicationExcelTests       : Starting AttenceApplicationExcelTests on Whitehou with PID 16764 (started by White.Hou in F:\attence)
+2019-02-27 11:27:01.476  INFO 16764 --- [main] c.s.a.AttenceApplicationExcelTests       : No active profile set, falling back to default profiles: default
+2019-02-27 11:27:02.815  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$b63a16dd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:02.823  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4d4c97bd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:02.860  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:02.928  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:02.938  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$9aec361a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:02.943  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:02.966  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:03.025  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:03.046  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:03.185  INFO 16764 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 11:27:03.763  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:03.772  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:03.774  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:03.779  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy75] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:03.781  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:03.809  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:04.517  INFO 16764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:05.322  INFO 16764 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:27:05.590  INFO 16764 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 11:27:05.837  INFO 16764 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 11:27:05.854  INFO 16764 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 11:27:05.854  INFO 16764 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 11:27:05.855  INFO 16764 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 11:27:05.856  INFO 16764 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 11:27:05.856  INFO 16764 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 11:27:05.856  INFO 16764 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 11:27:05.857  INFO 16764 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@3d24420b
+2019-02-27 11:27:05.882  INFO 16764 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 11:27:05.982  INFO 16764 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 11:27:05.982  INFO 16764 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 11:27:05.995  INFO 16764 --- [main] c.s.a.AttenceApplicationExcelTests       : Started AttenceApplicationExcelTests in 5.05 seconds (JVM running for 6.141)
+2019-02-27 11:27:09.783  INFO 16764 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 11:27:09.785  INFO 16764 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-02-27 11:27:09.786  INFO 16764 --- [Thread-3] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2019-02-27 11:27:09.786  INFO 16764 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-02-27 11:27:09.787  INFO 16764 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 11:27:09.788  INFO 16764 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-02-27 11:27:09.789  INFO 16764 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:27:09.795  INFO 16764 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-02-27 11:27:57.340  INFO 17352 --- [main] c.s.a.AttenceApplicationExcelTests       : Starting AttenceApplicationExcelTests on Whitehou with PID 17352 (started by White.Hou in F:\attence)
+2019-02-27 11:27:57.341  INFO 17352 --- [main] c.s.a.AttenceApplicationExcelTests       : No active profile set, falling back to default profiles: default
+2019-02-27 11:27:58.537  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$b63a16dd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:58.546  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4d4c97bd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:58.580  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:58.642  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:58.651  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$9aec361a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:58.654  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:58.672  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:58.724  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:58.743  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:58.903  INFO 17352 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 11:27:59.555  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:59.561  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:59.562  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:59.565  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy75] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:59.568  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:27:59.598  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:28:00.283  INFO 17352 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 11:28:01.179  INFO 17352 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:28:01.510  INFO 17352 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 11:28:01.794  INFO 17352 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 11:28:01.810  INFO 17352 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 11:28:01.810  INFO 17352 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 11:28:01.811  INFO 17352 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 11:28:01.812  INFO 17352 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 11:28:01.812  INFO 17352 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 11:28:01.812  INFO 17352 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 11:28:01.813  INFO 17352 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@3d24420b
+2019-02-27 11:28:01.836  INFO 17352 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 11:28:01.940  INFO 17352 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 11:28:01.940  INFO 17352 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 11:28:01.958  INFO 17352 --- [main] c.s.a.AttenceApplicationExcelTests       : Started AttenceApplicationExcelTests in 5.09 seconds (JVM running for 6.204)
+2019-02-27 11:28:05.784  INFO 17352 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 11:28:05.785  INFO 17352 --- [Thread-3] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-02-27 11:28:05.786  INFO 17352 --- [Thread-3] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2019-02-27 11:28:05.786  INFO 17352 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2019-02-27 11:28:05.786  INFO 17352 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2019-02-27 11:28:05.787  INFO 17352 --- [Thread-3] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2019-02-27 11:28:05.787  INFO 17352 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-02-27 11:28:05.792  INFO 17352 --- [Thread-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-02-27 14:01:40.951  INFO 10196 --- [main] com.swf.attence.AttenceApplication       : Starting AttenceApplication on Whitehou with PID 10196 (F:\attence\target\classes started by White.Hou in F:\attence)
+2019-02-27 14:01:40.955  INFO 10196 --- [main] com.swf.attence.AttenceApplication       : No active profile set, falling back to default profiles: default
+2019-02-27 14:01:41.860  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$31bb3e4e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:41.868  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c8cdbf2e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:41.888  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:41.925  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:41.930  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$166d5d8b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:41.932  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:41.944  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:41.978  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:41.988  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:42.081  INFO 10196 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 14:01:42.496  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:42.498  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:42.499  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:42.500  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy62] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:42.502  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:42.522  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:42.988  INFO 10196 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:01:43.201  INFO 10196 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2019-02-27 14:01:43.220  INFO 10196 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-27 14:01:43.220  INFO 10196 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
+2019-02-27 14:01:43.226  INFO 10196 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.17] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.18]
+2019-02-27 14:01:43.226  INFO 10196 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.17] using APR version [1.6.3].
+2019-02-27 14:01:43.226  INFO 10196 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2019-02-27 14:01:43.226  INFO 10196 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2019-02-27 14:01:44.282  INFO 10196 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2o  27 Mar 2018]
+2019-02-27 14:01:44.448  INFO 10196 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-27 14:01:44.448  INFO 10196 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3456 ms
+2019-02-27 14:01:44.935  INFO 10196 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 14:01:45.065  INFO 10196 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 14:01:45.185  INFO 10196 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 14:01:45.195  INFO 10196 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 14:01:45.195  INFO 10196 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 14:01:45.196  INFO 10196 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 14:01:45.196  INFO 10196 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 14:01:45.197  INFO 10196 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 14:01:45.197  INFO 10196 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 14:01:45.197  INFO 10196 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@24691c5
+2019-02-27 14:01:45.205  INFO 10196 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 14:01:45.266  INFO 10196 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 14:01:45.267  INFO 10196 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 14:01:45.314  INFO 10196 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path ''
+2019-02-27 14:01:45.317  INFO 10196 --- [main] com.swf.attence.AttenceApplication       : Started AttenceApplication in 4.712 seconds (JVM running for 7.033)
+2019-02-27 14:01:53.858  INFO 10196 --- [http-nio-8089-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-02-27 14:01:53.858  INFO 10196 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-02-27 14:01:53.863  INFO 10196 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-02-27 14:01:58.803  INFO 10196 --- [http-nio-8089-exec-1] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02考勤成功人员  考勤数据
+2019-02-27 14:10:52.199  INFO 10196 --- [http-nio-8089-exec-3] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02考勤成功人员  考勤数据
+2019-02-27 14:11:21.257  INFO 10196 --- [http-nio-8089-exec-4] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02考勤成功人员  考勤数据
+2019-02-27 14:11:58.143  INFO 4240 --- [main] com.swf.attence.AttenceApplication       : Starting AttenceApplication on Whitehou with PID 4240 (F:\attence\target\classes started by White.Hou in F:\attence)
+2019-02-27 14:11:58.146  INFO 4240 --- [main] com.swf.attence.AttenceApplication       : No active profile set, falling back to default profiles: default
+2019-02-27 14:11:59.022  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$a37448f4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.031  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3a86c9d4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.053  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.094  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.100  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$88266831] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.102  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.115  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.152  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.162  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.255  INFO 4240 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 14:11:59.671  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.674  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.675  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.781  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy62] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.783  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:11:59.801  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:12:00.237  INFO 4240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 14:12:00.448  INFO 4240 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2019-02-27 14:12:00.467  INFO 4240 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-27 14:12:00.468  INFO 4240 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
+2019-02-27 14:12:00.473  INFO 4240 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.17] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.18]
+2019-02-27 14:12:00.473  INFO 4240 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.17] using APR version [1.6.3].
+2019-02-27 14:12:00.473  INFO 4240 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2019-02-27 14:12:00.473  INFO 4240 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2019-02-27 14:12:01.522  INFO 4240 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2o  27 Mar 2018]
+2019-02-27 14:12:01.687  INFO 4240 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-27 14:12:01.687  INFO 4240 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3499 ms
+2019-02-27 14:12:02.023  INFO 4240 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 14:12:02.147  INFO 4240 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 14:12:02.250  INFO 4240 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 14:12:02.259  INFO 4240 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 14:12:02.260  INFO 4240 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 14:12:02.260  INFO 4240 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 14:12:02.261  INFO 4240 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 14:12:02.261  INFO 4240 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 14:12:02.261  INFO 4240 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 14:12:02.261  INFO 4240 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@7871d261
+2019-02-27 14:12:02.268  INFO 4240 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 14:12:02.308  INFO 4240 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 14:12:02.308  INFO 4240 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 14:12:02.340  INFO 4240 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path ''
+2019-02-27 14:12:02.342  INFO 4240 --- [main] com.swf.attence.AttenceApplication       : Started AttenceApplication in 4.593 seconds (JVM running for 6.361)
+2019-02-27 14:16:43.338  INFO 4240 --- [http-nio-8089-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-02-27 14:16:43.338  INFO 4240 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-02-27 14:16:43.343  INFO 4240 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-02-27 14:18:12.268  INFO 4240 --- [http-nio-8089-exec-1] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02考勤成功人员  考勤数据
+2019-02-27 14:19:55.359  INFO 4240 --- [http-nio-8089-exec-2] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02考勤成功人员  考勤数据
+2019-02-27 14:26:00.859  INFO 4240 --- [http-nio-8089-exec-3] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02考勤成功人员  考勤数据
+2019-02-27 14:28:09.609  INFO 4240 --- [http-nio-8089-exec-4] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02考勤成功人员  考勤数据
+2019-02-27 14:28:15.262  INFO 4240 --- [http-nio-8089-exec-5] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02考勤成功人员  考勤数据
+2019-02-27 14:30:14.009  INFO 4240 --- [http-nio-8089-exec-2] c.s.attence.controller.LoginController   : 用户admin登录
+2019-02-27 14:52:52.726  INFO 4240 --- [http-nio-8089-exec-2] c.swf.attence.controller.AjaxController  : 已成功导出  考勤数据
+2019-02-27 14:55:56.881  INFO 4240 --- [http-nio-8089-exec-10] c.swf.attence.controller.AjaxController  : 已成功导出  考勤成功人员  考勤数据
+2019-02-27 14:58:14.600  WARN 4240 --- [http-nio-8089-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: ""]
+2019-02-27 14:58:15.787  WARN 4240 --- [http-nio-8089-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: ""]
+2019-02-27 14:58:40.533  INFO 4240 --- [http-nio-8089-exec-3] c.swf.attence.controller.AjaxController  : 已成功导出  考勤成功人员  考勤数据
+2019-02-27 14:58:42.241  INFO 4240 --- [http-nio-8089-exec-4] c.swf.attence.controller.AjaxController  : 已成功导出  迟到人员  考勤数据
+2019-02-27 14:58:43.938  INFO 4240 --- [http-nio-8089-exec-5] c.swf.attence.controller.AjaxController  : 已成功导出  早退人员  考勤数据
+2019-02-27 14:58:45.339  INFO 4240 --- [http-nio-8089-exec-7] c.swf.attence.controller.AjaxController  : 已成功导出  迟到 早退人员  考勤数据
+2019-02-27 14:58:46.819  INFO 4240 --- [http-nio-8089-exec-6] c.swf.attence.controller.AjaxController  : 已成功导出  缺勤人员  考勤数据
+2019-02-27 15:02:00.517  INFO 4240 --- [http-nio-8089-exec-10] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-11缺勤人员  考勤数据
+2019-02-27 15:04:06.378  INFO 4240 --- [http-nio-8089-exec-5] c.swf.attence.controller.AjaxController  : 已成功导出  缺勤人员  考勤数据
+2019-02-27 15:05:10.099  INFO 4240 --- [http-nio-8089-exec-9] c.swf.attence.controller.AjaxController  : 已成功导出  缺勤人员  考勤数据
+2019-02-27 15:05:44.875  INFO 4240 --- [http-nio-8089-exec-10] c.swf.attence.controller.AjaxController  : 已成功导出  缺勤人员  考勤数据
+2019-02-27 15:05:48.436  INFO 4240 --- [http-nio-8089-exec-4] c.swf.attence.controller.AjaxController  : 已成功导出  缺勤人员  考勤数据
+2019-02-27 15:05:52.296  INFO 4240 --- [http-nio-8089-exec-5] c.swf.attence.controller.AjaxController  : 已成功导出  2019缺勤人员  考勤数据
+2019-02-27 15:09:08.278  INFO 4240 --- [http-nio-8089-exec-6] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-01缺勤人员  考勤数据
+2019-02-27 15:11:43.468  INFO 4240 --- [http-nio-8089-exec-1] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-01缺勤人员  考勤数据
+2019-02-27 15:17:34.248  INFO 4240 --- [http-nio-8089-exec-2] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-01缺勤人员  考勤数据
+2019-02-27 15:18:49.358  INFO 4240 --- [http-nio-8089-exec-3] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-01缺勤人员  考勤数据
+2019-02-27 15:26:26.641  INFO 4240 --- [http-nio-8089-exec-4] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-01缺勤人员  考勤数据
+2019-02-27 15:32:06.162  INFO 4240 --- [http-nio-8089-exec-7] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-01缺勤人员  考勤数据
+2019-02-27 15:35:25.183  INFO 4240 --- [http-nio-8089-exec-8] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-01缺勤人员  考勤数据
+2019-02-27 15:38:31.474  INFO 4240 --- [http-nio-8089-exec-9] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-01缺勤人员  考勤数据
+2019-02-27 15:39:37.934  INFO 4240 --- [http-nio-8089-exec-1] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-01缺勤人员  考勤数据
+2019-02-27 15:41:04.265  INFO 4240 --- [http-nio-8089-exec-2] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-01缺勤人员  考勤数据
+2019-02-27 20:23:56.435  INFO 4240 --- [http-nio-8089-exec-4] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-01缺勤人员  考勤数据
+2019-02-27 20:24:08.794  INFO 9780 --- [main] com.swf.attence.AttenceApplication       : Starting AttenceApplication on Whitehou with PID 9780 (F:\attence\target\classes started by White.Hou in F:\attence)
+2019-02-27 20:24:08.797  INFO 9780 --- [main] com.swf.attence.AttenceApplication       : No active profile set, falling back to default profiles: default
+2019-02-27 20:24:10.956  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.swf.attence.shiro.ShiroConfig$$EnhancerBySpringCGLIB$$173995dd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:10.964  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ae4c16bd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:10.984  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'hashedCredentialsMatcher' of type [org.apache.shiro.authc.credential.HashedCredentialsMatcher] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:11.029  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:11.035  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$fbebb51a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:11.037  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:11.051  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:11.092  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:11.105  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:11.341  INFO 9780 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-02-27 20:24:11.834  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:11.836  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:11.837  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:11.839  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgMapper' of type [com.sun.proxy.$Proxy62] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:11.841  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminMsgServiceImpl' of type [com.swf.attence.service.impl.AdminMsgServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:11.870  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'adminRealm' of type [com.swf.attence.shiro.AdminRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:12.453  INFO 9780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSecurityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-02-27 20:24:12.859  INFO 9780 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2019-02-27 20:24:12.879  INFO 9780 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-27 20:24:12.880  INFO 9780 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
+2019-02-27 20:24:12.885  INFO 9780 --- [main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.17] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.18]
+2019-02-27 20:24:12.885  INFO 9780 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.17] using APR version [1.6.3].
+2019-02-27 20:24:12.885  INFO 9780 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2019-02-27 20:24:12.885  INFO 9780 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2019-02-27 20:24:13.978  INFO 9780 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2o  27 Mar 2018]
+2019-02-27 20:24:14.147  INFO 9780 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-27 20:24:14.147  INFO 9780 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5275 ms
+2019-02-27 20:24:14.721  INFO 9780 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-02-27 20:24:14.855  INFO 9780 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-02-27 20:24:14.966  INFO 9780 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2019-02-27 20:24:14.975  INFO 9780 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2019-02-27 20:24:14.976  INFO 9780 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.0 created.
+2019-02-27 20:24:14.976  INFO 9780 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2019-02-27 20:24:14.977  INFO 9780 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.0) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2019-02-27 20:24:14.977  INFO 9780 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2019-02-27 20:24:14.977  INFO 9780 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.0
+2019-02-27 20:24:14.977  INFO 9780 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@60928a61
+2019-02-27 20:24:14.983  INFO 9780 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-02-27 20:24:15.037  INFO 9780 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2019-02-27 20:24:15.038  INFO 9780 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2019-02-27 20:24:15.099  INFO 9780 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path ''
+2019-02-27 20:24:15.102  INFO 9780 --- [main] com.swf.attence.AttenceApplication       : Started AttenceApplication in 6.821 seconds (JVM running for 8.59)
+2019-02-27 20:24:39.197  INFO 9780 --- [http-nio-8089-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-02-27 20:24:39.197  INFO 9780 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-02-27 20:24:39.203  INFO 9780 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-02-27 20:25:26.475  INFO 9780 --- [http-nio-8089-exec-1] c.swf.attence.controller.AjaxController  : 已成功导出  2019-02-01缺勤人员  考勤数据

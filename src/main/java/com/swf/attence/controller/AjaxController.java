@@ -80,4 +80,37 @@ public class AjaxController {
              return message;
          }
     }
+    /**
+     * 导出考勤数据
+     * @param day
+     * @param num
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "/generateEveryReports",method = POST)
+    @ResponseBody
+    public String generateReports(@RequestParam("day") String day,@RequestParam("num")int num) throws IOException {
+        String message;
+        String name=null;
+        if(num==1) {
+            name="考勤成功人员";
+        }else if (num==2){
+            name="迟到人员";
+        }else if (num==3){
+            name="早退人员";
+        }else if(num==4){
+            name="迟到 早退人员";
+        }else if (num==5){
+            name="缺勤人员";
+        }
+        if (iUserMsgService.generateEveryDayMsg(day,num)){
+            message="已成功导出  "+day+name+"  考勤数据";
+            logger.info(message);
+            return message;
+        }else {
+            message="未知错误，请重试";
+            logger.info(message);
+            return message;
+        }
+    }
 }

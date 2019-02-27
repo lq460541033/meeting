@@ -5,6 +5,7 @@ import com.swf.attence.config.MyException;
 import com.swf.attence.entity.AttenceMsg;
 import com.swf.attence.entity.DeptMsg;
 import com.swf.attence.entity.UserMsg;
+import com.swf.attence.mapper.AttenceMsgMapper;
 import com.swf.attence.mapper.DeptMsgMapper;
 import com.swf.attence.mapper.UserMsgMapper;
 import com.swf.attence.service.IAttenceMsgService;
@@ -48,6 +49,10 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
 
     @Autowired
     private UserMsgMapper userMsgMapper;
+    @Autowired
+    private AttenceMsgMapper attenceMsgMapper;
+
+
     @Autowired
     private DeptMsgMapper deptMsgMapper;
     @Autowired
@@ -104,6 +109,97 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
             }
         }
     }
+
+    @Override
+    public boolean generateEveryDayMsg(String day, int num) throws IOException {
+        /**
+         * 工作区
+         */
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        /**
+         * sheet工作表
+         */
+        String name=null;
+        if(num==1) {
+            name="考勤成功";
+        }else if (num==2){
+            name="迟到";
+        }else if (num==3){
+            name="早退";
+        }else if(num==4){
+            name="迟到 早退";
+        }else if (num==5){
+            name="缺勤";
+        }
+        XSSFSheet sheet = workbook.createSheet("杭州仰天信息科技" + day +name+ "表");
+        /**
+         * 表行 0 开始
+         */
+        XSSFRow row = sheet.createRow(0);
+        /**
+         * 单元格 0 第一行第一列
+         */
+        XSSFCell cell = row.createCell(0);
+        cell.setCellValue("用户工号");
+        row.createCell(1).setCellValue("用户姓名");
+        if (num==1 || num  ==2 || num==3|| num==4) {
+            ArrayList<AttenceMsg> attenceMsgs = attenceMsgMapper.selectByTimeAndState(day + "%", num);
+            for (int i = 1; i <= attenceMsgs.size(); i++) {
+                XSSFRow sheetRow = sheet.createRow(i);
+                /**
+                 * 单元格 0 第一行第一列
+                 */
+                XSSFCell rowCell = sheetRow.createCell(i);
+                AttenceMsg a = attenceMsgs.get(i - 1);
+                sheetRow.createCell(0).setCellValue(a.getUserid());
+                UserMsg userMsg = userMsgMapper.selectUserMsgAndDeptMsgByUserid(a.getUserid());
+                if (userMsg==null){
+                    sheetRow.createCell(1).setCellValue("未知姓名");
+                }else {
+                    sheetRow.createCell(1).setCellValue(userMsg.getUsername());
+                }
+            }
+        }else if (num==5){
+            List<UserMsg> userMsgs = selectList(new EntityWrapper<UserMsg>().eq("1", 1));
+            List<AttenceMsg> attenceMsgs = attenceMsgMapper.selectList(new EntityWrapper<AttenceMsg>().like("check_in_time", day + "%"));
+            ArrayList<UserMsg> msgs = new ArrayList<>(16);
+            for (AttenceMsg a:attenceMsgs
+                 ) {
+                UserMsg userMsg = selectOne(new EntityWrapper<UserMsg>().eq("userid", a.getUserid()));
+                Iterator<UserMsg> iterator = userMsgs.iterator();
+                while (iterator.hasNext()){
+                    UserMsg next = iterator.next();
+                    if (next.equals(userMsg)){
+                        msgs.add(userMsg);
+                    }
+                }
+                userMsgs.removeAll(msgs);
+            }
+            for (int i = 1; i <= userMsgs.size(); i++) {
+                XSSFRow sheetRow = sheet.createRow(i);
+                /**
+                 * 单元格 0 第一行第一列
+                 */
+                XSSFCell rowCell = sheetRow.createCell(i);
+                UserMsg userMsg = userMsgs.get(i - 1);
+                sheetRow.createCell(0).setCellValue(userMsg.getUserid());
+                sheetRow.createCell(1).setCellValue(userMsg.getUsername());
+            }
+        }
+        /**
+         * 设置列宽  行高
+         */
+        for (int i=0;i<row.getPhysicalNumberOfCells();i++){
+            sheet.setColumnWidth(i,255*20);
+        }
+        row.setHeightInPoints(30);
+        FileOutputStream outputStream = new FileOutputStream(ATTENCEDATA + "杭州仰天信息科技" +day +name+ ".xlsx");
+        workbook.write(outputStream);
+        outputStream.close();
+        System.out.println("已成功生成: "+day+"考勤报表");
+        return true;
+    }
+
 
     @Override
     public Boolean insertIntoDatebase(String fileName, MultipartFile file) throws Exception {
@@ -294,4 +390,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         System.out.println("已成功生成: "+day+"考勤报表");
         return true;
     }
+
+
+
 }

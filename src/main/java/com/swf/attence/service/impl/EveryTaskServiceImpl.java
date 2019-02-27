@@ -129,6 +129,7 @@ public class EveryTaskServiceImpl implements IEveryTaskService {
         return true;
     }
 
+
     @Override
     public void everyDataAnalsis(String day, ArrayList<ICommand> inCommandList, ArrayList<ICommand> outCommandList) {
         /**

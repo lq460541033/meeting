@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -72,6 +73,26 @@ public class UserMsg implements Serializable {
         this.deptid = deptid;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserMsg userMsg = (UserMsg) o;
+        return Objects.equals(id, userMsg.id) &&
+                Objects.equals(userid, userMsg.userid) &&
+                Objects.equals(username, userMsg.username) &&
+                Objects.equals(gender, userMsg.gender) &&
+                Objects.equals(deptid, userMsg.deptid) &&
+                Objects.equals(userpic, userMsg.userpic) &&
+                Objects.equals(dept, userMsg.dept);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, userid, username, gender, deptid, userpic, dept);
+    }
+
     public String getUserpic() {
         return userpic;
     }
@@ -116,4 +137,6 @@ public class UserMsg implements Serializable {
         ", userpic=" + userpic +
         "}";
     }
+
+
 }
