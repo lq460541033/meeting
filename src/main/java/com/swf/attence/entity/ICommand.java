@@ -2,6 +2,7 @@ package com.swf.attence.entity;
 
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * @author : white.hou
@@ -90,5 +91,23 @@ public class ICommand implements Serializable {
 
     public void setIcommandUsername(String icommandUsername) {
         this.icommandUsername = icommandUsername;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ICommand iCommand = (ICommand) o;
+        return Objects.equals(id, iCommand.id) &&
+                Objects.equals(icommandTime, iCommand.icommandTime) &&
+                Objects.equals(icommandCameraid, iCommand.icommandCameraid) &&
+                Objects.equals(icommandUserid, iCommand.icommandUserid) &&
+                Objects.equals(icommandUsername, iCommand.icommandUsername);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, icommandTime, icommandCameraid, icommandUserid, icommandUsername);
     }
 }

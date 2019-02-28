@@ -1,6 +1,7 @@
 package com.swf.attence;
 
 import com.swf.attence.entity.AdminMsg;
+import com.swf.attence.entity.AttenceMsg;
 import com.swf.attence.entity.ICommand;
 import com.swf.attence.entity.UserMsg;
 import com.swf.attence.mapper.ICommandMapper;
@@ -30,30 +31,25 @@ public class AttenceApplicationMybatisTests {
     private ICommandMapper iCommandMapper;
     @Test
     public void contextLoads() {
-       /* AdminMsg adminMsg = iAdminMsgService.selectById(1);
-        System.out.println(adminMsg);*/
-       /*AdminMsg adminMsg=new AdminMsg();*/
-      /*  List<UserMsg> userMsgs = iUserMsgService.selectUserMsgAndDeptMsgById(1);
-        System.out.println(userMsgs);
-        List<UserMsg> userMsgs1 = iUserMsgService.selectUserMsgAndDeptMsgByUserid("1100");
-        System.out.println(userMsgs1);
-        UserMsg userMsg = iUserMsgService.selectById(1);*/
-      /*  List<UserMsg> userMsgs1 = iUserMsgService.selectUserMsgAndDeptMsgByUserid("1100");
-        System.out.println(userMsgs1);*/
-      /*  UserMsg userMsg = iUserMsgService.selectById(1);
-        System.out.println(userMsg);*/
-        /*System.out.println(iUserMsgService.selectUserMsgAndDeptMsg());*/
-
-        String todayTable="icommand20190203";
+        ArrayList<ICommand> iCommands = new ArrayList<>();
+        ArrayList<ICommand> iCommands1 = new ArrayList<>();
         String r1 = UUID.randomUUID().toString().replace("-", "");
+        String r2 = UUID.randomUUID().toString().replace("-", "");
         ICommand inICommand = new ICommand();
         inICommand.setId(r1);
-        inICommand.setIcommandUserid("111111111111");
+        inICommand.setIcommandUserid("11111102");
         inICommand.setIcommandTime("2019-01-31 07:59:11");
-        inICommand.setIcommandUsername("white.hou");
-        inICommand.setIcommandCameraid("192.168.0.101");
-        System.out.println(inICommand);
-        iCommandMapper.insertIntoDatabase("icommand20190203",inICommand);
+        inICommand.setIcommandUsername("胡伯伯");
+        inICommand.setIcommandCameraid("10.21.244.166");
+        iCommands.add(inICommand);
+        ICommand inICommand1 = new ICommand();
+        inICommand1.setId(r2);
+        inICommand1.setIcommandUserid("11111102");
+        inICommand1.setIcommandTime("2019-01-31 15:00:00");
+        inICommand1.setIcommandUsername("胡伯伯");
+        inICommand1.setIcommandCameraid("10.21.244.167");
+        iCommands1.add(inICommand1);
+        iEveryTaskService.everyDataAnalsis("20190131",iCommands,iCommands1);
     }
 
 }
