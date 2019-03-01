@@ -1,28 +1,20 @@
 package com.swf.attence.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.swf.attence.entity.AdminMsg;
-import com.swf.attence.service.IAdminMsgService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 /**
  * @author : white.hou
@@ -41,7 +33,12 @@ public class LoginController {
             Session session = subject.getSession();
             session.setAttribute("adminIdSession",adminid);
             logger.info("用户"+adminid+"登录");
-            return "index";
+            Set<String> realmNames = subject.getPrincipals().getRealmNames();
+           if (realmNames.contains("com.swf.attence.shiro.AdminRealm_0")){
+            return "index/index_admin";
+           }else {
+               return "index/index_user";
+           }
         }catch (UnknownAccountException e) {
             /**
              * 登录失败:用户名不存在

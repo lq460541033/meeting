@@ -4,6 +4,8 @@ import com.swf.attence.entity.CameraMsg;
 import com.swf.attence.entity.StateControl;
 import com.baomidou.mybatisplus.service.IService;
 
+import java.sql.Timestamp;
+
 /**
  * <p>
  *  服务类
@@ -19,4 +21,12 @@ public interface IStateControlService extends IService<StateControl> {
      * @return
      */
     boolean failidExist(StateControl stateControl);
+
+    /**
+     * 计算两个时间的差值
+     * @param  failid
+     *
+     * @return
+     */
+    String dateDiff(int failid);
 }

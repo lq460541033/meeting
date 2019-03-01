@@ -12,5 +12,12 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2019-02-26
  */
 public interface ILeaveMsgService extends IService<LeaveMsg> {
-
+    /**
+     * 添加请假信息
+     * @param username
+     * @param failStart
+     * @param failEnd
+     * @param description
+     */
+   void insertIntoDatabase(String username,String failStart,String failEnd,String description);
 }

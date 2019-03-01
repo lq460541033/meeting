@@ -166,7 +166,6 @@ public class AttenceMsg implements Serializable {
                 "id=" + id +
                 ", userid='" + userid + '\'' +
                 ", checkInTime='" + checkInTime + '\'' +
-
                 ", cameraidIn='" + cameraidIn + '\'' +
                 ", checkOutTime='" + checkOutTime + '\'' +
                 ", cameraidOut='" + cameraidOut + '\'' +

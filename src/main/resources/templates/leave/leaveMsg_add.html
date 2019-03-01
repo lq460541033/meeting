@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="添加设备">
     <meta name="author" content="white.hou">
-    <title>编辑事务</title>
+    <title>新增请假信息</title>
     <!-- Bootstrap core CSS -->
     <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.css}" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -41,6 +41,17 @@
             animation: chartjs-render-animation 0.001s;
         }
     </style>
+   <!-- <script type="text/javascript">
+        function checkTime() {
+            var beginTime=document.getElementById("fromStartTime").value;
+            var endTime=document.getElementById("fromEndTime").value;
+            var begin=new Date(beginTime.replace(/-/g, "/"));
+            var end=new Date(endTime.replace(/-/g, "/"));
+            var diff=end.getTime()-begin.getTime();
+            var newDiff=Math.floor(diff/(24 * 3600 * 1000));
+
+        }
+    </script>-->
 </head>
 
 <body>
@@ -51,41 +62,33 @@
 <div class="container-fluid">
     <div class="row">
         <!--引入侧边栏-->
-        <div th:replace="commons/bar::#sidebar(activeUri='stateControls')"></div>
-
+        <div th:replace="commons/bar::#userbar"></div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <!--需要区分是员工修改还是添加；-->
-            <form th:action="@{/stateControl}" method="post" autocomplete="off" id="from-addOrUpdate">
-                <!--发送put请求修改员工数据-->
-                <!--
-                1、SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
-                2、页面创建一个post表单
-                3、创建一个input项，name="_method";值就是我们指定的请求方式
-                -->
-                <input type="hidden" name="_method" value="put" th:if="${stateControl!=null}"/>
-                <strong type="hidden" class="alert alert-warning" th:if="${msg!=null}">Warning!</strong>
-                <input type="hidden" name="id" th:if="${stateControl!=null}" th:value="${id}">
+            <form th:action="@{/addUserAttenceMsg}" method="post" autocomplete="off" id="from-addOrUpdate">
                 <div class="form-group">
-                    <label>请假事由序号</label>
-                    <input name="failid" type="text" class="form-control" required
-                           th:value="${stateControl!=null}?${stateControl.failid}" style="width: 200px">
+                    <label for="sel1">请假事由序号</label>
+                    <select class="form-control" id="sel1">
+                        <option th:each="stateControl:${stateControls}" th:value="${stateControl.stateName}"></option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label>请假事由名称</label>
-                    <input name="stateName" type="text" class="form-control" required
-                           th:value="${stateControl!=null}?${stateControl.stateName}" style="width: 200px">
+                    <label>请假原因简述</label>
+                    <input name="descritption" type="text" class="form-control" required
+                           th:value="${leaveMsg!=null}?${leaveMsg.description}">
                 </div>
                 <div class="form-group">
-                    <label>开始时间</label>
-                    <input name="beginTime" class="form_datetime form-control" required="required" id="from-startTime"
-                           style="width: 200px" th:value="${stateControl!=null}?${stateControl.beginTime}">
+                    <label>请选择开始时间</label>
+                    <input name="failStart" class="form_datetime form-control" required="required" id="fromStartTime"
+                          th:value="${leaveMsg!=null}?${leaveMsg.failStart}">
                 </div>
                 <div class="form-group">
-                    <label>结束时间</label>
-                    <input name="closeTime" class="form_datetime form-control" required="required" id="from-endTime"
-                           style="width: 200px" th:value="${stateControl!=null}?${stateControl.closeTime}">
+                    <label>请选择结束时间</label>
+                    <input name="failEnd" class="form_datetime form-control" required="required" id="fromEndTime"
+                            th:value="${leaveMsg!=null}?${leaveMsg.failEnd}">
                 </div>
-                <button type="submit" class="btn btn-primary" th:text="${stateControl!=null}?'修改':'添加'">添加</button>
+                <button type="submit" class="btn btn-primary" th:text="${leaveMsg!=null}?'修改':'发送'"
+                        >发送到管理员</button>
             </form>
         </main>
     </div>
@@ -109,12 +112,12 @@
 
 <script type="text/javascript">
     //日期插件
-    $("#from-startTime").datetimepicker({
-        format: 'yyyy-mm-dd hh:ii:ss',//显示格式
+    $("#fromStartTime").datetimepicker({
+        format: 'yyyy-mm-dd hh:ii',//显示格式
         todayHighlight: 1,//今天高亮
         keyboardNavigation: true,
         maxView: 3,
-        minView: 0,//设置显示位置
+        minView: 3,//设置显示位置
         language: 'zh-CN',
         startView: 2,
         forceParse: 0,
@@ -122,17 +125,17 @@
         showMeridian: 1,
         autoclose: true//选择后自动关闭
     }).on('changeDate', function (ev) {
-        var starttime = $("#from-startTime").val();
-        $("#from-endTime").datetimepicker('setStartDate', starttime);
-        $("#from-startTime").datetimepicker('hide');
+        var starttime = $("#fromStartTime").val();
+        $("#fromEndTime").datetimepicker('setStartDate', starttime);
+        $("#fromStartTime").datetimepicker('hide');
     });
 
-    $("#from-endTime").datetimepicker({
+    $("#fromEndTime").datetimepicker({
         format: 'yyyy-mm-dd hh:ii:ss',//显示格式
         todayHighlight: 1,//今天高亮
         keyboardNavigation: true,
         maxView: 3,
-        minView: 0,//设置显示位置
+        minView: 3,//设置显示位置
         language: 'zh-CN',
         startView: 2,
         forceParse: 0,
@@ -143,8 +146,8 @@
              $("#from-endTime").datetimepicker("option","endDate",endTime)
          }*/
     }).on('changeDate', function (ev) {
-        $("#from-startTime").datetimepicker('setEndDate', $("#from-endTime").val());
-        $("#from-endTime").datetimepicker('hide')
+        $("#fromStartTime").datetimepicker('setEndDate', $("#fromEndTime").val());
+        $("#fromEndTime").datetimepicker('hide')
     })
 </script>
 <!-- Icons -->

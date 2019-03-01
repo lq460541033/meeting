@@ -1,14 +1,17 @@
 package com.swf.attence.shiro;
 
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
+import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.util.ByteSource;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 /**
@@ -22,7 +25,7 @@ public class ShiroConfig {
      * 创建ShiroFilterFactoryBean
      */
     @Bean
-    public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("defaultWebSecurityManager") DefaultWebSecurityManager defaultWebSecurityManager) {
+    public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("securityManager") DefaultWebSecurityManager defaultWebSecurityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         /**
          * 关联securityManager
@@ -43,7 +46,7 @@ public class ShiroConfig {
         filterMap.put("/stateControl/*","perms[super_admin]");
         filterMap.put("/timeControl/*","perms[super_admin]");
         filterMap.put("/userMsgControl/*","perms[super_admin]");
-        filterMap.put("/index.html","perms[super_admin]");
+        filterMap.put("/asserts","anon");
         shiroFilterFactoryBean.setLoginUrl("/tologin");
         shiroFilterFactoryBean.setUnauthorizedUrl("/noAuth");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
@@ -52,20 +55,28 @@ public class ShiroConfig {
 
     /**
      * 创建DefaultWebSecurityManager
-     * @param adminRealm
      * @return
      */
-    @Bean(name = "defaultWebSecurityManager")
-    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("adminRealm") AdminRealm adminRealm){
-        DefaultWebSecurityManager defaultWebSecurityManager=new DefaultWebSecurityManager();
-        /**
-         * 关联Realm
-         */
-        defaultWebSecurityManager.setRealm(adminRealm);
+    @Bean(name = "securityManager")
+    public DefaultWebSecurityManager securityManager(){
+        DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
+        defaultWebSecurityManager.setAuthenticator(modularRealmAuthenticator());
+        ArrayList<Realm> realms = new ArrayList<>();
+        realms.add(getAdminRealm());
+        realms.add(getUserRealm());
+        defaultWebSecurityManager.setRealms(realms);
         return defaultWebSecurityManager;
     }
+
+    @Bean(name = "modularRealmAuthenticator")
+    public ModularRealmAuthenticator modularRealmAuthenticator(){
+        ModularRealmAuthenticator modularRealmAuthenticator = new ModularRealmAuthenticator();
+        modularRealmAuthenticator.setAuthenticationStrategy(new AtLeastOneSuccessfulStrategy());
+        return modularRealmAuthenticator;
+    }
+
     /**
-     * 创建RootRealm
+     * 装在AdminRealm
      * @return
      */
     @Bean(name = "adminRealm")
@@ -74,11 +85,20 @@ public class ShiroConfig {
         adminRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return adminRealm;
     }
-
     /**
-     * 密码加密
+     * 创建RootRealm
      * @return
      */
+    @Bean(name = "userRealm")
+    public UserRealm getUserRealm() {
+        UserRealm userRealm = new UserRealm();
+        userRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+        return userRealm;
+    }
+        /**
+         * 密码加密
+         * @return
+         */
     @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher(){
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
@@ -89,7 +109,7 @@ public class ShiroConfig {
 
     public static void main(String[] args) {
         String an="md5";
-        Object aa="admin123";
+        Object aa="123456";
         SimpleHash simpleHash = new SimpleHash(an, aa,null, 1024);
         System.out.println(simpleHash);
     }

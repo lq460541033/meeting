@@ -30,21 +30,11 @@ public class AttenceApplicationExcelTests {
     private IUserMsgService iUserMsgService;
     @Autowired
     private ILeaveMsgService iLeaveMsgService;
-
+    @Autowired
+    private IStateControlService iStateControlService;
     @Test
     public void contextLoads() throws IOException {
-      /*iAttenceMsgService.generateExcel("20190201");*/
-        /*List<AttenceMsg> attenceMsgs = iAttenceMsgService.selectList(new EntityWrapper<AttenceMsg>().like("check_in_time",   "2019%"));
-        System.out.println(attenceMsgs);*/
-      /*  iUserMsgService.generateExcel("20190201");*/
-     /*   List<AttenceMsg> attenceMsgs = iAttenceMsgService.selectList(new EntityWrapper<AttenceMsg>().like("check_in_time", "2019-02-01" + "%"));
-        System.out.println(attenceMsgs);*/
-       /* Collection<AttenceMsg> attenceMsgs = attenceMsgMapper.selectByTimeAndState("2019%", 1);
-        System.out.println(attenceMsgs);*/
-       /*iUserMsgService.generateEveryDayMsg("2019-02",1);*/
-        ArrayList<AttenceMsg> attenceMsgs = attenceMsgMapper.selectByTimeAndState( "2019-02%", 2);
-        System.out.println(attenceMsgs);
-
+        iStateControlService.dateDiff(1);
     }
 
 }

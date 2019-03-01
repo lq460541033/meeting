@@ -10,13 +10,12 @@ import java.util.List;
  *  Mapper 接口
  * </p>
  *
- * @author auto-genergator
- * @since 2018-12-30
+ * @author auto-genergator123
+ * @since 2019-02-28
  */
 public interface UserMsgMapper extends BaseMapper<UserMsg> {
-
     List<UserMsg> selectUserMsgAndDeptMsg();
-/*    List<UserMsg> selectUserMsgAndDeptMsgById(Integer id);*/
+    /*    List<UserMsg> selectUserMsgAndDeptMsgById(Integer id);*/
 
     UserMsg selectUserMsgAndDeptMsgByUserid(String userid);
 }
