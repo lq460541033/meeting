@@ -4,10 +4,14 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.swf.attence.entity.DeptMsg;
+import com.swf.attence.entity.LeaveMsg;
 import com.swf.attence.entity.UserMsg;
 import com.swf.attence.service.ICameraMsgService;
 import com.swf.attence.service.IDeptMsgService;
+import com.swf.attence.service.ILeaveMsgService;
 import com.swf.attence.service.IUserMsgService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * @author : white.hou
@@ -33,6 +38,8 @@ public class UserMsgController {
     private IDeptMsgService iDeptMsgService;
     @Autowired
     private ICameraMsgService iCameraMsgService;
+    @Autowired
+    private ILeaveMsgService iLeaveMsgService;
 
     private static final Logger logger = LoggerFactory.getLogger(UserMsgController.class);
     /**
@@ -46,10 +53,6 @@ public class UserMsgController {
    public String userItemPages(@RequestParam(value = "pageNum",required = false,defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",required = false,defaultValue = "10") int pageSize, Model model){
        PageHelper.startPage(pageNum,pageSize);
         List list = iUserMsgService.selectUserMsgAndDeptMsg();
-      /*  UserMsg o = (UserMsg)list.get(0);
-        Convert convert = new Convert();
-        Map<String, Object> map = convert.converObjToMap(o);
-        System.out.println(map);*/
        PageInfo pageInfo = new PageInfo<>(list, 5);
        model.addAttribute("pageInfo",pageInfo);
        model.addAttribute("pageNum",pageNum);
@@ -127,6 +130,21 @@ public class UserMsgController {
        /*model.addAttribute("deleteUserMsg","该员工——工号: "+userMsg.getUserid()+" 姓名： "+userMsg.getUsername()+" 个人图片: "+userMsg.getUserpic()+"已删除完成");*/
        return "redirect:/userMsgs";
    }
+
+    /**
+     * 查看用户当日请假信息
+     * @param username
+     * @return
+     */
+    @RequestMapping(value = "/getUserLeaveMsg")
+    public String getUserLeaveMsg(@RequestParam(value = "username") String username, @RequestParam(value = "day") String day, Model model){
+        LeaveMsg leaveMsg = iLeaveMsgService.selectOne(new EntityWrapper<LeaveMsg>().eq("username", username).andNew().le("fail_start", day + "%").andNew().ge("fail_end", day + "%"));
+        logger.info("查出"+username+"相关考勤信息是: "+leaveMsg);
+        model.addAttribute("leaveMsg",leaveMsg);
+        Session session = SecurityUtils.getSubject().getSession();
+        session.setAttribute("failDay",day);
+        return "userMsgControl/user_attence";
+    }
 
 
 }

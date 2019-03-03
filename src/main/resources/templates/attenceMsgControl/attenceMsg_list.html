@@ -38,6 +38,10 @@
             animation: chartjs-render-animation 0.001s;
         }
     </style>
+    <script th:inline="javascript">
+        var username=document.getElementById("haha").value;
+
+    </script>
 </head>
 <body>
 <!-- 顶部栏引入-->
@@ -47,7 +51,7 @@
         <!--引入sidebar-->
         <div th:replace="commons/bar::#sidebar(activeUri='attenceMsg_list.html')"></div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h2>
+            <h2 >
                 <a class="btn btn-sm btn-success" href="" th:href="@{/attenceMsg}">添加用户考勤信息</a>
                 <a class="btn btn-sm btn-info" th:href="@{/generate}">导出考勤信息</a>
             </h2>
@@ -69,7 +73,7 @@
                     <tbody>
                     <tr th:each="attenceMsg:${attenceMsgPageInfo.list}">
                         <td th:text="${attenceMsg.id}"></td>
-                        <td th:text="${attenceMsg.userid}"></td>
+                        <td th:text="${attenceMsg.userid}" id="username"></td>
                         <td th:text="${attenceMsg.checkInTime}"></td>
                         <td th:text="${attenceMsg.cameraidIn}"></td>
                         <td th:text="${attenceMsg.checkOutTime}"></td>
@@ -83,6 +87,7 @@
                             <a th:if="${attenceMsg.checkState}==4" th:text="'迟到 早退"></a>
                         </td>
                         <td>
+                            <a class="btn btn-sm btn-primary" th:href="@{/getUserLeaveMsg(username=${attenceMsg.userid},day=${#strings.substring(attenceMsg.checkInTime,0,10)})}">查看该用户近期请假信息</a>
                             <button class="btn btn-sm btn-primary" th:href="@{/attenceMsg/}+${attenceMsg.id}" disabled>编辑</button>
                           <!--  <button th:attr="del_uri=@{/attenceMsg/}+${attenceMsg.id}" class="btn btn-sm btn-danger deleteBtn" disabled>
                                 删除

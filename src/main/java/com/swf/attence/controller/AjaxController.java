@@ -1,15 +1,15 @@
 package com.swf.attence.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.swf.attence.entity.CameraMsg;
-import com.swf.attence.entity.DeptMsg;
-import com.swf.attence.entity.UserMsg;
-import com.swf.attence.service.ICameraMsgService;
-import com.swf.attence.service.IDeptMsgService;
-import com.swf.attence.service.IUserMsgService;
+import com.swf.attence.entity.*;
+import com.swf.attence.service.*;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,6 +34,10 @@ public class AjaxController {
     private ICameraMsgService iCameraMsgService;
     @Autowired
     private IDeptMsgService iDeptMsgService;
+    @Autowired
+    private ILeaveMsgService iLeaveMsgService;
+    @Autowired
+    private IAttenceMsgService iAttenceMsgService;
 
     private static final Logger logger = LoggerFactory.getLogger(AjaxController.class);
 
@@ -112,5 +116,22 @@ public class AjaxController {
             logger.info(message);
             return message;
         }
+    }
+
+    /**
+     * 通过请假请求
+     * @return
+     */
+    @RequestMapping(value = "/acess",method = POST)
+    @ResponseBody
+    public String acess(@RequestParam("id") String id,@RequestParam("day") String day){
+        LeaveMsg leaveMsg = iLeaveMsgService.selectById(id);
+        leaveMsg.setAccess(1);
+        iLeaveMsgService.update(leaveMsg,new EntityWrapper<LeaveMsg>().eq("id",id));
+        AttenceMsg attenceMsg = iAttenceMsgService.selectOne(new EntityWrapper<AttenceMsg>().like("check_in_time", day + "%"));
+        attenceMsg.setFailid(1);
+        iAttenceMsgService.update(attenceMsg,new EntityWrapper<AttenceMsg>().eq("id",attenceMsg.getId()));
+        logger.info("已通过该用户请求");
+        return "true";
     }
 }

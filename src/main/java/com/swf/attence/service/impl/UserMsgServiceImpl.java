@@ -142,6 +142,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         XSSFCell cell = row.createCell(0);
         cell.setCellValue("用户工号");
         row.createCell(1).setCellValue("用户姓名");
+        row.createCell(2).setCellValue("用户请假状态");
         if (num==1 || num  ==2 || num==3|| num==4) {
             ArrayList<AttenceMsg> attenceMsgs = attenceMsgMapper.selectByTimeAndState(day + "%", num);
             for (int i = 1; i <= attenceMsgs.size(); i++) {
@@ -155,8 +156,14 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
                 UserMsg userMsg = userMsgMapper.selectUserMsgAndDeptMsgByUserid(a.getUserid());
                 if (userMsg==null){
                     sheetRow.createCell(1).setCellValue("未知姓名");
+                    sheetRow.createCell(2).setCellValue("未知请假状态");
                 }else {
                     sheetRow.createCell(1).setCellValue(userMsg.getUsername());
+                    if (a.getFailid()==1){
+                        sheetRow.createCell(2).setCellValue("已请假");
+                    }else {
+                        sheetRow.createCell(2).setCellValue("未请假");
+                    }
                 }
             }
         }else if (num==5){
