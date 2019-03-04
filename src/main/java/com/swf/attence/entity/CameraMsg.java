@@ -11,8 +11,8 @@ import java.io.Serializable;
  * 
  * </p>
  *
- * @author auto-genergator
- * @since 2018-12-30
+ * @author auto-genergator123
+ * @since 2019-03-04
  */
 @TableName("camera_msg")
 public class CameraMsg implements Serializable {
@@ -25,6 +25,16 @@ public class CameraMsg implements Serializable {
      * 摄像机id
      */
     private String cameraid;
+    /**
+     * 摄像机名称
+     */
+    @TableField("camera_name")
+    private String cameraName;
+    /**
+     * 摄像头密码
+     */
+    @TableField("camera_password")
+    private String cameraPassword;
     /**
      * 摄像机位置 比如A楼A室
      */
@@ -53,6 +63,22 @@ public class CameraMsg implements Serializable {
         this.cameraid = cameraid;
     }
 
+    public String getCameraName() {
+        return cameraName;
+    }
+
+    public void setCameraName(String cameraName) {
+        this.cameraName = cameraName;
+    }
+
+    public String getCameraPassword() {
+        return cameraPassword;
+    }
+
+    public void setCameraPassword(String cameraPassword) {
+        this.cameraPassword = cameraPassword;
+    }
+
     public String getCameraLocation() {
         return cameraLocation;
     }
@@ -73,6 +99,10 @@ public class CameraMsg implements Serializable {
 
     public static final String CAMERAID = "cameraid";
 
+    public static final String CAMERA_NAME = "camera_name";
+
+    public static final String CAMERA_PASSWORD = "camera_password";
+
     public static final String CAMERA_LOCATION = "camera_location";
 
     public static final String CAMERA_POSITION = "camera_position";
@@ -82,6 +112,8 @@ public class CameraMsg implements Serializable {
         return "CameraMsg{" +
         ", id=" + id +
         ", cameraid=" + cameraid +
+        ", cameraName=" + cameraName +
+        ", cameraPassword=" + cameraPassword +
         ", cameraLocation=" + cameraLocation +
         ", cameraPosition=" + cameraPosition +
         "}";

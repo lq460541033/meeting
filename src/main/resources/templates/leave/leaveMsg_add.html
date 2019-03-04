@@ -70,7 +70,7 @@
                 <div class="form-group">
                     <label for="sel1">请假事由序号</label>
                     <select class="form-control" id="sel1">
-                        <option th:each="stateControl:${stateControls}" th:value="${stateControl.stateName}"></option>
+                        <option th:each="stateControl:${stateControls}" th:text="${stateControl.stateName}"></option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -132,7 +132,7 @@
     });
 
     $("#fromEndTime").datetimepicker({
-        format: 'yyyy-mm-dd hh:ii:ss',//显示格式
+        format: 'yyyy-mm-dd hh:ii',//显示格式
         todayHighlight: 1,//今天高亮
         keyboardNavigation: true,
         maxView: 3,

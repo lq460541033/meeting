@@ -54,6 +54,8 @@
                     <tr>
                         <th>#</th>
                         <th>设备号</th>
+                        <th>设备名</th>
+                        <th>设备密码</th>
                         <th>设备位置</th>
                         <th>设备方位</th>
                         <th>操作</th>
@@ -63,6 +65,8 @@
                     <tr th:each="camera:${cameraMsgPageInfo.list}">
                         <td th:text="${camera.id}"></td>
                         <td th:text="${camera.cameraid}"></td>
+                        <td th:text="${camera.cameraName}"></td>
+                        <td th:text="${camera.cameraPassword}"></td>
                         <td th:text="${camera.cameraLocation}"></td>
                         <td th:text="${camera.cameraPosition}"></td>
                         <td>

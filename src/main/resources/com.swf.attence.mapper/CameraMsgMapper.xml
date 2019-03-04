@@ -6,6 +6,8 @@
     <resultMap id="BaseResultMap" type="com.swf.attence.entity.CameraMsg">
         <id column="id" property="id" />
         <result column="cameraid" property="cameraid" />
+        <result column="camera_name" property="cameraName" />
+        <result column="camera_password" property="cameraPassword" />
         <result column="camera_location" property="cameraLocation" />
         <result column="camera_position" property="cameraPosition" />
     </resultMap>

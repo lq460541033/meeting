@@ -36,7 +36,7 @@ public class AdminRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         Subject subject = SecurityUtils.getSubject();
         AdminMsg principal =(AdminMsg) subject.getPrincipal();
-        AdminMsg adminMsg = iAdminMsgService.selectOne(new EntityWrapper<>(principal));
+        AdminMsg adminMsg = iAdminMsgService.selectOne(new EntityWrapper<AdminMsg>().eq("adminid", principal.getAdminid()));
         simpleAuthorizationInfo.addStringPermission(adminMsg.getAdminIdentity());
         return simpleAuthorizationInfo;
     }

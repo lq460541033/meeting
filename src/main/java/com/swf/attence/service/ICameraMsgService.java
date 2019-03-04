@@ -3,9 +3,11 @@ package com.swf.attence.service;
 import com.swf.attence.entity.CameraMsg;
 import com.baomidou.mybatisplus.service.IService;
 import com.swf.attence.entity.UserMsg;
+import com.swf.attence.hikConfig.ClientDemo;
 import org.dom4j.DocumentException;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * <p>
@@ -27,7 +29,7 @@ public interface ICameraMsgService extends IService<CameraMsg> {
      * 设备的初始化、注册,成功注册返回true
      * @return
      */
-    boolean cameraInitAndcameraRegisterAndsetupAlarmChan();
+    List<ClientDemo> cameraInitAndcameraRegisterAndsetupAlarmChan();
 
     /**
      * 批量下发人脸信息
@@ -52,5 +54,10 @@ public interface ICameraMsgService extends IService<CameraMsg> {
      *
      */
     void deleteUserpicAndUserMsgByOne(UserMsg userMsg);
+
+    /**
+     * 为每一个摄像头创建一个实例
+     */
+    List<ClientDemo> createClientDemo();
 
 }

@@ -1,6 +1,7 @@
 package com.swf.attence.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -45,6 +46,7 @@ public class UserMsg implements Serializable {
     /**
      * 用户个人密码
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private String userpassword;
 
     @TableField(exist = false)

@@ -41,12 +41,12 @@ public class ShiroConfig {
          *    role:该资源必须得到角色权限才能访问
          */
         Map<String, String> filterMap = new LinkedHashMap<>();
-        filterMap.put("/","authc");
-        filterMap.put("/camera/*","perms[super_admin]");
-        filterMap.put("/stateControl/*","perms[super_admin]");
-        filterMap.put("/timeControl/*","perms[super_admin]");
-        filterMap.put("/userMsgControl/*","perms[super_admin]");
-        filterMap.put("/asserts","anon");
+        filterMap.put("/**", "authc");
+        filterMap.put("/camera/**","perms[super_admin]");
+        filterMap.put("/stateControl/**","perms[super_admin]");
+        filterMap.put("/timeControl/**","perms[super_admin]");
+        filterMap.put("/userMsgControl/**","perms[super_admin]");
+        filterMap.put("/leave/**","authc");
         shiroFilterFactoryBean.setLoginUrl("/tologin");
         shiroFilterFactoryBean.setUnauthorizedUrl("/noAuth");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);

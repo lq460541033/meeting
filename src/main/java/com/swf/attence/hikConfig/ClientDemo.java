@@ -31,15 +31,15 @@ public class ClientDemo {
         lListenHandle = new NativeLong(-1);
         fMSFCallBack = null;
     }
-    public String CameraInit(){
+    public boolean CameraInit(){
         //初始化
         boolean initSuc = hCNetSDK.NET_DVR_Init();
         if (initSuc != true){
             System.out.println("初始化失败");
-            return "初始化失败";
+            return false;
         }else{
             System.out.println("初始化成功");
-            return "初始化成功";
+            return true;
         }
     }
     //注册

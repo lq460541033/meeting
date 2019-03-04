@@ -52,7 +52,7 @@ public class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
                 Pointer pFaceSnapMatch = strFaceSnapMatch.getPointer();
                 pFaceSnapMatch.write(0, pAlarmInfo.getByteArray(0, strFaceSnapMatch.size()), 0, strFaceSnapMatch.size());
                 strFaceSnapMatch.read();
-                sAlarmType = sAlarmType + "：签到比对报警，相识度：" + strFaceSnapMatch.fSimilarity + "，姓名：" + new String(strFaceSnapMatch.struBlackListInfo.struBlackListInfo.struAttribute.byName, "UTF-8").trim() + "，\n证件信息：" + new String(strFaceSnapMatch.struBlackListInfo.struBlackListInfo.struAttribute.byCertificateNumber).trim();
+                sAlarmType = sAlarmType + "：签到比对报警，相识度：" + strFaceSnapMatch.fSimilarity + "，姓名：" + new String(strFaceSnapMatch.struBlackListInfo.struBlackListInfo.struAttribute.byName, "GBK").trim() + "，\n证件信息：" + new String(strFaceSnapMatch.struBlackListInfo.struBlackListInfo.struAttribute.byCertificateNumber).trim();
                 //获取人脸库ID
                 byte[] FDIDbytes;
                 if ((strFaceSnapMatch.struBlackListInfo.dwFDIDLen > 0) && (strFaceSnapMatch.struBlackListInfo.pFDID != null)) {
@@ -88,7 +88,7 @@ public class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
                 /**
                  * 姓名
                  */
-                String trim = new String(strFaceSnapMatch.struBlackListInfo.struBlackListInfo.struAttribute.byName, "UTF-8").trim();
+                String trim = new String(strFaceSnapMatch.struBlackListInfo.struBlackListInfo.struAttribute.byName, "GBK").trim();
                 /**
                  * 工号 8位以上
                  */
