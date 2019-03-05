@@ -61,7 +61,7 @@ public class UserAttenceMsg {
         model.addAttribute("isLastPage",leaveMsgPageInfo.isIsLastPage());
         return "leave/leaveMsg_list";
     }
-    @GetMapping("userLeave")
+    @GetMapping("/userLeave")
     public String userLeave(Model model){
         List<StateControl> stateControls = iStateControlService.selectList(new EntityWrapper<StateControl>().eq("1", 1));
         model.addAttribute("stateControls",stateControls);

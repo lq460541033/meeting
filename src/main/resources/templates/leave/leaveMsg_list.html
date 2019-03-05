@@ -54,6 +54,7 @@
                         <th>#</th>
                         <th>请假开始时间</th>
                         <th>请假结束时间</th>
+                        <th>请假原因描述</th>
                         <th>是否通过</th>
                     </tr>
                     </thead>
@@ -62,6 +63,7 @@
                         <td th:text="${leaveMsg.id}"></td>
                         <td th:text="${leaveMsg.failStart}"></td>
                         <td th:text="${leaveMsg.failEnd}"></td>
+                        <td th:text="${leaveMsg.description}"></td>
                         <td th:text="${leaveMsg.access}==1?'通过':'不通过'"></td>
                         <td>
                             <button class="btn btn-sm btn-primary" th:href="@{/leaveMsg/}+${leaveMsg.id}" disabled >编辑</button>

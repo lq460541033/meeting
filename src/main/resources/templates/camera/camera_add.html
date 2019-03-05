@@ -59,27 +59,27 @@
                 <input type="hidden" name="id" th:if="${camera!=null}" th:value="${id}">
                 <div class="form-group">
                     <label>设备号</label>
-                    <input name="cameraid" type="text" class="form-control" placeholder="1100" required="required"
+                    <input name="cameraid" type="text" class="form-control" placeholder="10.21.192.168" required="required"
                            th:value="${camera!=null}?${camera.cameraid}">
                 </div>
                 <div class="form-group">
-                    <label>设备密码</label>
+                    <label>设备登录名</label>
                     <input name="cameraName" type="text" class="form-control" placeholder="admin" required="required"
                            th:value="${camera!=null}?${camera.cameraName}">
                 </div>
                 <div class="form-group">
-                    <label>设备密码</label>
+                    <label>设备登录密码</label>
                     <input name="cameraPassword" type="text" class="form-control" placeholder="123456" required="required"
                            th:value="${camera!=null}?${camera.cameraPassword}">
                 </div>
                 <div class="form-group">
                     <label>设备位置</label>
-                    <input name="cameraPosition" type="text" class="form-control" placeholder="A楼A室" required="required"
+                    <input name="cameraLocation" type="text" class="form-control" placeholder="A楼A室" required="required"
                            th:value="${camera!=null}?${camera.cameraPosition}">
                 </div>
                 <div class="form-group">
                     <label>设备方位</label>
-                    <input name="cameraLocation" type="text" class="form-control" placeholder="东南西北" required="required"
+                    <input name="cameraPosition" type="text" class="form-control" placeholder="东南西北" required="required"
                            th:value="${camera!=null}?${camera.cameraLocation}">
                 </div>
                 <button type="submit" class="btn btn-primary" th:text="${camera!=null}?'修改':'添加'">添加</button>
