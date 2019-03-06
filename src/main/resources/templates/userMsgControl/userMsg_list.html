@@ -115,6 +115,7 @@
                         <td th:text="${userMsg.deptid}">
                         </td>
                         <td th:text="${userMsg.dept.deptname}">部门</td>
+
                         <td>
                             <img th:src="@{/userpic/{userpic}(userpic=${userMsg.userpic})}"
                                  class="img-rounded" width="80px">
@@ -210,19 +211,6 @@
         }
     })
 </script>
-<!--<script type="text/javascript">
-    function f5() {
-        $("#modalControl").on("hide.bs.modal", function () {
-                var re = "/userMsgs";
-                openNewTab({
-                    url: re
-                })
-            }
-        );
-        $("#modalControl").modal('hide')
-    }
-</script>-->
-<!-- Icons -->
 <script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
 <script>
     feather.replace()

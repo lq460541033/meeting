@@ -62,8 +62,8 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
     @Autowired
     private IAttenceMsgService iAttenceMsgService;
 
-    private static final String PATH = "F:\\Attence相关\\userpic\\";
-    private static final String ATTENCEDATA = "F:\\Attence相关\\attencedata\\";
+    private static final String PATH = "\\AttenceSystem\\userpic\\";
+    private static final String ATTENCEDATA = "\\AttenceSystem\\attencedata\\";
 
     @Override
     public List selectUserMsgAndDeptMsg() {

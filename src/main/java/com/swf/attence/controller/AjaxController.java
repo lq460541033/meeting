@@ -70,7 +70,7 @@ public class AjaxController {
      * @return
      * @throws IOException
      */
-    @RequestMapping(value = "/generateReports",method = POST)
+    @RequestMapping(value = "/reportsGenerate",method = POST)
     @ResponseBody
     public String generateReports(@RequestParam("day") String day) throws IOException {
         String message;

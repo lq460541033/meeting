@@ -22,125 +22,6 @@
             padding-top: 100px;
         }
     </style>
-    <script type="text/javascript">
-        function generateByOneDay() {
-            var chooseDay = $("#generateByDay").val();
-            $.ajax({
-                    url: "/generateReports",
-                    type: "POST",
-                    dataType: "text",
-                    data: {
-                        day: chooseDay
-                    },
-                    success: function (data) {
-                        alert(data)
-                    }
-                }
-            )
-        }
-
-        function generateByOneMonth() {
-            var chooseMonth = $("#generateByMonth").val();
-            $.ajax({
-                    url: "/generateReports",
-                    type: "POST",
-                    dataType: "text",
-                    data: {
-                        day: chooseMonth
-                    },
-                    success: function (data) {
-                        alert(data)
-                    }
-                }
-            )
-        }
-
-        function generateByOneYear() {
-            var chooseYear = $("#generateByYear").val();
-            $.ajax({
-                    url: "/generateReports",
-                    type: "POST",
-                    dataType: "text",
-                    data: {
-                        day: chooseYear
-                    },
-                    success: function (data) {
-                        console.log(data);
-                        alert(data)
-                    }
-                }
-            )
-        }
-    </script>
-    <script type="text/javascript">
-        window.onload = function(){
-            var arr = document.getElementsByTagName('button');
-            for(var i = 0;i<arr.length;i++){
-                arr[i].onclick = function generateByOneDayAndNum(){
-                    var num=this.value;
-                    var chooseDay = $("#generateByDay").val();
-                    $.ajax({
-                            url: "/generateEveryReports",
-                            type: "POST",
-                            dataType: "text",
-                            data: {
-                                day: chooseDay,
-                                num:num
-                            },
-                            success: function (data) {
-                                alert(data)
-                            }
-                        }
-                    )
-                }
-            }
-        };
-        window.onload = function(){
-            var arr = document.getElementsByTagName('button');
-            for(var i = 0;i<arr.length;i++){
-                arr[i].onclick = function generateByOneMonthAndNum(){
-                    var num=this.value;
-                    var chooseDay = $("#generateByMonth").val();
-                    $.ajax({
-                            url: "/generateEveryReports",
-                            type: "POST",
-                            dataType: "text",
-                            data: {
-                                day: chooseDay,
-                                num:num
-                            },
-                            success: function (data) {
-                                alert(data)
-                            }
-                        }
-                    )
-                }
-            }
-        };
-
-        window.onload = function(){
-            var arr = document.getElementsByTagName('button');
-            for(var i = 0;i<arr.length;i++){
-                arr[i].onclick = function generateByOneYearAndNum(){
-                    var num=this.value;
-                    var chooseDay = $("#generateByYear").val();
-                    $.ajax({
-                            url: "/generateEveryReports",
-                            type: "POST",
-                            dataType: "text",
-                            data: {
-                                day: chooseDay,
-                                num:num
-                            },
-                            success: function (data) {
-                                alert(data)
-                            }
-                        }
-                    )
-                }
-            }
-        }
-    </script>
 </head>
 <body class="text-center">
 <!-- 顶部栏引入-->
@@ -158,8 +39,8 @@
                     <td>
                         <input name="startTime" class="form_datetime form-control" required="required"
                                id="generateByDay"
-                               style="width: 200px">
-                            <button class="btn btn-info" onclick="generateByOneDay()">按日导出全部数据</button>
+                               style="width: 600px">
+                        <button class="btn btn-info" onclick="generateByOneDay()" disabled>按日导出数据</button>
                         <button class="btn btn-success btn-secondary btn-sm btn-small" onclick="generateByOneDayAndNum()" value="1" >考勤成功</button>
                         <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneDayAndNum()" value="2">迟到</button>
                         <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneDayAndNum()" value="3">早退</button>
@@ -170,9 +51,9 @@
                 <tr>
                     <td>
                         <input class="form_datetime form-control" required="required" id="generateByMonth"
-                               style="width: 200px">
-                        <button class="btn btn-info" onclick="generateByOneMonth()">按月导出全部数据</button>
-                        <button class="btn btn-success btn-secondary btn-sm btn-small" onclick="generateByOneMonthAndNum()" value="1" >考勤成功</button>
+                               style="width: 600px">
+                        <button class="btn btn-info" onclick="generateByOneMonth()" disabled>按月导出数据</button>
+                        <button class="btn btn-success btn-secondary btn-sm btn-small" onclick="generateByOneMonthAndNum()" name="1" >考勤成功</button>
                         <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneMonthAndNum()" value="2">迟到</button>
                         <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneMonthAndNum()" value="3">早退</button>
                         <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneMonthAndNum()" value="4">迟到 + 早退</button>
@@ -181,8 +62,8 @@
                 </tr>
                 <tr>
                     <td><input class="form_datetime form-control" required="required" id="generateByYear"
-                               style="width: 200px">
-                        <button class="btn btn-info" onclick="generateByOneYear()">按年导出全部数据</button>
+                               style="width: 600px">
+                        <button class="btn btn-info" onclick="generateByOneYear()" disabled>按年导出数据</button>
                         <button class="btn btn-success btn-secondary btn-sm btn-small" onclick="generateByOneYearAndNum()" value="1" >考勤成功</button>
                         <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneYearAndNum()" value="2">迟到</button>
                         <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneYearAndNum()" value="3">早退</button>
@@ -217,7 +98,7 @@
         todayHighlight: 1,//今天高亮
         keyboardNavigation: true,
         maxView: 3,
-        minView: 1,//设置显示位置
+        minView: 2,//设置显示位置
         language: 'zh-CN',
         startView: 2,
         forceParse: 0,
@@ -253,6 +134,123 @@
         autoclose: true//选择后自动关闭
     })
 
+</script>
+<script type="text/javascript">
+    function generateByOneDay() {
+        var choose1Day = $("#generateByDay").val();
+        $.ajax({
+                url: "/reportsGenerate",
+                type: "POST",
+                dataType: "text",
+                data: {
+                    day: choose1Day
+                },
+                success: function (data) {
+                    alert(data)
+                }
+            }
+        )
+    }
+
+    function generateByOneMonth() {
+        var choose1Month = $("#generateByMonth").val();
+        $.ajax({
+                url: "/reportsGenerate",
+                type: "POST",
+                dataType: "text",
+                data: {
+                    day: choose1Month
+                },
+                success: function (data) {
+                    alert(data)
+                }
+            }
+        )
+    }
+
+    function generateByOneYear() {
+        var choose1Year = $("#generateByYear").val();
+        $.ajax({
+                url: "/reportsGenerate",
+                type: "POST",
+                dataType: "text",
+                data: {
+                    day: choose1Year
+                },
+                success: function (data) {
+                    console.log(data);
+                    alert(data)
+                }
+            }
+        )
+    }
+    window.onload = function(){
+        var arr = document.getElementsByTagName('button');
+        for(var i = 0;i<arr.length;i++){
+            arr[i].onclick = function generateByOneDayAndNum(){
+                var num=this.value;
+                var chooseDay = $("#generateByDay").val();
+                $.ajax({
+                        url: "/generateEveryReports",
+                        type: "POST",
+                        dataType: "text",
+                        data: {
+                            day: chooseDay,
+                            num:num
+                        },
+                        success: function (data) {
+                            alert(data)
+                        }
+                    }
+                )
+            }
+        }
+    };
+    window.onload = function(){
+        var arr = document.getElementsByTagName('button');
+        for(var i = 0;i<arr.length;i++){
+            arr[i].onclick = function generateByOneMonthAndNum(){
+                var num=this.value;
+                var chooseDay = $("#generateByMonth").val();
+                $.ajax({
+                        url: "/generateEveryReports",
+                        type: "POST",
+                        dataType: "text",
+                        data: {
+                            day: chooseDay,
+                            num:num
+                        },
+                        success: function (data) {
+                            alert(data)
+                        }
+                    }
+                )
+            }
+        }
+    };
+
+    window.onload = function(){
+        var arr = document.getElementsByTagName('button');
+        for(var i = 0;i<arr.length;i++){
+            arr[i].onclick = function generateByOneYearAndNum(){
+                var num=this.value;
+                var chooseDay = $("#generateByYear").val();
+                $.ajax({
+                        url: "/generateEveryReports",
+                        type: "POST",
+                        dataType: "text",
+                        data: {
+                            day: chooseDay,
+                            num:num
+                        },
+                        success: function (data) {
+                            alert(data)
+                        }
+                    }
+                )
+            }
+        }
+    }
 </script>
 </body>
 </html>

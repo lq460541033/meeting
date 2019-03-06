@@ -27,9 +27,9 @@ public class UploadController {
     @Autowired
     private IUserMsgService iUserMsgService;
 
-    public static  final  String PATH="F:\\Attence相关\\userpic\\";
+    public static  final  String PATH="\\AttenceSystem\\userpic\\";
 
-    public static  final  String USERDATAPATH="F:\\Attence相关\\userdata\\";
+    public static  final  String USERDATAPATH="\\AttenceSystem\\userdata\\";
 
 
     /**
