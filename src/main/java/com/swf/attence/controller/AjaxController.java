@@ -10,15 +10,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.swf.attence.service.impl.UserMsgServiceImpl.ATTENCEDATA;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
@@ -70,7 +71,7 @@ public class AjaxController {
      * @return
      * @throws IOException
      */
-    @RequestMapping(value = "/reportsGenerate",method = POST)
+  /*  @RequestMapping(value = "/reportsGenerate",method = POST)
     @ResponseBody
     public String generateReports(@RequestParam("day") String day) throws IOException {
         String message;
@@ -83,7 +84,7 @@ public class AjaxController {
              logger.info(message);
              return message;
          }
-    }
+    }*/
     /**
      * 导出考勤数据
      * @param day
@@ -97,18 +98,18 @@ public class AjaxController {
         String message;
         String name=null;
         if(num==1) {
-            name="考勤成功人员";
+            name="考勤成功";
         }else if (num==2){
-            name="迟到人员";
+            name="迟到";
         }else if (num==3){
-            name="早退人员";
+            name="早退";
         }else if(num==4){
-            name="迟到 早退人员";
+            name="迟到早退";
         }else if (num==5){
-            name="缺勤人员";
+            name="缺勤";
         }
         if (iUserMsgService.generateEveryDayMsg(day,num)){
-            message="已成功导出  "+day+name+"  考勤数据";
+            message="杭州仰天信息科技"+day+name+".xlsx";
             logger.info(message);
             return message;
         }else {
@@ -133,5 +134,68 @@ public class AjaxController {
         iAttenceMsgService.update(attenceMsg,new EntityWrapper<AttenceMsg>().eq("id",attenceMsg.getId()));
         logger.info("已通过该用户请求");
         return "true";
+    }
+
+    /**
+     * 导出生成的excel
+     * @param request
+     * @param response
+     * @param fileName
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    @RequestMapping(value = "/download",method = POST)
+    @ResponseBody
+    public String downloadFile(HttpServletRequest request,
+                               HttpServletResponse response,String fileName) throws UnsupportedEncodingException {
+        // 如果文件名不为空，则进行下载
+        if (fileName != null) {
+            //设置文件路径
+            File file = new File(ATTENCEDATA, fileName);
+            // 如果文件名存在，则进行下载
+            if (file.exists()) {
+                // 配置文件下载
+                response.setHeader("content-type", "application/octet-stream");
+                response.setContentType("application/octet-stream");
+                // 下载文件能正常显示中文
+                response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
+                // 实现文件下载
+                byte[] buffer = new byte[1024];
+                FileInputStream fis = null;
+                BufferedInputStream bis = null;
+                try {
+                    fis = new FileInputStream(file);
+                    bis = new BufferedInputStream(fis);
+                    OutputStream os = response.getOutputStream();
+                    int i = bis.read(buffer);
+                    while (i != -1) {
+                        os.write(buffer, 0, i);
+                        os.flush();
+                        i = bis.read(buffer);
+                    }
+                    System.out.println("下载成功");
+                }
+                catch (Exception e) {
+                    System.out.println("下载失败");
+                }
+                finally {
+                    if (bis != null) {
+                        try {
+                            bis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (fis != null) {
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        return "下载失败";
     }
 }

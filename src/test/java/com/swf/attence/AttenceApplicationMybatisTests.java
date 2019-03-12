@@ -31,25 +31,13 @@ public class AttenceApplicationMybatisTests {
     private ICommandMapper iCommandMapper;
     @Test
     public void contextLoads() {
-        ArrayList<ICommand> iCommands = new ArrayList<>();
-        ArrayList<ICommand> iCommands1 = new ArrayList<>();
-        String r1 = UUID.randomUUID().toString().replace("-", "");
-        String r2 = UUID.randomUUID().toString().replace("-", "");
-        ICommand inICommand = new ICommand();
-        inICommand.setId(r1);
-        inICommand.setIcommandUserid("11111102");
-        inICommand.setIcommandTime("2019-01-31 07:59:11");
-        inICommand.setIcommandUsername("胡伯伯");
-        inICommand.setIcommandCameraid("10.21.244.166");
-        iCommands.add(inICommand);
-        ICommand inICommand1 = new ICommand();
-        inICommand1.setId(r2);
-        inICommand1.setIcommandUserid("11111102");
-        inICommand1.setIcommandTime("2019-01-31 15:00:00");
-        inICommand1.setIcommandUsername("胡伯伯");
-        inICommand1.setIcommandCameraid("10.21.244.167");
-        iCommands1.add(inICommand1);
-        iEveryTaskService.everyDataAnalsis("20190131",iCommands,iCommands1);
+        UserMsg userMsg = new UserMsg();
+        userMsg.setUserid("10101012");
+        userMsg.setGender(1);
+        userMsg.setUserpic("C:\\Users\\White.Hou\\Desktop\\10101012.jpg");
+        userMsg.setDeptid("1");
+        userMsg.setUsername("ceshi");
+        iUserMsgService.insert(userMsg);
     }
 
 }

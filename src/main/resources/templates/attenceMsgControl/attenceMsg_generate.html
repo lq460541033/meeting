@@ -5,252 +5,180 @@
     <title>考勤数据导出</title>
     <!-- 移动设备友好-->
     <meta name="view-port" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <!-- 新 Bootstrap4 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
-    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
-    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link href="#" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.css}" rel="stylesheet">
     <link th:href="@{/webjars/bootstrap-datetimepicker/2.4.2/css/bootstrap-datetimepicker.css}" rel="stylesheet"
           type="text/css">
     <link th:href="@{/webjars/bootstrap-datetimepicker/2.4.2/css/bootstrap-datetimepicker.min.css}" rel="stylesheet"
           type="text/css">
-    <style>
-        body {
-            padding-top: 100px;
+    <style type="text/css">
+        /* Chart.js */
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
         }
     </style>
+    <script type="text/javascript">
+        function thisMethod() {
+            var chooseDay = $("#generateByDay").val();
+            var chooseMonth = $("#generateByMonth").val();
+            var chooseYear = $("#generateByYear").val();
+            var num=$("#state").val();
+            var realDay;
+            var numBe=Number(Boolean(chooseDay))+Number(Boolean(chooseMonth))+Number(Boolean(chooseYear));
+            if (numBe<1){
+                alert("请至少选择一种导出方式");
+            } else if (numBe>1){
+                alert("请至多选择一种导出方式")
+            } else {
+                if (!chooseMonth && !chooseYear)  {
+                    realDay=chooseDay;
+                }else if (!chooseDay && !chooseYear){
+                    realDay=chooseMonth;
+                } else if(!chooseDay && !chooseMonth){
+                    realDay=chooseYear;
+                }
+                $.ajax({
+                    url: "/generateEveryReports",
+                    type: "POST",
+                    dataType: "text",
+                    data: {
+                        day: realDay,
+                        num: num
+                    },
+                    success: function (data) {
+                        alert("已成功生成:  "+data+",点击确定即可下载查看");
+                        var url="http://localhost:8089/download";
+                        var form=$("<form></form>").attr("action", url).attr("method", "post");
+                        form.append($("<input></input>").attr("type", "hidden").attr("name", "fileName").attr("value", data));
+                        form.appendTo('body').submit().remove();
+                    },
+                    error:function (data) {
+                        alert("对不起，发生未知错误，请重试")
+                    }
+                })
+            }
+        }
+    </script>
 </head>
-<body class="text-center">
-<!-- 顶部栏引入-->
-<div class="container-fluid text-center ">
-    <main role="main" class="col-md-4 ml-sm-auto col-lg-8  pt-3 px-4 ">
-        <div class="table h3 mb-3">
-            <table class="table-responsive table-striped">
-                <thead>
-                <tr>
-                    <th colspan="5">员工考勤数据导出</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <input name="startTime" class="form_datetime form-control" required="required"
-                               id="generateByDay"
-                               style="width: 600px">
-                        <button class="btn btn-info" onclick="generateByOneDay()" disabled>按日导出数据</button>
-                        <button class="btn btn-success btn-secondary btn-sm btn-small" onclick="generateByOneDayAndNum()" value="1" >考勤成功</button>
-                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneDayAndNum()" value="2">迟到</button>
-                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneDayAndNum()" value="3">早退</button>
-                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneDayAndNum()" value="4">迟到 + 早退</button>
-                        <button class="btn btn-danger btn-secondary btn-sm" onclick="generateByOneDayAndNum()" value="5">缺勤</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="form_datetime form-control" required="required" id="generateByMonth"
-                               style="width: 600px">
-                        <button class="btn btn-info" onclick="generateByOneMonth()" disabled>按月导出数据</button>
-                        <button class="btn btn-success btn-secondary btn-sm btn-small" onclick="generateByOneMonthAndNum()" name="1" >考勤成功</button>
-                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneMonthAndNum()" value="2">迟到</button>
-                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneMonthAndNum()" value="3">早退</button>
-                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneMonthAndNum()" value="4">迟到 + 早退</button>
-                        <button class="btn btn-danger btn-secondary btn-sm" onclick="generateByOneMonthAndNum()" value="5">缺勤</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input class="form_datetime form-control" required="required" id="generateByYear"
-                               style="width: 600px">
-                        <button class="btn btn-info" onclick="generateByOneYear()" disabled>按年导出数据</button>
-                        <button class="btn btn-success btn-secondary btn-sm btn-small" onclick="generateByOneYearAndNum()" value="1" >考勤成功</button>
-                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneYearAndNum()" value="2">迟到</button>
-                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneYearAndNum()" value="3">早退</button>
-                        <button class="btn btn-warning btn-secondary btn-sm" onclick="generateByOneYearAndNum()" value="4">迟到 + 早退</button>
-                        <button class="btn btn-danger btn-secondary btn-sm" onclick="generateByOneYearAndNum()" value="5">缺勤</button>
+<body>
+<div th:replace="commons/bar::topbar"></div>
+<div class="container-fluid">
+    <div class="row">
+        <!--引入sidebar-->
+        <div th:replace="commons/bar::#sidebar(activeUri='attenceMsg_list')"></div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 ">
+            <h2 class="display-4">员工数据导出</h2>
+            <form href="#">
+                <div class="form-group custom-control custom-control-inline">
+                    <button class="btn btn-primary"  disabled>按日导出</button>
+                    <input name="startTime" class="form_datetime form-control"
+                           id="generateByDay"
+                           style="width: 200px">
+                </div>
+                <div class="form-group custom-control custom-control-inline">
+                    <button class="btn btn-primary " disabled>按月导出</button>
+                    <input name="startTime" class="form_datetime form-control"
+                           id="generateByMonth"
+                           style="width: 200px">
+                </div>
+                <div class="form-group custom-control custom-control-inline">
+                    <button class="btn btn-primary"  disabled>按年导出</button>
+                    <input name="startTime" class="form_datetime form-control"
+                           id="generateByYear"
+                           style="width: 200px">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="state">  请选择您要的状态：</label>
+                    <select class="form-control" id="state" style="width: 400px">
+                        <option value="1">考勤成功</option>
+                        <option value="2">迟到</option>
+                        <option value="3">早退</option>
+                        <option value="4">迟到 && 早退</option>
+                        <option value="5">缺勤</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-outline-primary btn-lg" onclick="thisMethod()">提交</a>
+                </div>
+            </form>
+        </main>
 
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
-
+    </div>
 </div>
+    <script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.js}"></script>
+    <script type="text/javascript" src="asserts/js/popper.min.js"
+            th:src="@{/webjars/popper.js/1.14.3/popper.js}"></script>
+    <script type="text/javascript" src="asserts/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.js}"></script>
+    <script type="text/javascript"
+            th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/bootstrap-datetimepicker.js}"></script>
+    <script type="text/javascript"
+            th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/locales/bootstrap-datetimepicker.fr.js}"></script>
+    <script type="text/javascript"
+            th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
+    <script type="text/javascript">
+        //日期插件
+        $("#generateByDay").datetimepicker({
+            format: 'yyyy-mm-dd',//显示格式
+            todayHighlight: 1,//今天高亮
+            keyboardNavigation: true,
+            maxView: 3,
+            minView: 2,//设置显示位置
+            language: 'zh-CN',
+            startView: 2,
+            forceParse: 0,
+            todayBtn: true,
+            showMeridian: 1,
+            autoclose: true//选择后自动关闭
+        });
 
-<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
-        th:src="@{/webjars/jquery/3.2.1/jquery.js}"></script>
-<script type="text/javascript" src="asserts/js/popper.min.js"
-        th:src="@{/webjars/popper.js/1.14.3/popper.js}"></script>
-<script type="text/javascript" src="asserts/js/bootstrap.min.js"
-        th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.js}"></script>
-<script type="text/javascript"
-        th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/bootstrap-datetimepicker.js}"></script>
-<script type="text/javascript"
-        th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/locales/bootstrap-datetimepicker.fr.js}"></script>
-<script type="text/javascript"
-        th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
-<script type="text/javascript">
-    //日期插件
-    $("#generateByDay").datetimepicker({
-        format: 'yyyy-mm-dd',//显示格式
-        todayHighlight: 1,//今天高亮
-        keyboardNavigation: true,
-        maxView: 3,
-        minView: 2,//设置显示位置
-        language: 'zh-CN',
-        startView: 2,
-        forceParse: 0,
-        todayBtn: true,
-        showMeridian: 1,
-        autoclose: true//选择后自动关闭
-    });
+        $("#generateByMonth").datetimepicker({
+            format: 'yyyy-mm',//显示格式
+            todayHighlight: 1,//今天高亮
+            keyboardNavigation: true,
+            maxView: 3,
+            minView: 3,
+            language: 'zh-CN',
+            startView: 3,
+            forceParse: 0,
+            todayBtn: true,
+            showMeridian: 1,
+            autoclose: true//选择后自动关闭
+        });
+        $("#generateByYear").datetimepicker({
+            format: 'yyyy',//显示格式
+            todayHighlight: 1,//今天高亮
+            keyboardNavigation: true,
+            maxView: 4,
+            minView: 4,//设置显示位置
+            language: 'zh-CN',
+            startView: 4,
+            forceParse: 0,
+            todayBtn: true,
+            showMeridian: 1,
+            autoclose: true//选择后自动关闭
+        })
 
-    $("#generateByMonth").datetimepicker({
-        format: 'yyyy-mm',//显示格式
-        todayHighlight: 1,//今天高亮
-        keyboardNavigation: true,
-        maxView: 3,
-        minView: 3,
-        language: 'zh-CN',
-        startView: 3,
-        forceParse: 0,
-        todayBtn: true,
-        showMeridian: 1,
-        autoclose: true//选择后自动关闭
-    });
-    $("#generateByYear").datetimepicker({
-        format: 'yyyy',//显示格式
-        todayHighlight: 1,//今天高亮
-        keyboardNavigation: true,
-        maxView: 4,
-        minView: 4,//设置显示位置
-        language: 'zh-CN',
-        startView: 4,
-        forceParse: 0,
-        todayBtn: true,
-        showMeridian: 1,
-        autoclose: true//选择后自动关闭
-    })
-
-</script>
-<script type="text/javascript">
-    function generateByOneDay() {
-        var choose1Day = $("#generateByDay").val();
-        $.ajax({
-                url: "/reportsGenerate",
-                type: "POST",
-                dataType: "text",
-                data: {
-                    day: choose1Day
-                },
-                success: function (data) {
-                    alert(data)
-                }
-            }
-        )
-    }
-
-    function generateByOneMonth() {
-        var choose1Month = $("#generateByMonth").val();
-        $.ajax({
-                url: "/reportsGenerate",
-                type: "POST",
-                dataType: "text",
-                data: {
-                    day: choose1Month
-                },
-                success: function (data) {
-                    alert(data)
-                }
-            }
-        )
-    }
-
-    function generateByOneYear() {
-        var choose1Year = $("#generateByYear").val();
-        $.ajax({
-                url: "/reportsGenerate",
-                type: "POST",
-                dataType: "text",
-                data: {
-                    day: choose1Year
-                },
-                success: function (data) {
-                    console.log(data);
-                    alert(data)
-                }
-            }
-        )
-    }
-    window.onload = function(){
-        var arr = document.getElementsByTagName('button');
-        for(var i = 0;i<arr.length;i++){
-            arr[i].onclick = function generateByOneDayAndNum(){
-                var num=this.value;
-                var chooseDay = $("#generateByDay").val();
-                $.ajax({
-                        url: "/generateEveryReports",
-                        type: "POST",
-                        dataType: "text",
-                        data: {
-                            day: chooseDay,
-                            num:num
-                        },
-                        success: function (data) {
-                            alert(data)
-                        }
-                    }
-                )
-            }
-        }
-    };
-    window.onload = function(){
-        var arr = document.getElementsByTagName('button');
-        for(var i = 0;i<arr.length;i++){
-            arr[i].onclick = function generateByOneMonthAndNum(){
-                var num=this.value;
-                var chooseDay = $("#generateByMonth").val();
-                $.ajax({
-                        url: "/generateEveryReports",
-                        type: "POST",
-                        dataType: "text",
-                        data: {
-                            day: chooseDay,
-                            num:num
-                        },
-                        success: function (data) {
-                            alert(data)
-                        }
-                    }
-                )
-            }
-        }
-    };
-
-    window.onload = function(){
-        var arr = document.getElementsByTagName('button');
-        for(var i = 0;i<arr.length;i++){
-            arr[i].onclick = function generateByOneYearAndNum(){
-                var num=this.value;
-                var chooseDay = $("#generateByYear").val();
-                $.ajax({
-                        url: "/generateEveryReports",
-                        type: "POST",
-                        dataType: "text",
-                        data: {
-                            day: chooseDay,
-                            num:num
-                        },
-                        success: function (data) {
-                            alert(data)
-                        }
-                    }
-                )
-            }
-        }
-    }
-</script>
+    </script>
 </body>
 </html>

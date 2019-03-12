@@ -141,6 +141,8 @@ public class UserMsgController {
         LeaveMsg leaveMsg = iLeaveMsgService.selectOne(new EntityWrapper<LeaveMsg>().eq("username", username).andNew().le("fail_start", day + "%").andNew().ge("fail_end", day + "%"));
         logger.info("查出"+username+"相关考勤信息是: "+leaveMsg);
         model.addAttribute("leaveMsg",leaveMsg);
+        UserMsg userMsg = iUserMsgService.selectOne(new EntityWrapper<UserMsg>().eq("userid", leaveMsg.getUsername()));
+        model.addAttribute("userid",userMsg.getUsername());
         Session session = SecurityUtils.getSubject().getSession();
         session.setAttribute("failDay",day);
         return "userMsgControl/user_attence";

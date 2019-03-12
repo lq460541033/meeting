@@ -41,18 +41,6 @@
             animation: chartjs-render-animation 0.001s;
         }
     </style>
-   <!-- <script type="text/javascript">
-        function checkTime() {
-            var beginTime=document.getElementById("fromStartTime").value;
-            var endTime=document.getElementById("fromEndTime").value;
-            var begin=new Date(beginTime.replace(/-/g, "/"));
-            var end=new Date(endTime.replace(/-/g, "/"));
-            var diff=end.getTime()-begin.getTime();
-            var newDiff=Math.floor(diff/(24 * 3600 * 1000));
-
-        }
-    </script>-->
-
 </head>
 
 <body>
@@ -128,7 +116,7 @@
     }).on('changeDate', function (ev) {
         var starttime = $("#fromStartTime").val();
         $("#fromEndTime").datetimepicker('setStartDate', starttime);
-        $("#fromStartTime").datetimepicker('hide');
+        $("#fromStartTime").datetimepicker('hide')
     });
 
     $("#fromEndTime").datetimepicker({
@@ -143,9 +131,6 @@
         todayBtn: true,
         showMeridian: 1,
         autoclose: true//选择后自动关闭
-        /* onSelect:function (endTime) {
-             $("#from-endTime").datetimepicker("option","endDate",endTime)
-         }*/
     }).on('changeDate', function (ev) {
         $("#fromStartTime").datetimepicker('setEndDate', $("#fromEndTime").val());
         $("#fromEndTime").datetimepicker('hide')

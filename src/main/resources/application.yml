@@ -1,3 +1,5 @@
+#  实际部署 需要确定文件夹 来修改file和PATH USERDATAPATH ATTENCEDATAPATH
+
 # 端口配置server:
 server:
   port: 8089
@@ -7,7 +9,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/attence?useSSL=false&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=GMT%2B8
     username: root
-    password: 123456
+    password: root
     type: com.alibaba.druid.pool.DruidDataSource
 # Thymeleaf 相关配置
   thymeleaf:
@@ -21,7 +23,7 @@ spring:
   mvc:
     static-path-pattern: /**
   resources:
-    static-locations: classpath:/META-INF/resources/,classpath:/static,classpath:/resources/,file:F:/Attence相关/
+    static-locations: classpath:/META-INF/resources/,classpath:/static,classpath:/resources/,file:F:/AttenceSystem/
 #  jpa:
 #    hibernate:
 #      ddl-auto: update

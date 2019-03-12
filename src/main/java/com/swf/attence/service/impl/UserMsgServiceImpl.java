@@ -33,6 +33,7 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.util.*;
 
+import static com.swf.attence.controller.UploadController.PATH;
 import static javax.swing.text.DefaultStyledDocument.ElementSpec.ContentType;
 
 /**
@@ -62,8 +63,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
     @Autowired
     private IAttenceMsgService iAttenceMsgService;
 
-    private static final String PATH = "\\AttenceSystem\\userpic\\";
-    private static final String ATTENCEDATA = "\\AttenceSystem\\attencedata\\";
+    public static final String ATTENCEDATA = "\\AttenceSystem\\attencedata\\";
 
     @Override
     public List selectUserMsgAndDeptMsg() {
@@ -84,7 +84,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
 
     @Override
     public void delImgFromUserpic(Integer id) {
-        UserMsg userMsg = userMsgMapper.selectById(id);
+        UserMsg userMsg = selectById(id);
         String userid = userMsg.getUserid();
         File file = new File(PATH);
         String realPath = null;
@@ -127,7 +127,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         }else if (num==3){
             name="早退";
         }else if(num==4){
-            name="迟到 早退";
+            name="迟到早退";
         }else if (num==5){
             name="缺勤";
         }
@@ -143,6 +143,8 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         cell.setCellValue("用户工号");
         row.createCell(1).setCellValue("用户姓名");
         row.createCell(2).setCellValue("用户请假状态");
+        row.createCell(3).setCellValue("用户进入时间");
+        row.createCell(4).setCellValue("用户离开时间");
         if (num==1 || num  ==2 || num==3|| num==4) {
             ArrayList<AttenceMsg> attenceMsgs = attenceMsgMapper.selectByTimeAndState(day + "%", num);
             for (int i = 1; i <= attenceMsgs.size(); i++) {
@@ -157,6 +159,8 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
                 if (userMsg==null){
                     sheetRow.createCell(1).setCellValue("未知姓名");
                     sheetRow.createCell(2).setCellValue("未知请假状态");
+                    sheetRow.createCell(3).setCellValue("未知进入时间");
+                    sheetRow.createCell(4).setCellValue("未知离开时间");
                 }else {
                     sheetRow.createCell(1).setCellValue(userMsg.getUsername());
                     if (a.getFailid()==1){
@@ -164,6 +168,8 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
                     }else {
                         sheetRow.createCell(2).setCellValue("未请假");
                     }
+                    sheetRow.createCell(3).setCellValue(a.getCheckInTime());
+                    sheetRow.createCell(4).setCellValue(a.getCheckOutTime());
                 }
             }
         }else if (num==5){
@@ -233,7 +239,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         for (int i = 1; i <= sheet.getLastRowNum(); i++) {
             Row row = sheet.getRow(i);
             if (row == null) {
-                continue;
+                break;
             }
             if (row.getCell(1).getCellType() != 1) {
                 throw new MyException("导入失败(第" + (i + 1) + "行,姓名请设为文本格式)");
@@ -312,7 +318,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
                 if (imageUpload.fileUpload(mockMultipartFile, PATH)) {
                     userMsg1.setUserpic(name);
                     userMsgs.add(userMsg1);
-                    userMsgMapper.insert(userMsg1);
+                    insert(userMsg1);
                     /**
                      * 添加到设备
                      */
