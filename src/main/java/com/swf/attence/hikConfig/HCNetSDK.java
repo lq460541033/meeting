@@ -1,7 +1,4 @@
-package com.swf.attence.hikConfig;/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+package com.swf.attence.hikConfig;
 
 /*
  * HCNetSDK.java
@@ -15,7 +12,6 @@ package com.swf.attence.hikConfig;/*
  */
 
 import com.sun.jna.*;
-import com.sun.jna.examples.win32.GDI32.RECT;
 import com.sun.jna.examples.win32.W32API;
 import com.sun.jna.examples.win32.W32API.HWND;
 import com.sun.jna.ptr.ByteByReference;
@@ -23,7 +19,6 @@ import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.NativeLongByReference;
 import com.sun.jna.ptr.ShortByReference;
 import com.sun.jna.win32.StdCallLibrary;
-import com.swf.attence.entity.ICommand;
 
 import java.util.Arrays;
 import java.util.List;
@@ -1756,6 +1751,119 @@ public static class NET_DVR_EXCEPTION extends Structure {//DVR异常参数
 	public NET_DVR_HANDLEEXCEPTION[] struExceptionHandleType = new NET_DVR_HANDLEEXCEPTION[MAX_EXCEPTIONNUM];
 	/*数组0-盘满,1- 硬盘出错,2-网线断,3-局域网内IP 地址冲突,4-非法访问, 5-输入/输出视频制式不匹配, 6-行车超速(车载专用)*/
 }
+    public int ACS_CARD_NO_LEN = 32;  //门禁卡号长度
+    public static final int MAX_CARD_READER_NUM_512       = 512;  //最大读卡器数
+    public static class NET_DVR_FACE_PARAM_CFG extends Structure
+    {
+        public int dwSize;
+        public byte[] byCardNo = new byte[ACS_CARD_NO_LEN];    //人脸关联的卡号
+        public int dwFaceLen;    //人脸数据长度<DES加密处理>，设备端返回的即加密后的数据
+        public Pointer pFaceBuffer;  //人脸数据指针
+        public byte[] byEnableCardReader = new byte[MAX_CARD_READER_NUM_512];  //需要下发人脸的读卡器，按数组表示，从低位到高位表示，0-不下发该读卡器，1-下发到该读卡器
+        public byte byFaceID;     //人脸编号，有效值范围为1-2
+        public byte byFaceDataType;   //人脸数据类型：0-模板（默认），1-图片
+        public byte[] byRes = new byte[126];
+    }
+    public static final int ERROR_MSG_LEN                 = 32;   //下发错误信息
+    public static class NET_DVR_FACE_PARAM_STATUS extends Structure
+    {
+        public int dwSize;
+        public byte[] byCardNo = new byte[ACS_CARD_NO_LEN]; //人脸关联的卡号
+        public byte[] byCardReaderRecvStatus = new byte[MAX_CARD_READER_NUM_512];  //人脸读卡器状态，按字节表示，0-失败，1-成功，2-重试或人脸质量差，3-内存已满，4-已存在该人脸，5-非法人脸ID
+        public byte[] byErrorMsg = new byte[ERROR_MSG_LEN]; //下发错误信息，当byCardReaderRecvStatus为4时，表示已存在人脸对应的卡号
+        public int dwCardReaderNo;  //纹读卡器编号，可用于下发错误返回
+        public byte byTotalStatus;  //下发总的状态，0-当前人脸未下完所有读卡器，1-已下完所有读卡器(这里的所有指的是门禁主机往所有的读卡器下发了，不管成功与否)
+        public byte byFaceID;     //人脸编号，有效值范围为1-2
+        public byte[] byRes = new byte[130];
+    }
+
+    public static class MY_USER_DATA extends Structure {
+        public int dwSize;
+        public byte[] byteData = new byte[128];
+    }
+    public static final int NET_DVR_SET_FACE_PARAM_CFG = 2508;    //设置人脸参数
+    public static class REMOTECONFIGSTATUS_CARD extends Structure {
+        public byte[] byStatus = new byte[4];
+        public byte[] byErrorCode = new byte[4];
+        public byte[] byCardNum = new byte[32];
+    }
+    public static class NET_DVR_DEL_FACE_PARAM_MODE extends Union
+    {
+        public byte[] uLen = new byte[588];   //联合体长度
+        public NET_DVR_FACE_PARAM_BYCARD struByCard;     //按卡号的方式删除
+        public  NET_DVR_FACE_PARAM_BYREADER struByReader;   //按读卡器的方式删除
+    }
+    public static class NET_DVR_FACE_PARAM_BYREADER extends Structure
+    {
+        public int dwCardReaderNo;  //按值表示，人脸读卡器编号
+        public byte byClearAllCard;  //是否删除所有卡的人脸信息，0-按卡号删除人脸信息，1-删除所有卡的人脸信息
+        public byte[] byRes1 = new byte[3];       //保留
+        public byte[] byCardNo = new byte[ACS_CARD_NO_LEN]; //人脸关联的卡号
+        public byte[] byRes = new byte[548];          //保留
+    }
+    public static final int NET_DVR_DEL_FACE_PARAM_CFG = 2509;    //删除人脸参数
+    boolean NET_DVR_RemoteControl(NativeLong lUserID, int dwCommand, Pointer lpInBuffer, int dwInBufferSize);
+    public static final int MAX_FACE_NUM                  = 2;    //最大人脸数
+    public static class NET_DVR_FACE_PARAM_BYCARD extends Structure
+    {
+        public byte[] byCardNo = new byte[ACS_CARD_NO_LEN]; //人脸关联的卡号
+        public byte[] byEnableCardReader = new byte[MAX_CARD_READER_NUM_512];  //人脸的读卡器信息，按数组表示
+        public byte[] byFaceID = new byte[MAX_FACE_NUM];        //需要删除的人脸编号，按数组下标，值表示0-不删除，1-删除该人脸
+        public byte[] byRes1 = new byte[42];          //保留
+    }
+
+    public static class NET_DVR_FACE_PARAM_CTRL extends Structure
+    {
+        public int dwSize;
+        public byte byMode;          //删除方式，0-按卡号方式删除，1-按读卡器删除
+        public byte[] byRes1 = new byte[3];        //保留
+        public NET_DVR_DEL_FACE_PARAM_MODE struProcessMode;  //处理方式
+        public byte[] byRes = new byte[64];          //保留
+    }
+    public int MAX_CARD_RIGHT_PLAN_NUM = 4; //卡权限最大计划个数
+    public int CARD_PASSWORD_LEN = 8;   //卡密码长度
+    public static class CARDRIGHTPLAN_WORD extends Structure {
+        public short[] wRightPlan = new short[MAX_CARD_RIGHT_PLAN_NUM];
+    }
+
+    public int MAX_DOOR_CODE_LEN = 8; //房间代码长度
+    public int MAX_LOCK_CODE_LEN = 8; //锁代码长度
+
+    public int MAX_GROUP_NUM_128 = 128; //最大群组数
+    public int MAX_DOOR_NUM_256 = 256; //最大门数
+    public static class NET_DVR_CARD_CFG_V50 extends Structure {
+        public int dwSize;
+        public int dwModifyParamType;//需要修改的卡参数，设置卡参数时有效，按位表示，每位代表一种参数，1为需要修改，0为不修改
+        public byte[] byCardNo = new byte[ACS_CARD_NO_LEN]; //卡号
+        public byte byCardValid; //卡是否有效，0-无效，1-有效（用于删除卡，设置时置为0进行删除，获取时此字段始终为1）
+        public byte byCardType; //卡类型，1-普通卡，2-残疾人卡，3-黑名单卡，4-巡更卡，5-胁迫卡，6-超级卡，7-来宾卡，8-解除卡，9-员工卡，10-应急卡，11-应急管理卡，默认普通卡
+        public byte byLeaderCard; //是否为首卡，1-是，0-否
+        public byte byRes1;
+        public byte[] byDoorRight = new byte[MAX_DOOR_NUM_256]; //门权限(楼层权限)，按位表示，1为有权限，0为无权限，从低位到高位表示对门1-N是否有权限
+        public NET_DVR_VALID_PERIOD_CFG struValid; //有效期参数
+        public byte[] byBelongGroup = new byte[MAX_GROUP_NUM_128]; //所属群组，按字节表示，1-属于，0-不属于
+        public byte[] byCardPassword = new byte[CARD_PASSWORD_LEN]; //卡密码
+        public CARDRIGHTPLAN_WORD[] wCardRightPlan = new CARDRIGHTPLAN_WORD[MAX_DOOR_NUM_256]; //卡权限计划，取值为计划模板编号，同个门不同计划模板采用权限或的方式处理
+        public int dwMaxSwipeTime; //最大刷卡次数，0为无次数限制（开锁次数）
+        public int dwSwipeTime; //已刷卡次数
+        public short wRoomNumber;  //房间号
+        public short wFloorNumber;   //层号
+        public int dwEmployeeNo;   //工号
+        public byte[] byName = new byte[NAME_LEN];   //姓名
+        public short wDepartmentNo;   //部门编号
+        public short wSchedulePlanNo;   //排班计划编号
+        public byte bySchedulePlanType;  //排班计划类型：0-无意义、1-个人、2-部门
+        public byte byRightType;  //下发权限类型：0-普通发卡权限、1-二维码权限、2-蓝牙权限（可视对讲设备二维码权限配置项：房间号、卡号（虚拟卡号）、最大刷卡次数（开锁次数）、有效期参数；蓝牙权限：卡号（萤石APP账号）、其他参数配置与普通发卡权限一致）
+        public byte[] byRes2 = new byte[2];
+        public int dwLockID;  //锁ID
+        public byte[] byLockCode = new byte[MAX_LOCK_CODE_LEN];    //锁代码
+        public byte[] byRoomCode = new byte[MAX_DOOR_CODE_LEN];  //房间代码
+        public int dwCardRight;      //卡权限
+        public int dwPlanTemplate;   //计划模板(每天)各时间段是否启用，按位表示，0--不启用，1-启用
+        public int dwCardUserId;    //持卡人ID
+        public byte byCardModelType;  //0-空，1- MIFARE S50，2- MIFARE S70，3- FM1208 CPU卡，4- FM1216 CPU卡，5-国密CPU卡，6-身份证，7- NFC
+        public byte[] byRes3 = new byte[83];
+    }
 
 public static class NET_DVR_CHANNELSTATE_V30 extends Structure {//通道状态(9000扩展)
 	public byte byRecordStatic; //通道是否在录像,0-不录像,1-录像
@@ -2170,7 +2278,7 @@ DVR实现巡航数据结构
        public   short wNtpPort;         /* ntp server port 9000新增 设备默认为123*/
        public   byte[] res2 = new byte[8];
 }
-
+    public static final int COMM_ALARM_ACS = 0x5002; //门禁主机报警信息
 //ddns
     public static class NET_DVR_DDNSPARA extends Structure {
 	public byte[] sUsername = new byte[NAME_LEN];  /* DDNS账号用户名/密码 */
@@ -2179,7 +2287,18 @@ DVR实现巡航数据结构
 	public byte byEnableDDNS;			/*是否应用 0-否，1-是*/
 	public byte[] res = new byte[15];
 }
-
+    public static final int NET_DVR_GET_CARD_CFG_V50 = 2178;    //获取新卡参数(V50)
+    public static final int NET_DVR_SET_CARD_CFG_V50 = 2179;    //设置新卡参数(V50)
+    public static final int NET_DVR_GET_FACE_PARAM_CFG = 2507;    //获取人脸参数
+    public static class NET_DVR_FACE_PARAM_COND extends Structure
+    {
+        public int dwSize;
+        public byte[] byCardNo = new byte[ACS_CARD_NO_LEN];    //人脸关联的卡号
+        public byte[] byEnableCardReader = new byte[MAX_CARD_READER_NUM_512];  //人脸的读卡器是否有效，0-无效，1-有效
+        public int dwFaceNum;    //设置或获取人脸数量，获取时置为0xffffffff表示获取所有人脸信息
+        public byte byFaceID;     //人脸编号，有效值范围为1-2   0xff表示该卡所有人脸
+        public byte[] byRes = new byte[127];   //保留
+    }
    public static class NET_DVR_DDNSPARA_EX extends Structure {
 	public byte byHostIndex;					/* 0-Hikvision DNS 1－Dyndns 2－PeanutHull(花生壳), 3-希网3322*/
 	public byte byEnableDDNS;					/*是否应用DDNS 0-否，1-是*/

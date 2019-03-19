@@ -45,7 +45,7 @@ public class CameraEveryTask {
         Date time = instance.getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         String format = simpleDateFormat.format(time);
-        iEveryTaskService.everyDataAnalsis(format,iEveryTaskService.getInICommand(format),iEveryTaskService.getOutICommand(format));
+        iEveryTaskService.everyDataAnalsis(format);
         System.out.println(format+"  数据分析完成，请登录查看");
     }
 

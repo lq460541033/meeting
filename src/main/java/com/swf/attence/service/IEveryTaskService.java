@@ -6,6 +6,7 @@ import com.swf.attence.entity.ICommand;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author : white.hou
@@ -30,34 +31,28 @@ public interface IEveryTaskService {
     Boolean insertIntoDatabase(String todayTable,ICommand iCommand);
     /**
      * 参数是已经处理完成的两个list 这个方法是把符合考勤要求的写入正式库中
-     * @param inCommandList
-     * @param outCommandList
      * @param day
      * @return
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-    void everyDataAnalsis(String day,ArrayList<ICommand> inCommandList,ArrayList<ICommand> outCommandList);
-
+    void everyDataAnalsis(String day) throws SQLException, ClassNotFoundException;
 
 
     /**
-     * 上一天"进'的数据  去重之后
-     * @param day
+     * 从数据库中获取指定数据 封装到Map中
+     * @param userid
+     * @param sql
      * @return
-     * @throws ClassNotFoundException
-     * @throws SQLException
      */
-    ArrayList<ICommand> getInICommand(String day) throws ClassNotFoundException, SQLException;
+    Map<String,ICommand> getDataFromDatabase(String userid,String sql) throws ClassNotFoundException, SQLException;
 
     /**
-     * 获取上一天'出'的数据 去重之后
+     * 同一个Userid的最大最小Map比较分析
+     * @param maxMap
+     * @param minMap
      * @param day
-     * @return
-     * @throws ClassNotFoundException
-     * @throws SQLException
+     * @param userid
      */
-    ArrayList<ICommand> getOutICommand(String day) throws ClassNotFoundException, SQLException;
-
-
+    Boolean analysisMap(String day,String userid,Map<String,ICommand> maxMap,Map<String,ICommand> minMap);
 }

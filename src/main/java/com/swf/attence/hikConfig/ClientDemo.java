@@ -18,10 +18,10 @@ public class ClientDemo {
     public NativeLong RemoteConfig;
     public FMSGCallBack fMSFCallBack;//报警回调函数实现
     public FMSGCallBack_V31 fMSFCallBack_V31;//报警回调函数实现
-    /**
-     * 门禁主机报警回调
-     */
-    public  FRemoteConfigCallback fRemoteConfigCallback;
+    public FRemoteCfgCallBackCardGet fRemoteCfgCallBackCardGet;
+    public FRemoteCfgCallBackCardSet fRemoteCfgCallBackCardSet;
+    public FRemoteCfgCallBackFaceGet fRemoteCfgCallBackFaceGet;
+    public FRemoteCfgCallBackFaceSet fRemoteCfgCallBackFaceSet;
     public String m_sDeviceIP;//已登录设备的IP地址
     public String username; //设备用户名
     public String password;//设备登录密码
@@ -33,6 +33,11 @@ public class ClientDemo {
         lAlarmHandle = new NativeLong(-1);
         lListenHandle = new NativeLong(-1);
         fMSFCallBack = null;
+        fMSFCallBack = null;
+        fRemoteCfgCallBackCardGet = null;
+        fRemoteCfgCallBackCardSet = null;
+        fRemoteCfgCallBackFaceGet = null;
+        fRemoteCfgCallBackFaceSet = null;
     }
     public boolean CameraInit(){
         //初始化
@@ -91,6 +96,7 @@ public class ClientDemo {
                 System.out.println("注销成功");
                 lUserID = new NativeLong(-1);
             }
+            hCNetSDK.NET_DVR_Cleanup();
         }
     }
 
@@ -110,7 +116,7 @@ public class ClientDemo {
                 if (!hCNetSDK.NET_DVR_SetDVRMessageCallBack_V31(fMSFCallBack_V31, pUser))
                 {
                     System.out.println("设置回调函数失败!");
-                    return "设置门禁主机回调函数失败!";
+                    return "设置回调函数失败!";
                 }
             }
             System.out.println("设置回调函数成功");
@@ -185,101 +191,15 @@ public class ClientDemo {
         }
     }
 
-    /**
-     * 门禁主机布防
-     * @return
-     */
-    public String setupAlarmChan() {
-        if (lUserID.intValue() == -1) {
-            System.out.println("请先注册");
-            return "请先注册";
-        }
-        /**
-         * 尚未布防,需要布防
-         */
-        if (lAlarmHandle.intValue() < 0)
-        {
-            if (fMSFCallBack == null) {
-                fMSFCallBack = new FMSGCallBack();
-                fRemoteConfigCallback=new FRemoteConfigCallback();
-                Pointer pUser = null;
-                if (!hCNetSDK.NET_DVR_SetDVRMessageCallBack_V30(fMSFCallBack, pUser)) {
-                    System.out.println("设置回调函数失败!");
-                    return "设置门禁主机回调函数失败!";
-                }
-            }
-            System.out.println("设置回调函数成功");
-            HCNetSDK.NET_DVR_SETUPALARM_PARAM m_strAlarmInfo = new HCNetSDK.NET_DVR_SETUPALARM_PARAM();
-            m_strAlarmInfo.dwSize = m_strAlarmInfo.size();
-            m_strAlarmInfo.byLevel = 1;
-            m_strAlarmInfo.byAlarmInfoType = 1;
-            m_strAlarmInfo.write();
-            lAlarmHandle = hCNetSDK.NET_DVR_SetupAlarmChan_V41(lUserID, m_strAlarmInfo);
-
-            if (lAlarmHandle.intValue() == -1) {
-                System.out.println("门禁主机布防成功布防失败");
-                System.out.println("门禁主机布防成功错误代码：" + hCNetSDK.NET_DVR_GetLastError());
-                return  "门禁主机布防成功布防失败: " + "错误代码：" + hCNetSDK.NET_DVR_GetLastError();
-
-             } else {
-                System.out.println("门禁主机布防成功");
-                return "门禁主机布防成功布防成功";
-            }
-        } else {
-            System.out.println("门禁主机布防成功已经布防，不要重复操作");
-            return "门禁主机布防成功已经布防，不要重复操作";
-
-        }
-    }
-
-
-    /**
-     * 启动长连接配置
-     */
-    public NativeLong startRemoteConfig(){
-        if (fRemoteConfigCallback == null) {
-            fRemoteConfigCallback = new FRemoteConfigCallback();
-            HCNetSDK.NET_DVR_CARD_CFG_COND net_dvr_card_cfg_cond = new HCNetSDK.NET_DVR_CARD_CFG_COND();
-            net_dvr_card_cfg_cond.dwSize = net_dvr_card_cfg_cond.size();
-            net_dvr_card_cfg_cond.dwCardNum = 0xffffffff;
-            net_dvr_card_cfg_cond.byCheckCardNo = 1;
-            net_dvr_card_cfg_cond.write();
-            Pointer pointer = net_dvr_card_cfg_cond.getPointer();
-            Pointer pUserData = null;
-            int netDvrNoenoughBuf = HCNetSDK.NET_DVR_NOENOUGH_BUF;
-            int netDvrGetCardCfg = HCNetSDK.NET_DVR_GET_CARD_CFG;
-            RemoteConfig = hCNetSDK.NET_DVR_StartRemoteConfig(lUserID, netDvrGetCardCfg, pointer, netDvrNoenoughBuf, fRemoteConfigCallback, pUserData);
-            System.out.println("启动长连接成功");
-            return RemoteConfig;
-        }
-        return RemoteConfig;
-    }
-
-    /**
-     * 下发卡号
-     * @param cardNo
-     */
-    public void sendRemoteConfig(String cardNo){
-        HCNetSDK.NET_DVR_CARD_CFG_SEND_DATA net_dvr_card_cfg_send_data = new HCNetSDK.NET_DVR_CARD_CFG_SEND_DATA();
-        net_dvr_card_cfg_send_data.dwSize=net_dvr_card_cfg_send_data.size();
-        net_dvr_card_cfg_send_data.byCardNo=cardNo.getBytes();
-        net_dvr_card_cfg_send_data.write();
-        if(hCNetSDK.NET_DVR_SendRemoteConfig(RemoteConfig, 0x3, net_dvr_card_cfg_send_data.getPointer(), HCNetSDK.NET_DVR_NOENOUGH_BUF)){
-            System.out.println("下发卡号成功");
-        }else {
-            System.out.println("下发失败："+hCNetSDK.NET_DVR_GetLastError());
-        }
-    }
-
 
 
 
     public static void main(String[] args) throws UnsupportedEncodingException, DocumentException, InterruptedException {
         ClientDemo clientDemo = new ClientDemo();
         clientDemo.CameraInit();
-        clientDemo.register("admin","ytkj123456","10.21.244.169");
-        clientDemo.startRemoteConfig();
-        clientDemo.sendRemoteConfig("11110000");
+        /*clientDemo.register("admin","ytkj123456","10.21.244.169");*/
+        clientDemo.register("admin","admin123456","10.21.244.166");
+        clientDemo.SetupAlarmChan();
         /*FDLibBox fdLibBox = new FDLibBox(clientDemo);
         clientDemo.SetupAlarmChan();*/
         Thread.sleep(100000);
