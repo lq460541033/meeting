@@ -77,6 +77,35 @@
             }
         }
     </script>
+    <script>
+        $(function () { $("[data-toggle='tooltip']").tooltip(); });
+    </script>
+    <script type="text/javascript">
+        function anotherMethod() {
+            var chooserWeek=$("#generateByWeek").val();
+            var num=$("#state").val();
+            $.ajax({
+                url: "/generateWeekReports",
+                type: "POST",
+                dataType: "text",
+                data: {
+                    day: chooserWeek,
+                    num: num
+                },
+                success: function (data) {
+                    alert("已成功生成:  "+data+",点击确定即可下载查看");
+                    var url="http://localhost:8089/download";
+                    var form=$("<form></form>").attr("action", url).attr("method", "post");
+                    form.append($("<input></input>").attr("type", "hidden").attr("name", "fileName").attr("value", data));
+                    form.appendTo('body').submit().remove();
+                },
+                error:function (data) {
+                    alert("对不起，发生未知错误，请重试")
+                }
+            })
+
+        }
+    </script>
 </head>
 <body>
 <div th:replace="commons/bar::topbar"></div>
@@ -85,7 +114,7 @@
         <!--引入sidebar-->
         <div th:replace="commons/bar::#sidebar(activeUri='attenceMsg_list')"></div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 ">
-            <h2 class="display-4">员工数据导出</h2>
+            <h2 class="col- col-md-auto">考勤数据导出</h2>
             <form href="#">
                 <div class="form-group custom-control custom-control-inline">
                     <button class="btn btn-primary"  disabled>按日导出</button>
@@ -120,6 +149,30 @@
                     <a class="btn btn-outline-primary btn-lg" onclick="thisMethod()">提交</a>
                 </div>
             </form>
+           <div>
+               <hr style="filter: alpha(opacity=100,finishopacity=0,style=2)" width="100%" color="#6f5499" size="10"/>
+           </div>
+            <form href="#">
+                <div class="form-group custom-control custom-control-inline">
+                    <button class="btn btn-primary" data-toggle="tooltip" disabled="disabled" title="请任意选中周三所在周" >按周导出</button>
+                    <input name="startTime" class="form_datetime form-control"
+                           id="generateByWeek"
+                           style="width: 200px">
+                </div>
+                <div class="form-group">
+                    <label for="state">  请选择您要的状态：</label>
+                    <select class="form-control" id="state1" style="width: 400px">
+                        <option value="1">考勤成功</option>
+                        <option value="2">迟到</option>
+                        <option value="3">早退</option>
+                        <option value="4">迟到 && 早退</option>
+                        <option value="5">缺勤</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-outline-primary btn-lg" onclick="anotherMethod()">提交</a>
+                </div>
+            </form>
         </main>
 
     </div>
@@ -143,6 +196,20 @@
             todayHighlight: 1,//今天高亮
             keyboardNavigation: true,
             maxView: 3,
+            minView: 2,//设置显示位置
+            language: 'zh-CN',
+            startView: 2,
+            forceParse: 0,
+            todayBtn: true,
+            showMeridian: 1,
+            autoclose: true//选择后自动关闭
+        });
+        $("#generateByWeek").datetimepicker({
+            format: 'yyyy-mm-dd',//显示格式
+            todayHighlight: 1,//今天高亮
+            keyboardNavigation: true,
+            maxView: 3,
+            daysOfWeekDisabled: [0,1,2,4,5,6],
             minView: 2,//设置显示位置
             language: 'zh-CN',
             startView: 2,

@@ -23,6 +23,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.lang.reflect.Field;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static com.swf.attence.controller.UploadController.PATH;
@@ -213,6 +216,111 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         return true;
     }
 
+    @Override
+    public boolean generateEveryWeekMsg(String day, int num) throws IOException, ParseException {
+        Map<String, String> map = getWeekStartAndEnd(day);
+        String start = map.get("start");
+        String end = map.get("end");
+        /**
+         * 工作区
+         */
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        /**
+         * sheet工作表
+         */
+        String name=null;
+        if(num==1) {
+            name="考勤成功";
+        }else if (num==2){
+            name="迟到";
+        }else if (num==3){
+            name="早退";
+        }else if(num==4){
+            name="迟到早退";
+        }else if (num==5){
+            name="缺勤";
+        }
+        XSSFSheet sheet = workbook.createSheet("杭州仰天信息科技" + day +name+ "表");
+        /**
+         * 表行 0 开始
+         */
+        XSSFRow row = sheet.createRow(0);
+        /**
+         * 单元格 0 第一行第一列
+         */
+        XSSFCell cell = row.createCell(0);
+        cell.setCellValue("用户工号");
+        row.createCell(1).setCellValue("用户姓名");
+        row.createCell(2).setCellValue("用户请假状态");
+        row.createCell(3).setCellValue("用户进入时间");
+        row.createCell(4).setCellValue("用户离开时间");
+        if (num==1 || num  ==2 || num==3|| num==4) {
+            List<AttenceMsg> attenceMsgs = iAttenceMsgService.selectList(new EntityWrapper<AttenceMsg>().eq("check_state",num).andNew().between("check_in_time",start,end));
+            for (int i = 1; i <= attenceMsgs.size(); i++) {
+                XSSFRow sheetRow = sheet.createRow(i);
+                /**
+                 * 单元格 0 第一行第一列
+                 */
+                XSSFCell rowCell = sheetRow.createCell(i);
+                AttenceMsg a = attenceMsgs.get(i - 1);
+                sheetRow.createCell(0).setCellValue(a.getUserid());
+                UserMsg userMsg = userMsgMapper.selectUserMsgAndDeptMsgByUserid(a.getUserid());
+                if (userMsg==null){
+                    sheetRow.createCell(1).setCellValue("未知姓名");
+                    sheetRow.createCell(2).setCellValue("未知请假状态");
+                    sheetRow.createCell(3).setCellValue("未知进入时间");
+                    sheetRow.createCell(4).setCellValue("未知离开时间");
+                }else {
+                    sheetRow.createCell(1).setCellValue(userMsg.getUsername());
+                    if (a.getFailid()==1){
+                        sheetRow.createCell(2).setCellValue("已请假");
+                    }else {
+                        sheetRow.createCell(2).setCellValue("未请假");
+                    }
+                    sheetRow.createCell(3).setCellValue(a.getCheckInTime());
+                    sheetRow.createCell(4).setCellValue(a.getCheckOutTime());
+                }
+            }
+        }else if (num==5){
+            List<UserMsg> userMsgs = selectList(new EntityWrapper<UserMsg>().eq("1", 1));
+            List<AttenceMsg> attenceMsgs = iAttenceMsgService.selectList(new EntityWrapper<AttenceMsg>().eq("check_state",num).andNew().between("check_in_time",start,end));
+            ArrayList<UserMsg> msgs = new ArrayList<>(16);
+            for (AttenceMsg a:attenceMsgs
+                    ) {
+                UserMsg userMsg = selectOne(new EntityWrapper<UserMsg>().eq("userid", a.getUserid()));
+                Iterator<UserMsg> iterator = userMsgs.iterator();
+                while (iterator.hasNext()){
+                    UserMsg next = iterator.next();
+                    if (next.equals(userMsg)){
+                        msgs.add(userMsg);
+                    }
+                }
+                userMsgs.removeAll(msgs);
+            }
+            for (int i = 1; i <= userMsgs.size(); i++) {
+                XSSFRow sheetRow = sheet.createRow(i);
+                /**
+                 * 单元格 0 第一行第一列
+                 */
+                XSSFCell rowCell = sheetRow.createCell(i);
+                UserMsg userMsg = userMsgs.get(i - 1);
+                sheetRow.createCell(0).setCellValue(userMsg.getUserid());
+                sheetRow.createCell(1).setCellValue(userMsg.getUsername());
+            }
+        }
+        /**
+         * 设置列宽  行高
+         */
+        for (int i=0;i<row.getPhysicalNumberOfCells();i++){
+            sheet.setColumnWidth(i,255*20);
+        }
+        row.setHeightInPoints(30);
+        FileOutputStream outputStream = new FileOutputStream(ATTENCEDATA + "杭州仰天信息科技" +start+"-----"+end + ".xlsx");
+        workbook.write(outputStream);
+        outputStream.close();
+        System.out.println("已成功生成: "+start+"-----"+end+"考勤报表");
+        return true;
+    }
 
     @Override
     public Boolean insertIntoDatebase(String fileName, MultipartFile file) throws Exception {
@@ -387,9 +495,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
                 }else {
                     sheetRow.createCell(6).setCellValue("正常考勤，未请假");
                 }
-
             }
-
         /**
          * 设置列宽  行高
          */
@@ -404,6 +510,38 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         return true;
     }
 
+    @Override
+    public synchronized Map<String, String> getWeekStartAndEnd(String day) throws ParseException {
+        HashMap<String, String> map = new HashMap<>(16);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date parse = simpleDateFormat.parse(day);
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(parse);
+        instance.add(Calendar.DAY_OF_YEAR,4);
+        Date time = instance.getTime();
+        String weekEnd = simpleDateFormat.format(time);
+        map.put("end",weekEnd);
+        instance.add(Calendar.DAY_OF_YEAR,-6);
+        Date time1 = instance.getTime();
+        String weekStart = simpleDateFormat.format(time1);
+        map.put("start",weekStart);
+        return map;
+    }
 
+    public static void main(String[] args) throws ParseException {
+        String day="2019-03-13";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date parse = simpleDateFormat.parse(day);
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(parse);
+        instance.add(Calendar.DAY_OF_YEAR,4);
+        Date time = instance.getTime();
+        String format = simpleDateFormat.format(time);
+        System.out.println(format);
+        instance.add(Calendar.DAY_OF_YEAR,-6);
+        Date time1 = instance.getTime();
+        String format1 = simpleDateFormat.format(time1);
+        System.out.println(format1);
+    }
 
 }

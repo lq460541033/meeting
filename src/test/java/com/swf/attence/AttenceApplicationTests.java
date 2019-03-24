@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -23,8 +25,9 @@ public class AttenceApplicationTests {
     private IEveryTaskService iEveryTaskService;
 
     @Test
-    public void contextLoads() throws SQLException, ClassNotFoundException {
-        iEveryTaskService.everyDataAnalsis("20190207");
+    public void contextLoads() throws SQLException, ClassNotFoundException, ParseException, IOException {
+        boolean b = userMsgService.generateEveryWeekMsg("2019-02-06", 1);
+
     }
 }
 

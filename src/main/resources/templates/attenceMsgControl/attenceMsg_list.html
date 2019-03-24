@@ -77,7 +77,7 @@
                             <a th:if="${attenceMsg.checkState}==1" th:text="'考勤成功'"></a>
                             <a th:if="${attenceMsg.checkState}==2" th:text="'迟到'"></a>
                             <a th:if="${attenceMsg.checkState}==3" th:text="'早退'"></a>
-                            <a th:if="${attenceMsg.checkState}==4" th:text="'迟到 早退"></a>
+                            <a th:if="${attenceMsg.checkState}==4" th:text="'迟到早退'"></a>
                         </td>
                         <td>
                             <a class="btn btn-sm btn-primary" th:href="@{/getUserLeaveMsg(username=${attenceMsg.userid},day=${#strings.substring(attenceMsg.checkInTime,0,10)})}">查看该用户近期请假信息</a>

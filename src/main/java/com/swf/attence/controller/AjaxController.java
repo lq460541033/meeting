@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,29 +65,8 @@ public class AjaxController {
         stringStringHashMap.put("cameraOut",msg1.getCameraPosition());
         return stringStringHashMap;
     }
-
     /**
-     * 导出考勤数据
-     * @param day
-     * @return
-     * @throws IOException
-     */
-  /*  @RequestMapping(value = "/reportsGenerate",method = POST)
-    @ResponseBody
-    public String generateReports(@RequestParam("day") String day) throws IOException {
-        String message;
-         if (iUserMsgService.generateExcel(day)){
-             message="已成功导出  "+day+"考勤数据";
-             logger.info(message);
-             return message;
-         }else {
-             message="未知错误，请重试";
-             logger.info(message);
-             return message;
-         }
-    }*/
-    /**
-     * 导出考勤数据
+     * 导出日月年考勤数据
      * @param day
      * @param num
      * @return
@@ -110,6 +90,40 @@ public class AjaxController {
         }
         if (iUserMsgService.generateEveryDayMsg(day,num)){
             message="杭州仰天信息科技"+day+name+".xlsx";
+            logger.info(message);
+            return message;
+        }else {
+            message="未知错误，请重试";
+            logger.info(message);
+            return message;
+        }
+    }
+
+    /**
+     * 生成周考勤数据
+     * @param day
+     * @param num
+     * @return
+     */
+    @RequestMapping(value = "/generateWeekReports",method = POST)
+    @ResponseBody
+    public String generateWeekReports(@RequestParam("day") String day,@RequestParam(value = "num",defaultValue = "1") int num) throws IOException, ParseException {
+        String message;
+        String name=null;
+        if(num==1) {
+            name="考勤成功";
+        }else if (num==2){
+            name="迟到";
+        }else if (num==3){
+            name="早退";
+        }else if(num==4){
+            name="迟到早退";
+        }else if (num==5){
+            name="缺勤";
+        }
+        if (iUserMsgService.generateEveryWeekMsg(day,num)){
+            Map<String, String> map = iUserMsgService.getWeekStartAndEnd(day);
+            message="杭州仰天信息科技" +map.get("start")+"-----"+map.get("end") + ".xlsx";
             logger.info(message);
             return message;
         }else {

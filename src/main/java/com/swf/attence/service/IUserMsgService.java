@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -67,6 +68,22 @@ public interface IUserMsgService extends IService<UserMsg> {
      * @return
      */
     boolean generateEveryDayMsg(String day, int num) throws IOException;
+
+    /**
+     * 周数据导出
+     * @param day
+     * @param num
+     * @return
+     */
+    boolean generateEveryWeekMsg(String day,int  num) throws IOException, ParseException;
+
+    /**
+     * 通过前端传进来的时间 给定周一-周日的时间 用来拼接SQL
+     * @param day
+     * @return
+     * @throws ParseException
+     */
+    Map<String,String> getWeekStartAndEnd(String day) throws ParseException;
 
 
 }

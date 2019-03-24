@@ -142,7 +142,7 @@
                                 <span th:text="${pageNo}"></span>
                             </a>
                             <a th:if="${not (pageNum eq pageNo)}"
-                               th:href="@{${'stateControls'}(pageNum=${pageNo},pageSize=${pageSize})}"
+                               th:href="@{${'userMsgs'}(pageNum=${pageNo},pageSize=${pageSize})}"
                                class="page-link">
                                 <span th:text="${pageNo}"></span>
                             </a>
