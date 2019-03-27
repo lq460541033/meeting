@@ -50,7 +50,6 @@ public class AttenceMsgServiceImpl extends ServiceImpl<AttenceMsgMapper, Attence
     public boolean attenceMsgExist(AttenceMsg attenceMsg) {
         AttenceMsg attenceMsg1 = attenceMsgMapper.selectOne(attenceMsg);
         return attenceMsg1 != null;
-
     }
 
 

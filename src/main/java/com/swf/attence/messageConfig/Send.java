@@ -29,7 +29,7 @@ public class Send {
             //获取响应状态
             if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
                 System.out.println("connect failed!");
-                return "";
+                return "发送失败，请重新发现";
             }
             //获取响应内容体
             String line, result = "";
@@ -42,17 +42,17 @@ public class Send {
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
-        return "";
+        return "短信动作发送完成";
     }
 
     public String postData(String sname,String spwd,String scorpid,String sprdid,String sdst) throws UnsupportedEncodingException {
-        String PostData = "sname="+sname+"&spwd="+spwd+"&scorpid="+scorpid+"&sprdid="+sprdid+"&sdst="+sdst+"&smsg="+java.net.URLEncoder.encode("短信内容【签名】","utf-8");
+        String PostData = "sname="+sname+"&spwd="+spwd+"&scorpid="+scorpid+"&sprdid="+sprdid+"&sdst="+sdst+"&smsg="+java.net.URLEncoder.encode("这是一条测试短信【仰天信息】","utf-8");
         return PostData;
     }
 
     public static void main(String[] args) throws UnsupportedEncodingException {
         Send send = new Send();
-        String s = send.postData("dldinglei2", "dldinglei2", "", "1012808", "18758861624");
+        String s = send.postData("dlhzytxx", "YT123456", "", "1012808", "18758861624");
         //out.println(PostData);
         String ret = Send.SMS(s, "http://cf.51welink.com/submitdata/Service.asmx/g_Submit");
         System.out.println(ret);

@@ -65,7 +65,7 @@
                     },
                     success: function (data) {
                         alert("已成功生成:  "+data+",点击确定即可下载查看");
-                        var url="http://localhost:8089/download";
+                        var url="/download";
                         var form=$("<form></form>").attr("action", url).attr("method", "post");
                         form.append($("<input></input>").attr("type", "hidden").attr("name", "fileName").attr("value", data));
                         form.appendTo('body').submit().remove();
@@ -94,7 +94,7 @@
                 },
                 success: function (data) {
                     alert("已成功生成:  "+data+",点击确定即可下载查看");
-                    var url="http://localhost:8089/download";
+                    var url="/download";
                     var form=$("<form></form>").attr("action", url).attr("method", "post");
                     form.append($("<input></input>").attr("type", "hidden").attr("name", "fileName").attr("value", data));
                     form.appendTo('body').submit().remove();

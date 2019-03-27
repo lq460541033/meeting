@@ -18,10 +18,6 @@ public class ClientDemo {
     public NativeLong RemoteConfig;
     public FMSGCallBack fMSFCallBack;//报警回调函数实现
     public FMSGCallBack_V31 fMSFCallBack_V31;//报警回调函数实现
-    public FRemoteCfgCallBackCardGet fRemoteCfgCallBackCardGet;
-    public FRemoteCfgCallBackCardSet fRemoteCfgCallBackCardSet;
-    public FRemoteCfgCallBackFaceGet fRemoteCfgCallBackFaceGet;
-    public FRemoteCfgCallBackFaceSet fRemoteCfgCallBackFaceSet;
     public String m_sDeviceIP;//已登录设备的IP地址
     public String username; //设备用户名
     public String password;//设备登录密码
@@ -34,10 +30,6 @@ public class ClientDemo {
         lListenHandle = new NativeLong(-1);
         fMSFCallBack = null;
         fMSFCallBack = null;
-        fRemoteCfgCallBackCardGet = null;
-        fRemoteCfgCallBackCardSet = null;
-        fRemoteCfgCallBackFaceGet = null;
-        fRemoteCfgCallBackFaceSet = null;
     }
     public boolean CameraInit(){
         //初始化
