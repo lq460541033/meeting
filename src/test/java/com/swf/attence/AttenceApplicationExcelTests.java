@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.swf.attence.entity.AttenceMsg;
 import com.swf.attence.entity.ICommand;
 import com.swf.attence.entity.LeaveMsg;
+import com.swf.attence.entity.UserMsg;
 import com.swf.attence.mapper.AttenceMsgMapper;
 import com.swf.attence.mapper.ICommandMapper;
 import com.swf.attence.service.*;
+import org.dom4j.DocumentException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +34,14 @@ public class AttenceApplicationExcelTests {
     private ILeaveMsgService iLeaveMsgService;
     @Autowired
     private IStateControlService iStateControlService;
+    @Autowired
+    private ICameraMsgService iCameraMsgService;
     @Test
-    public void contextLoads() throws IOException {
-        iStateControlService.dateDiff(1);
+    public void contextLoads() throws IOException, DocumentException {
+        UserMsg userMsg = new UserMsg();
+        userMsg.setUserid("999999999");
+        userMsg.setUsername("九五之尊");
+        iCameraMsgService.xmlControl(userMsg);
     }
 
 }

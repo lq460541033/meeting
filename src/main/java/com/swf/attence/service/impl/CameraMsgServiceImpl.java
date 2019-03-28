@@ -20,10 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -160,9 +157,10 @@ public class CameraMsgServiceImpl extends ServiceImpl<CameraMsgMapper, CameraMsg
         certificateNumber.setText(userMsg.getUserid());
         OutputFormat outputFormat = OutputFormat.createPrettyPrint();
         outputFormat.setEncoding("utf-8");
-        Writer out;
-        out = new FileWriter(USERDATAPATH + userMsg.getUserid() + ".xml");
-        XMLWriter xmlWriter = new XMLWriter(out, outputFormat);
+        /*Writer out;
+        out = new FileWriter(USERDATAPATH + userMsg.getUserid() + ".xml");*/
+        FileOutputStream fileOutputStream = new FileOutputStream(USERDATAPATH + userMsg.getUserid() + ".xml");
+        XMLWriter xmlWriter = new XMLWriter(fileOutputStream, outputFormat);
         xmlWriter.write(document);
         xmlWriter.close();
         System.out.println("成功生成工号为： " + userMsg.getUserid() + " 的数据文件");

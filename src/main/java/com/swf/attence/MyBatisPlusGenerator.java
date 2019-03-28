@@ -18,7 +18,7 @@ public class MyBatisPlusGenerator {
 
 
     private static final String username="root";
-    private static final String password="123456";
+    private static final String password="root";
 /*
     private static final String tablePrefix="tb_";*/
     private static final String dbUrl="jdbc:mysql://localhost:3306/attence?useUnicode=true&characterEncoding=UTF-8";
@@ -75,7 +75,7 @@ public class MyBatisPlusGenerator {
         /*strategy.setTablePrefix(tablePrefix);// 此处可以修改为您的表前缀*/
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
         strategy.setEntityColumnConstant(true);
-        strategy.setInclude(new String[] { "camera_msg" });  // 需要生成的表
+        strategy.setInclude(new String[] { "user_phone" });  // 需要生成的表
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
         // strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");
