@@ -20,4 +20,9 @@ public interface ILeaveMsgService extends IService<LeaveMsg> {
      * @param description
      */
    void insertIntoDatabase(String username,String failStart,String failEnd,String description);
+
+    /**
+     * 构造一个默认的LeaveMsg
+     */
+   LeaveMsg defultLeaveMsg(String username);
 }

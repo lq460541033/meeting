@@ -1,10 +1,7 @@
 package com.swf.attence;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.swf.attence.entity.AttenceMsg;
-import com.swf.attence.entity.ICommand;
-import com.swf.attence.entity.LeaveMsg;
-import com.swf.attence.entity.UserMsg;
+import com.swf.attence.entity.*;
 import com.swf.attence.mapper.AttenceMsgMapper;
 import com.swf.attence.mapper.ICommandMapper;
 import com.swf.attence.service.*;
@@ -16,10 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.sql.SQLException;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -36,12 +31,27 @@ public class AttenceApplicationExcelTests {
     private IStateControlService iStateControlService;
     @Autowired
     private ICameraMsgService iCameraMsgService;
+
+    @Autowired
+    private IEveryTaskService iEveryTaskService;
     @Test
-    public void contextLoads() throws IOException, DocumentException {
-        UserMsg userMsg = new UserMsg();
-        userMsg.setUserid("999999999");
-        userMsg.setUsername("九五之尊");
-        iCameraMsgService.xmlControl(userMsg);
+    public void contextLoads() throws IOException, DocumentException, SQLException, ClassNotFoundException {
+      /*  List<Icommand20190327> icommand20190327s = iIcommand20190327Service.selectList(new EntityWrapper<Icommand20190327>().eq("1", 1));
+        for(int i=0;i<icommand20190327s.size();i++){
+            Icommand20190327 icommand20190327 = icommand20190327s.get(i);
+            if (icommand20190327.getIcommandUsername()== null || icommand20190327.getIcommandUsername().equals("")){
+                System.out.println("空的，不用管");
+            }else {
+                UserMsg userMsg = iUserMsgService.selectOne(new EntityWrapper<UserMsg>().eq("username", icommand20190327.getIcommandUsername()));
+                if (userMsg!=null) {
+                    String userid = userMsg.getUserid();
+                    System.out.println(userid);
+                    icommand20190327.setIcommandUserid(userid);
+                    iIcommand20190327Service.update(icommand20190327, new EntityWrapper<Icommand20190327>().eq("icommand_username", icommand20190327.getIcommandUsername()));
+                    System.out.println("第" + i + 1 + "行更新完成");
+                }
+            }
+        }*/
     }
 
 }

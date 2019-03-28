@@ -201,20 +201,24 @@ public class EveryTaskServiceImpl implements IEveryTaskService {
          * 遍历员工表 拼接sql
          */
         List<UserMsg> userMsgs = iUserMsgService.selectList(new EntityWrapper<UserMsg>().eq("1", 1));
-       for (int  i=0;i<userMsgs.size();i++){
+       for (int  i=0;i<userMsgs.size();i++) {
            UserMsg userMsg = userMsgs.get(i);
-           String userid=userMsg.getUserid();
-           String maxSql="SELECT  * FROM "+todayTable+"  WHERE icommand_userid="+userid+" ORDER BY icommand_time desc LIMIT 1";
-            Map<String, ICommand> maxMap = getDataFromDatabase(userid, maxSql);
-            logger.info("发送给数据库的查询最大值得语句是：  "+maxSql+";  获取的指定员工的最大Map是：  "+maxMap);
-            String minSql="SELECT  * FROM "+todayTable+"  WHERE icommand_userid="+userid+" ORDER BY icommand_time asc LIMIT 1";
-            Map<String, ICommand> minMap = getDataFromDatabase(userid, minSql);
-            logger.info("发送给数据库的查询最小值得语句是：  "+maxSql+";  获取的指定员工的最小Map是：  "+minMap);
-           System.out.println(maxMap);
-           System.out.println(minMap);
-           if (analysisMap(day, userid, maxMap, minMap)){
-               logger.debug("今日： "+day+"工号： "+userid+"考勤数据处理完成");
-               System.out.println("今日： "+day+"工号： "+userid+"考勤数据处理完成");
+           String userid = userMsg.getUserid();
+           String maxSql = "SELECT  * FROM " + todayTable + "  WHERE icommand_userid=" + userid + " ORDER BY icommand_time desc LIMIT 1";
+           Map<String, ICommand> maxMap = getDataFromDatabase(userid, maxSql);
+           if (maxMap != null) {
+               logger.info("发送给数据库的查询最大值得语句是：  " + maxSql + ";  获取的指定员工的最大Map是：  " + maxMap);
+               String minSql = "SELECT  * FROM " + todayTable + "  WHERE icommand_userid=" + userid + " ORDER BY icommand_time asc LIMIT 1";
+               Map<String, ICommand> minMap = getDataFromDatabase(userid, minSql);
+               if (minMap != null) {
+                   logger.info("发送给数据库的查询最小值得语句是：  " + maxSql + ";  获取的指定员工的最小Map是：  " + minMap);
+                   System.out.println(maxMap);
+                   System.out.println(minMap);
+                   if (analysisMap(day, userid, maxMap, minMap)) {
+                       logger.debug("今日： " + day + "工号： " + userid + "考勤数据处理完成");
+                       System.out.println("今日： " + day + "工号： " + userid + "考勤数据处理完成");
+                   }
+               }
            }
        }
     }
