@@ -29,7 +29,7 @@ public class ClientDemo {
         lAlarmHandle = new NativeLong(-1);
         lListenHandle = new NativeLong(-1);
         fMSFCallBack = null;
-        fMSFCallBack = null;
+        fMSFCallBack_V31 = new FMSGCallBack_V31();
     }
     public boolean CameraInit(){
         //初始化
@@ -101,9 +101,8 @@ public class ClientDemo {
         }
         if (lAlarmHandle.intValue() < 0)//尚未布防,需要布防
         {
-            if (fMSFCallBack_V31 == null)
+            if (fMSFCallBack_V31 != null)
             {
-                fMSFCallBack_V31 = new FMSGCallBack_V31();
                 Pointer pUser = null;
                 if (!hCNetSDK.NET_DVR_SetDVRMessageCallBack_V31(fMSFCallBack_V31, pUser))
                 {
