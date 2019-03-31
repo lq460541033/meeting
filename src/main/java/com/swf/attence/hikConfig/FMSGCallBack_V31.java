@@ -3,9 +3,11 @@ package com.swf.attence.hikConfig;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
+import com.swf.attence.controller.CameraController;
 import com.swf.attence.entity.ICommand;
 import com.swf.attence.service.IEveryTaskService;
 import com.swf.attence.service.impl.EveryTaskServiceImpl;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -23,10 +25,13 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 @Component
-public class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
+public  class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
     @Autowired
     public  IEveryTaskService iEveryTaskService;
+    @Autowired
     public static  FMSGCallBack_V31 fmsgCallBack_v31;
+
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(FMSGCallBack_V31.class);
     @PostConstruct
     public void init(){
         fmsgCallBack_v31=this;
@@ -36,7 +41,8 @@ public class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
     @Override
     public void invoke(NativeLong lCommand, HCNetSDK.NET_DVR_ALARMER pAlarmer, Pointer pAlarmInfo, int dwBufLen, Pointer pUser)
     {
-        System.out.println("已进入报警程序");
+        System.out.println("已成功进入回调函数,携带的参数有"+lCommand);
+        logger.info("已成功进入回调函数,携带的参数有"+lCommand);
         try {
             String sAlarmType = new String();
             //报警时间
@@ -45,7 +51,8 @@ public class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
             String[] sIP = new String[2];
             sAlarmType = new String("lCommand=") + lCommand.intValue();
             //lCommand是传的报警类型
-            System.out.println(lCommand.intValue());
+            System.out.println("接收到的报警值为："+lCommand.intValue());
+            logger.info("接收到的报警值为："+lCommand.intValue());
             if(lCommand.intValue()==HCNetSDK.COMM_SNAP_MATCH_ALARM){
                 HCNetSDK.NET_VCA_FACESNAP_MATCH_ALARM strFaceSnapMatch = new HCNetSDK.NET_VCA_FACESNAP_MATCH_ALARM();
                 strFaceSnapMatch.write();
@@ -102,8 +109,8 @@ public class FMSGCallBack_V31 implements HCNetSDK.FMSGCallBack_V31{
                     iCommand.setIcommandUserid(trim1);
                     System.out.println(iCommand);
                     try {
-                        System.out.println(fmsgCallBack_v31.iEveryTaskService.getClass().toString());
                         fmsgCallBack_v31.iEveryTaskService.insertEveryICommandIntoDateBase(iCommand);
+                        logger.info("数据已插入数据表，本次回调结束，插入时间为： "+format);
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     } catch (SQLException e) {

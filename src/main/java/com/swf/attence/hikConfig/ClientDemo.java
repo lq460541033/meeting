@@ -15,8 +15,6 @@ public class ClientDemo {
     public NativeLong lUserID;//用户句柄
     public NativeLong lAlarmHandle;//报警布防句柄
     public NativeLong lListenHandle;//报警监听句柄
-    public NativeLong RemoteConfig;
-    public FMSGCallBack fMSFCallBack;//报警回调函数实现
     public FMSGCallBack_V31 fMSFCallBack_V31;//报警回调函数实现
     public String m_sDeviceIP;//已登录设备的IP地址
     public String username; //设备用户名
@@ -28,7 +26,6 @@ public class ClientDemo {
         lUserID = new NativeLong(-1);
         lAlarmHandle = new NativeLong(-1);
         lListenHandle = new NativeLong(-1);
-        fMSFCallBack = null;
         fMSFCallBack_V31 = new FMSGCallBack_V31();
     }
     public boolean CameraInit(){
@@ -144,41 +141,6 @@ public class ClientDemo {
                 System.out.println("撤防成功");
                 lAlarmHandle = new NativeLong(-1);
             }
-        }
-    }
-
-    //开始监听
-    public void StartAlarmListen() {
-        int iListenPort = 8000;
-        Pointer pUser = null;
-
-        if (fMSFCallBack == null)
-        {
-            fMSFCallBack = new FMSGCallBack();
-        }
-        lListenHandle = hCNetSDK.NET_DVR_StartListen_V30(m_sDeviceIP, (short)iListenPort,fMSFCallBack, pUser);
-        if(lListenHandle.intValue() < 0)
-        {
-            System.out.println("启动监听失败");
-        }else{
-            System.out.println("启动监听成功");
-        }
-    }
-
-    //停止监听
-    public void StopAlarmListen() {
-        if(lListenHandle.intValue() < 0)
-        {
-            return;
-        }
-
-        if(!hCNetSDK.NET_DVR_StopListen_V30(lListenHandle))
-        {
-            System.out.println("停止监听失败");
-            System.out.println("停止监听失败，错误："+hCNetSDK.NET_DVR_GetLastError());
-        }else{
-
-            System.out.println("停止监听成功");
         }
     }
 

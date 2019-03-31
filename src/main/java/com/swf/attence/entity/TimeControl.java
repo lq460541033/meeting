@@ -25,7 +25,7 @@ public class TimeControl implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     /**
-     * 事由 如会议  考勤
+     * 事由 如会议  会议
      */
     @TableField("things_name")
     private String thingsName;

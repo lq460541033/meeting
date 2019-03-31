@@ -44,7 +44,7 @@ public class AjaxController {
     private static final Logger logger = LoggerFactory.getLogger(AjaxController.class);
 
     /**
-     * ajax检查 添加用户考勤信息
+     * ajax检查 添加用户会议信息
      * @param userid
      * @param cameraidIn
      * @param cameraidOut
@@ -66,7 +66,7 @@ public class AjaxController {
         return stringStringHashMap;
     }
     /**
-     * 导出日月年考勤数据
+     * 导出日月年会议数据
      * @param day
      * @param num
      * @return
@@ -78,7 +78,7 @@ public class AjaxController {
         String message;
         String name=null;
         if(num==1) {
-            name="考勤成功";
+            name="会议成功";
         }else if (num==2){
             name="迟到";
         }else if (num==3){
@@ -100,7 +100,7 @@ public class AjaxController {
     }
 
     /**
-     * 生成周考勤数据
+     * 生成周会议数据
      * @param day
      * @param num
      * @return
@@ -111,7 +111,7 @@ public class AjaxController {
         String message;
         String name=null;
         if(num==1) {
-            name="考勤成功";
+            name="会议成功";
         }else if (num==2){
             name="迟到";
         }else if (num==3){

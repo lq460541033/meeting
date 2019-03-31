@@ -40,12 +40,12 @@ public class AttenceMsg implements Serializable {
    /* @TableField("check_in_from")
     private String checkInFrom;*/
     /**
-     * 状态 考勤状态  1考勤成功 0考勤失败
+     * 状态 会议状态  1会议成功 0会议失败
      */
     @TableField("check_state")
     private Integer checkState;
     /**
-     * 如果 考勤失败 事由
+     * 如果 会议失败 事由
      */
     private Integer failid;
 

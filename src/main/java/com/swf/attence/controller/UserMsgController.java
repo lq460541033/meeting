@@ -139,7 +139,7 @@ public class UserMsgController {
     @RequestMapping(value = "/getUserLeaveMsg")
     public String getUserLeaveMsg(@RequestParam(value = "username") String username, @RequestParam(value = "day") String day, Model model){
         LeaveMsg leaveMsg = iLeaveMsgService.selectOne(new EntityWrapper<LeaveMsg>().eq("username", username).andNew().le("fail_start", day + "%").andNew().ge("fail_end", day + "%"));
-        logger.info("查出"+username+"相关考勤信息是: "+leaveMsg);
+        logger.info("查出"+username+"相关会议信息是: "+leaveMsg);
         if (leaveMsg!=null){
           model.addAttribute("leaveMsg",leaveMsg);
           UserMsg userMsg = iUserMsgService.selectOne(new EntityWrapper<UserMsg>().eq("userid", leaveMsg.getUsername()));

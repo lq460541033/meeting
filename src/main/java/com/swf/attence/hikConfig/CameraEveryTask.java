@@ -54,13 +54,4 @@ public class CameraEveryTask {
         System.out.println("这是个调度测试程序");
     }
 
-    public static void main(String[] args) {
-        Calendar instance = Calendar.getInstance();
-        instance.setTime(new Date());
-        instance.add(Calendar.DATE,-1);
-        Date time = instance.getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-        String format = simpleDateFormat.format(time);
-        System.out.println(format);
-    }
 }

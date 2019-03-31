@@ -20,7 +20,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * @author : white.hou
- * @description :正式考勤信息展示
+ * @description :正式会议信息展示
  * @date: 2019/2/7_10:00
  */
 @Controller
@@ -31,7 +31,7 @@ public class AttenceMsgController {
     private static final Logger logger = LoggerFactory.getLogger(AttenceMsgController.class);
 
     /**
-     * 分页展示正式考勤信息
+     * 分页展示正式会议信息
      * @param pageNum
      * @param pageSize
      * @param model
@@ -61,7 +61,7 @@ public class AttenceMsgController {
     }
 
     /**
-     * 添加用户考勤信息
+     * 添加用户会议信息
      * @param attenceMsg
      * @param model
      * @return

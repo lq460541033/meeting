@@ -124,7 +124,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
          */
         String name=null;
         if(num==1) {
-            name="考勤成功";
+            name="会议成功";
         }else if (num==2){
             name="迟到";
         }else if (num==3){
@@ -212,7 +212,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         FileOutputStream outputStream = new FileOutputStream(ATTENCEDATA + "杭州仰天信息科技" +day +name+ ".xlsx");
         workbook.write(outputStream);
         outputStream.close();
-        System.out.println("已成功生成: "+day+"考勤报表");
+        System.out.println("已成功生成: "+day+"会议报表");
         return true;
     }
 
@@ -230,7 +230,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
          */
         String name=null;
         if(num==1) {
-            name="考勤成功";
+            name="会议成功";
         }else if (num==2){
             name="迟到";
         }else if (num==3){
@@ -318,7 +318,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         FileOutputStream outputStream = new FileOutputStream(ATTENCEDATA + "杭州仰天信息科技" +start+"-----"+end + ".xlsx");
         workbook.write(outputStream);
         outputStream.close();
-        System.out.println("已成功生成: "+start+"-----"+end+"考勤报表");
+        System.out.println("已成功生成: "+start+"-----"+end+"会议报表");
         return true;
     }
 
@@ -451,7 +451,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         /**
          * sheet工作表
          */
-        XSSFSheet sheet = workbook.createSheet("杭州仰天信息科技" + day + "考勤表");
+        XSSFSheet sheet = workbook.createSheet("杭州仰天信息科技" + day + "会议表");
         /**
          * 表行 0 开始
          */
@@ -465,7 +465,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         row.createCell(2).setCellValue("用户签入设备");
         row.createCell(3).setCellValue("用户签出时间");
         row.createCell(4).setCellValue("用户签出设备");
-        row.createCell(5).setCellValue("用户考勤状态");
+        row.createCell(5).setCellValue("用户会议状态");
         row.createCell(6).setCellValue("用户请假状态");
         List<AttenceMsg> attenceMsgs = iAttenceMsgService.selectList(new EntityWrapper<AttenceMsg>().like("check_in_time", day + "%"));
         for (int i=1;i<=attenceMsgs.size();i++){
@@ -481,7 +481,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
                 sheetRow.createCell(3).setCellValue(a.getCheckOutTime());
                 sheetRow.createCell(4).setCellValue(a.getCameraidOut());
                 if (a.getCheckState()==1){
-                    sheetRow.createCell(5).setCellValue("考勤成功");
+                    sheetRow.createCell(5).setCellValue("会议成功");
                 }else if (a.getCheckState()==2){
                     sheetRow.createCell(5).setCellValue("迟到");
                 }else if (a.getCheckState()==3){
@@ -493,7 +493,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
                 if (a.getFailid()==1){
                     sheetRow.createCell(6).setCellValue("已请假");
                 }else {
-                    sheetRow.createCell(6).setCellValue("正常考勤，未请假");
+                    sheetRow.createCell(6).setCellValue("正常会议，未请假");
                 }
             }
         /**
@@ -506,7 +506,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         FileOutputStream outputStream = new FileOutputStream(ATTENCEDATA + "杭州仰天信息科技" +day + ".xlsx");
         workbook.write(outputStream);
         outputStream.close();
-        System.out.println("已成功生成: "+day+"考勤报表");
+        System.out.println("已成功生成: "+day+"会议报表");
         return true;
     }
 

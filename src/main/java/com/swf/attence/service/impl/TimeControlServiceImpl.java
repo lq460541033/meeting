@@ -22,7 +22,7 @@ public class TimeControlServiceImpl extends ServiceImpl<TimeControlMapper, TimeC
 
     @Override
     public String userShoudBeInTime(String day) {
-        TimeControl timeControl = selectOne(new EntityWrapper<TimeControl>().eq("things_name", "考勤"));
+        TimeControl timeControl = selectOne(new EntityWrapper<TimeControl>().eq("things_name", "会议"));
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
         /**
          * 当天应该签到的时间
@@ -33,7 +33,7 @@ public class TimeControlServiceImpl extends ServiceImpl<TimeControlMapper, TimeC
 
     @Override
     public String userShoudBeOutTime(String day) {
-        TimeControl timeControl = selectOne(new EntityWrapper<TimeControl>().eq("things_name", "考勤"));
+        TimeControl timeControl = selectOne(new EntityWrapper<TimeControl>().eq("things_name", "会议"));
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
         /**
          * 当天应该签退的时间
