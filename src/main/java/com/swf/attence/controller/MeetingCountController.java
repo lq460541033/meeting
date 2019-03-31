@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -62,13 +63,14 @@ public class MeetingCountController {
     /**
      * 添加用户会议信息
      * @param meetingCount
-     * @param model
      * @return
      */
-    @PostMapping("/MeetingCount")
-    public String insertIntoMeetingCount(MeetingCount meetingCount,Model model){
-      iMeetingCountService.insert(meetingCount);
-        return "redirect:/meetingCountControl";
+    @PostMapping("/meetingCount")
+    public String insertIntoMeetingCount(MeetingCount meetingCount){
+        String replace = UUID.randomUUID().toString().replace("-", "");
+        meetingCount.setId(replace);
+        iMeetingCountService.insert(meetingCount);
+        return "redirect:/meetingCounts";
     }
 
     /**
@@ -77,6 +79,6 @@ public class MeetingCountController {
      */
     @GetMapping("/generate")
     public String toGeneratReports(){
-        return "meetingCountControl/MeetingCount_generate";
+        return "meetingCountControl/meetingCount_generate";
     }
 }

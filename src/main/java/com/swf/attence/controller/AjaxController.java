@@ -221,4 +221,23 @@ public class AjaxController {
         }
         return "下载失败";
     }
+
+
+    /**
+     * 判断要添加或者修改的数据是否有效
+     * @return
+     */
+    @RequestMapping(value = "/checkUserPhone",method = POST)
+    @ResponseBody
+    public String checkUserPhone(@RequestParam("userid") String userid,@RequestParam("username") String username){
+        UserMsg userMsg = iUserMsgService.selectOne(new EntityWrapper<UserMsg>().eq("userid", userid));
+        if (userMsg!=null){
+            if (username.equals(userMsg.getUsername())){
+                return "true";
+            }else {
+                return "false";
+            }
+        }
+        return "false";
+    }
 }

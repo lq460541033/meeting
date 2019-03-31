@@ -23,7 +23,7 @@ spring:
   mvc:
     static-path-pattern: /**
   resources:
-    static-locations: classpath:/META-INF/resources/,classpath:/static,classpath:/resources/,file:F:/AttenceSystem/
+    static-locations: classpath:/META-INF/resources/,classpath:/static/,classpath:/resources/,file:F:/AttenceSystem/
 #  jpa:
 #    hibernate:
 #      ddl-auto: update

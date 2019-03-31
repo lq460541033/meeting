@@ -61,8 +61,10 @@
                     if (data===true) {
                         document.getElementById("userp2").style.display="block";
                         document.getElementById("userp1").style.display="none";
+                    }else if(data===false) {
+                        alert("工号与用户姓名不一致，请检查后重新输入");
                     }else {
-                        alert("未知错误，请重试");
+                        alert("未知错误，请重试")
                     }
                 }
             })

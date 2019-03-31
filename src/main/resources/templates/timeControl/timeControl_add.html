@@ -5,17 +5,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="添加设备">
+    <meta name="description" content="添加会议">
     <meta name="author" content="white.hou">
-    <title>编辑事务</title>
+    <title>添加会议</title>
     <!-- Bootstrap core CSS -->
-    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.css}" rel="stylesheet">
+    <link  th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.css}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <!--  <link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">-->
     <link th:href="@{/webjars/bootstrap-datetimepicker/2.4.2/css/bootstrap-datetimepicker.css}" rel="stylesheet"
           type="text/css">
     <link th:href="@{/webjars/bootstrap-datetimepicker/2.4.2/css/bootstrap-datetimepicker.min.css}" rel="stylesheet"
           type="text/css">
+    <link rel="stylesheet" href="/asserts/css/ystep.css">
     <style type="text/css">
         /* Chart.js */
         @-webkit-keyframes chartjs-render-animation {
@@ -44,24 +45,17 @@
 </head>
 
 <body>
-<!--引入抽取的topbar-->
-<!--模板名：会使用thymeleaf的前后缀配置规则进行解析-->
 <div th:replace="commons/bar::topbar"></div>
-
 <div class="container-fluid">
     <div class="row">
-        <!--引入侧边栏-->
         <div th:replace="commons/bar::#sidebar(activeUri='timeControls')"></div>
-
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <!--需要区分是员工修改还是添加；-->
+            <div class="ystep1"></div>
+            <br>
+            <br>
+            <br>
+            <br>
             <form th:action="@{/timeControl}" method="post" autocomplete="off" id="from-addOrUpdate">
-                <!--发送put请求修改员工数据-->
-                <!--
-                1、SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
-                2、页面创建一个post表单
-                3、创建一个input项，name="_method";值就是我们指定的请求方式
-                -->
                 <input type="hidden" name="_method" value="put" th:if="${timeControl!=null}"/>
                 <strong type="hidden" class="alert alert-warning" th:if="${msg!=null}">Warning!</strong>
                 <input type="hidden" name="id" th:if="${timeControl!=null}" th:value="${id}">
@@ -85,10 +79,6 @@
         </main>
     </div>
 </div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
         th:src="@{/webjars/jquery/3.2.1/jquery.js}"></script>
 <script type="text/javascript" src="asserts/js/popper.min.js"
@@ -101,9 +91,10 @@
         th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/locales/bootstrap-datetimepicker.fr.js}"></script>
 <script type="text/javascript"
         th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
+<script type="text/javascript" src="/asserts/js/ystep.js"></script>
+<script type="text/javascript" src="/asserts/js/jquery.min.js"></script>
 
 <script type="text/javascript">
-    //日期插件
     $("#from-startTime").datetimepicker({
         format: 'yyyy-mm-dd hh:ii:ss',//显示格式
         todayHighlight: 1,//今天高亮
@@ -142,10 +133,36 @@
         $("#from-endTime").datetimepicker('hide')
     })
 </script>
-<!-- Icons -->
-<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
-<script>
-    feather.replace()
+<script type="text/javascript">
+    $(".ystep1").loadStep({
+        size: "large",
+        color: "blue",
+        steps: [{
+            title: "新建会议",
+            content: "新建会议：输入必备信息"
+        },{
+            title: "选择人员",
+            content: "选择参与本场会议的与会人员"
+        },{
+            title: "安排座位",
+            content: "为选择的与会人员安排座位"
+        },{
+            title: "下发短信",
+            content: "将相关信息发送给相关人员"
+        },{
+            title: "结束",
+            content: "会议事件创建完成"
+        }]
+    });
+
+    //跳转到下一个步骤
+    //$(".ystep1").nextStep();
+    //跳转到上一个步骤
+    //$(".ystep1").prevStep();
+    //跳转到指定步骤
+    //$(".ystep1").setStep(2);
+    //获取当前在第几步
+    //$(".ystep1").getStep();
 </script>
 </body>
 
