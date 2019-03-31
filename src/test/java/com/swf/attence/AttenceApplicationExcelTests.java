@@ -1,9 +1,6 @@
+/*
 package com.swf.attence;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.swf.attence.entity.*;
-import com.swf.attence.mapper.AttenceMsgMapper;
-import com.swf.attence.mapper.ICommandMapper;
 import com.swf.attence.service.*;
 import org.dom4j.DocumentException;
 import org.junit.Test;
@@ -14,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -36,7 +32,8 @@ public class AttenceApplicationExcelTests {
     private IEveryTaskService iEveryTaskService;
     @Test
     public void contextLoads() throws IOException, DocumentException, SQLException, ClassNotFoundException {
-      /*  List<Icommand20190327> icommand20190327s = iIcommand20190327Service.selectList(new EntityWrapper<Icommand20190327>().eq("1", 1));
+      */
+/*  List<Icommand20190327> icommand20190327s = iIcommand20190327Service.selectList(new EntityWrapper<Icommand20190327>().eq("1", 1));
         for(int i=0;i<icommand20190327s.size();i++){
             Icommand20190327 icommand20190327 = icommand20190327s.get(i);
             if (icommand20190327.getIcommandUsername()== null || icommand20190327.getIcommandUsername().equals("")){
@@ -51,8 +48,10 @@ public class AttenceApplicationExcelTests {
                     System.out.println("第" + i + 1 + "行更新完成");
                 }
             }
-        }*/
+        }*//*
+
     }
 
 }
 
+*/

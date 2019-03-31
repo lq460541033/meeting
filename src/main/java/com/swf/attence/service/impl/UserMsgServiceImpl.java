@@ -2,13 +2,13 @@ package com.swf.attence.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.swf.attence.config.MyException;
-import com.swf.attence.entity.AttenceMsg;
+
 import com.swf.attence.entity.DeptMsg;
 import com.swf.attence.entity.UserMsg;
-import com.swf.attence.mapper.AttenceMsgMapper;
+
 import com.swf.attence.mapper.DeptMsgMapper;
 import com.swf.attence.mapper.UserMsgMapper;
-import com.swf.attence.service.IAttenceMsgService;
+
 import com.swf.attence.service.ICameraMsgService;
 import com.swf.attence.service.IUserMsgService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -53,9 +53,6 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
 
     @Autowired
     private UserMsgMapper userMsgMapper;
-    @Autowired
-    private AttenceMsgMapper attenceMsgMapper;
-
 
     @Autowired
     private DeptMsgMapper deptMsgMapper;
@@ -63,8 +60,6 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
     private ImageUpload imageUpload;
     @Autowired
     private ICameraMsgService iCameraMsgService;
-    @Autowired
-    private IAttenceMsgService iAttenceMsgService;
 
     public static final String ATTENCEDATA = "\\AttenceSystem\\attencedata\\";
 
@@ -115,16 +110,16 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
 
     @Override
     public boolean generateEveryDayMsg(String day, int num) throws IOException {
-        /**
+       /* *//**
          * 工作区
-         */
+         *//*
         XSSFWorkbook workbook = new XSSFWorkbook();
-        /**
+        *//**
          * sheet工作表
-         */
+         *//*
         String name=null;
         if(num==1) {
-            name="会议成功";
+            name="考勤成功";
         }else if (num==2){
             name="迟到";
         }else if (num==3){
@@ -135,13 +130,13 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
             name="缺勤";
         }
         XSSFSheet sheet = workbook.createSheet("杭州仰天信息科技" + day +name+ "表");
-        /**
+        *//**
          * 表行 0 开始
-         */
+         *//*
         XSSFRow row = sheet.createRow(0);
-        /**
+        *//**
          * 单元格 0 第一行第一列
-         */
+         *//*
         XSSFCell cell = row.createCell(0);
         cell.setCellValue("用户工号");
         row.createCell(1).setCellValue("用户姓名");
@@ -152,9 +147,9 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
             ArrayList<AttenceMsg> attenceMsgs = attenceMsgMapper.selectByTimeAndState(day + "%", num);
             for (int i = 1; i <= attenceMsgs.size(); i++) {
                 XSSFRow sheetRow = sheet.createRow(i);
-                /**
+                *//**
                  * 单元格 0 第一行第一列
-                 */
+                 *//*
                 XSSFCell rowCell = sheetRow.createCell(i);
                 AttenceMsg a = attenceMsgs.get(i - 1);
                 sheetRow.createCell(0).setCellValue(a.getUserid());
@@ -193,18 +188,18 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
             }
             for (int i = 1; i <= userMsgs.size(); i++) {
                 XSSFRow sheetRow = sheet.createRow(i);
-                /**
+                *//**
                  * 单元格 0 第一行第一列
-                 */
+                 *//*
                 XSSFCell rowCell = sheetRow.createCell(i);
                 UserMsg userMsg = userMsgs.get(i - 1);
                 sheetRow.createCell(0).setCellValue(userMsg.getUserid());
                 sheetRow.createCell(1).setCellValue(userMsg.getUsername());
             }
         }
-        /**
+        *//**
          * 设置列宽  行高
-         */
+         *//*
         for (int i=0;i<row.getPhysicalNumberOfCells();i++){
             sheet.setColumnWidth(i,255*20);
         }
@@ -212,7 +207,7 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         FileOutputStream outputStream = new FileOutputStream(ATTENCEDATA + "杭州仰天信息科技" +day +name+ ".xlsx");
         workbook.write(outputStream);
         outputStream.close();
-        System.out.println("已成功生成: "+day+"会议报表");
+        System.out.println("已成功生成: "+day+"考勤报表");
         return true;
     }
 
@@ -221,16 +216,16 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         Map<String, String> map = getWeekStartAndEnd(day);
         String start = map.get("start");
         String end = map.get("end");
-        /**
+        *//**
          * 工作区
-         */
+         *//*
         XSSFWorkbook workbook = new XSSFWorkbook();
-        /**
+        *//**
          * sheet工作表
-         */
+         *//*
         String name=null;
         if(num==1) {
-            name="会议成功";
+            name="考勤成功";
         }else if (num==2){
             name="迟到";
         }else if (num==3){
@@ -241,13 +236,13 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
             name="缺勤";
         }
         XSSFSheet sheet = workbook.createSheet("杭州仰天信息科技" + day +name+ "表");
-        /**
+        *//**
          * 表行 0 开始
-         */
+         *//*
         XSSFRow row = sheet.createRow(0);
-        /**
+        *//**
          * 单元格 0 第一行第一列
-         */
+         *//*
         XSSFCell cell = row.createCell(0);
         cell.setCellValue("用户工号");
         row.createCell(1).setCellValue("用户姓名");
@@ -258,9 +253,9 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
             List<AttenceMsg> attenceMsgs = iAttenceMsgService.selectList(new EntityWrapper<AttenceMsg>().eq("check_state",num).andNew().between("check_in_time",start,end));
             for (int i = 1; i <= attenceMsgs.size(); i++) {
                 XSSFRow sheetRow = sheet.createRow(i);
-                /**
+                *//**
                  * 单元格 0 第一行第一列
-                 */
+                 *//*
                 XSSFCell rowCell = sheetRow.createCell(i);
                 AttenceMsg a = attenceMsgs.get(i - 1);
                 sheetRow.createCell(0).setCellValue(a.getUserid());
@@ -299,18 +294,18 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
             }
             for (int i = 1; i <= userMsgs.size(); i++) {
                 XSSFRow sheetRow = sheet.createRow(i);
-                /**
+                *//**
                  * 单元格 0 第一行第一列
-                 */
+                 *//*
                 XSSFCell rowCell = sheetRow.createCell(i);
                 UserMsg userMsg = userMsgs.get(i - 1);
                 sheetRow.createCell(0).setCellValue(userMsg.getUserid());
                 sheetRow.createCell(1).setCellValue(userMsg.getUsername());
             }
         }
-        /**
+        *//**
          * 设置列宽  行高
-         */
+         *//*
         for (int i=0;i<row.getPhysicalNumberOfCells();i++){
             sheet.setColumnWidth(i,255*20);
         }
@@ -318,8 +313,14 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         FileOutputStream outputStream = new FileOutputStream(ATTENCEDATA + "杭州仰天信息科技" +start+"-----"+end + ".xlsx");
         workbook.write(outputStream);
         outputStream.close();
-        System.out.println("已成功生成: "+start+"-----"+end+"会议报表");
+        System.out.println("已成功生成: "+start+"-----"+end+"考勤报表");
+        return true;*/
         return true;
+    }
+
+    @Override
+    public boolean generateEveryWeekMsg(String day, int num) throws IOException, ParseException {
+        return false;
     }
 
     @Override
@@ -442,73 +443,6 @@ public class UserMsgServiceImpl extends ServiceImpl<UserMsgMapper, UserMsg> impl
         return notNull;
     }
 
-    @Override
-    public boolean generateExcel(String day) throws IOException {
-        /**
-         * 工作区
-         */
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        /**
-         * sheet工作表
-         */
-        XSSFSheet sheet = workbook.createSheet("杭州仰天信息科技" + day + "会议表");
-        /**
-         * 表行 0 开始
-         */
-        XSSFRow row = sheet.createRow(0);
-        /**
-         * 单元格 0 第一行第一列
-         */
-        XSSFCell cell = row.createCell(0);
-        cell.setCellValue("用户工号");
-        row.createCell(1).setCellValue("用户签入时间");
-        row.createCell(2).setCellValue("用户签入设备");
-        row.createCell(3).setCellValue("用户签出时间");
-        row.createCell(4).setCellValue("用户签出设备");
-        row.createCell(5).setCellValue("用户会议状态");
-        row.createCell(6).setCellValue("用户请假状态");
-        List<AttenceMsg> attenceMsgs = iAttenceMsgService.selectList(new EntityWrapper<AttenceMsg>().like("check_in_time", day + "%"));
-        for (int i=1;i<=attenceMsgs.size();i++){
-            XSSFRow sheetRow = sheet.createRow(i);
-            /**
-             * 单元格 0 第一行第一列
-             */
-            XSSFCell rowCell = sheetRow.createCell(i);
-            AttenceMsg a = attenceMsgs.get(i - 1);
-            sheetRow.createCell(0).setCellValue(a.getUserid());
-                sheetRow.createCell(1).setCellValue(a.getCheckInTime());
-                sheetRow.createCell(2).setCellValue(a.getCameraidIn());
-                sheetRow.createCell(3).setCellValue(a.getCheckOutTime());
-                sheetRow.createCell(4).setCellValue(a.getCameraidOut());
-                if (a.getCheckState()==1){
-                    sheetRow.createCell(5).setCellValue("会议成功");
-                }else if (a.getCheckState()==2){
-                    sheetRow.createCell(5).setCellValue("迟到");
-                }else if (a.getCheckState()==3){
-                    sheetRow.createCell(5).setCellValue("早退");
-                }
-                else if(a.getCheckState()==4){
-                    sheetRow.createCell(5).setCellValue("迟到  早退");
-                }
-                if (a.getFailid()==1){
-                    sheetRow.createCell(6).setCellValue("已请假");
-                }else {
-                    sheetRow.createCell(6).setCellValue("正常会议，未请假");
-                }
-            }
-        /**
-         * 设置列宽  行高
-         */
-        for (int i=0;i<row.getPhysicalNumberOfCells();i++){
-            sheet.setColumnWidth(i,255*20);
-        }
-        row.setHeightInPoints(30);
-        FileOutputStream outputStream = new FileOutputStream(ATTENCEDATA + "杭州仰天信息科技" +day + ".xlsx");
-        workbook.write(outputStream);
-        outputStream.close();
-        System.out.println("已成功生成: "+day+"会议报表");
-        return true;
-    }
 
     @Override
     public synchronized Map<String, String> getWeekStartAndEnd(String day) throws ParseException {

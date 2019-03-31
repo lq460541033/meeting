@@ -10,7 +10,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author auto-genergator123
- * @since 2019-03-27
+ * @since 2019-03-31
  */
 @TableName("user_phone")
 public class UserPhone implements Serializable {
@@ -22,6 +22,10 @@ public class UserPhone implements Serializable {
      * 用户ID
      */
     private String userid;
+    /**
+     * 用户姓名
+     */
+    private String username;
     /**
      * 用户的手机号码
      */
@@ -45,6 +49,14 @@ public class UserPhone implements Serializable {
         this.userid = userid;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getUserPhone() {
         return userPhone;
     }
@@ -57,6 +69,8 @@ public class UserPhone implements Serializable {
 
     public static final String USERID = "userid";
 
+    public static final String USERNAME = "username";
+
     public static final String USER_PHONE = "user_phone";
 
     @Override
@@ -64,6 +78,7 @@ public class UserPhone implements Serializable {
         return "UserPhone{" +
         ", id=" + id +
         ", userid=" + userid +
+        ", username=" + username +
         ", userPhone=" + userPhone +
         "}";
     }

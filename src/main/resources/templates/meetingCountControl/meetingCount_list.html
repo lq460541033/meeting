@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>用户正式会议信息</title>
+    <title>用户会议签到信息</title>
     <!-- 移动设备友好-->
     <meta name="view-port" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <link href="#" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.css}" rel="stylesheet">
@@ -42,11 +42,11 @@
 <div class="container-fluid">
     <div class="row">
         <!--引入sidebar-->
-        <div th:replace="commons/bar::#sidebar(activeUri='attenceMsg_list.html')"></div>
+        <div th:replace="commons/bar::#sidebar(activeUri='meetingCount_list.html')"></div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h2 >
-                <a class="btn btn-sm btn-success" href="" th:href="@{/attenceMsg}">添加用户会议信息</a>
-                <a class="btn btn-sm btn-info" th:href="@{/generate}">导出会议信息</a>
+                <a class="btn btn-sm btn-success" href="" th:href="@{/meetingCount}">添加用户签到信息</a>
+                <a class="btn btn-sm btn-info" th:href="@{/generate}">导出签到信息</a>
             </h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
@@ -54,37 +54,29 @@
                     <tr>
                         <th>#</th>
                         <th>用户工号</th>
-                        <th>用户打卡进入时间</th>
-                        <th>用户打卡进入设备号</th>
-                        <th>用户打卡离开时间</th>
-                        <th>用户打开离开设备号</th>
+                        <th>用户签到时间</th>
+                        <th>用户签到设备号</th>
                         <th>用户请假状态</th>
-                        <th>用户会议状态</th>
+                        <th>用户会议签到状态</th>
+                        <th>短信下发状态</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="attenceMsg:${attenceMsgPageInfo.list}">
-                        <td th:text="${attenceMsg.id}"></td>
-                        <td th:text="${attenceMsg.userid}" id="username"></td>
-                        <td th:text="${attenceMsg.checkInTime}"></td>
-                        <td th:text="${attenceMsg.cameraidIn}"></td>
-                        <td th:text="${attenceMsg.checkOutTime}"></td>
-                        <td th:text="${attenceMsg.cameraidOut}"></td>
-                        <td th:text="${attenceMsg.failid}==1?'已请假':''"></td>
-                        <!--<td th:text="${attenceMsg.checkState}==1?'会议成功':'会议失败'"></td>-->
+                    <tr th:each="meetingCount:${meetingCountPageInfo.list}">
+                        <td th:text="${meetingCount.id}"></td>
+                        <td th:text="${meetingCount.userid}" id="username"></td>
+                        <td th:text="${meetingCount.acessTime}"></td>
+                        <td th:text="${meetingCount.acessCameraId}"></td>
+                        <td th:text="${meetingCount.failId}==1?'已请假':''"></td>
                         <td>
-                            <a th:if="${attenceMsg.checkState}==1" th:text="'会议成功'"></a>
-                            <a th:if="${attenceMsg.checkState}==2" th:text="'迟到'"></a>
-                            <a th:if="${attenceMsg.checkState}==3" th:text="'早退'"></a>
-                            <a th:if="${attenceMsg.checkState}==4" th:text="'迟到早退'"></a>
+                            <a th:if="${meetingCount.acessState}==0" th:text="'正常签到'"></a>
+                            <a th:if="${meetingCount.acessState}==1" th:text="'迟到'"></a>
+                            <a th:if="${meetingCount.acessState}==2" th:text="'未签到'"></a>
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-primary" th:href="@{/getUserLeaveMsg(username=${attenceMsg.userid},day=${#strings.substring(attenceMsg.checkInTime,0,10)})}">查看该用户近期请假信息</a>
-                            <button class="btn btn-sm btn-primary" th:href="@{/attenceMsg/}+${attenceMsg.id}" disabled>编辑</button>
-                          <!--  <button th:attr="del_uri=@{/attenceMsg/}+${attenceMsg.id}" class="btn btn-sm btn-danger deleteBtn" disabled>
-                                删除
-                            </button>-->
+                            <a class="btn btn-sm btn-primary" th:href="@{/getUserLeaveMsg(username=${meetingCount.userid},day=${#strings.substring(meetingCount.acessTime,0,10)})}">查看该用户近期请假信息</a>
+                            <button class="btn btn-sm btn-primary" th:href="@{/meetingCount/}+${meetingCount.id}" disabled>编辑</button>
                         </td>
                     </tr>
                     </tbody>
@@ -93,7 +85,7 @@
                     <ul class="pagination">
                         <li>
                             <a th:if="${not isFirstPage}"
-                               th:href="@{${'attenceMsgs'}(pageNum=${pageNum -1},pageSize=${pageSize})}"
+                               th:href="@{${'meetingCounts'}(pageNum=${pageNum -1},pageSize=${pageSize})}"
                                aria-label="Previous" class="page-link">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
@@ -107,13 +99,13 @@
                                 <span th:text="${pageNo}"></span>
                             </a>
                             <a th:if="${not (pageNum eq pageNo)}"
-                               th:href="@{${'attenceMsgs'}(pageNum=${pageNo},pageSize=${pageSize})}" class="page-link">
+                               th:href="@{${'meetingCounts'}(pageNum=${pageNo},pageSize=${pageSize})}" class="page-link">
                                 <span th:text="${pageNo}"></span>
                             </a>
                         </li>
                         <li>
                             <a th:if="${not isLastPage}"
-                               th:href="@{${'attenceMsgs'}(pageNum=${pageNum+1},pageSize=${pageSize})}" aria-label="Next"
+                               th:href="@{${'meetingCounts'}(pageNum=${pageNum+1},pageSize=${pageSize})}" aria-label="Next"
                                class="page-link">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>

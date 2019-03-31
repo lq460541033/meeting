@@ -1,11 +1,9 @@
 package com.swf.attence.service;
 
-import com.swf.attence.entity.AttenceMsg;
 import com.swf.attence.entity.UserMsg;
 import com.baomidou.mybatisplus.service.IService;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
@@ -54,12 +52,6 @@ public interface IUserMsgService extends IService<UserMsg> {
      */
     Boolean insertIntoDatebase(String fileName, MultipartFile file) throws  Exception;
 
-    /**
-     * 根据传入时间 生成excel报表到指定目录
-     * @param day
-     * @return
-     */
-    boolean generateExcel(String day) throws IOException;
 
     /**
      * 每日考勤数据展示

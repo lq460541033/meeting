@@ -43,6 +43,8 @@ public class CameraMsgServiceImpl extends ServiceImpl<CameraMsgMapper, CameraMsg
     @Autowired
     private IUserMsgService iUserMsgService;
 
+
+
     private static final Logger logger = LoggerFactory.getLogger(CameraMsgServiceImpl.class);
 
 
@@ -87,13 +89,13 @@ public class CameraMsgServiceImpl extends ServiceImpl<CameraMsgMapper, CameraMsg
                     if (cameraMsg != null) {
                         boolean b = clientDemo.register(cameraMsg.getCameraName(), cameraMsg.getCameraPassword(), cameraMsg.getCameraid());
                         if (b) {
-                            clientDemo.SetupAlarmChan();
-                            demos.add(clientDemo);
+                            if (clientDemo.SetupAlarmChan()) {
+                                logger.info(clientDemo+"  布防成功");
+                                demos.add(clientDemo);
+                            }
                         }
                     }
                 }
-
-
         }
         return demos;
     }

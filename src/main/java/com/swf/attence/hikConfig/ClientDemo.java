@@ -90,11 +90,11 @@ public class ClientDemo {
     }
 
     //布防
-    public String SetupAlarmChan() {
+    public boolean SetupAlarmChan() {
         if (lUserID.intValue() == -1)
         {
             System.out.println("请先注册");
-            return "请先注册";
+            return false;
         }
         if (lAlarmHandle.intValue() < 0)//尚未布防,需要布防
         {
@@ -104,7 +104,7 @@ public class ClientDemo {
                 if (!hCNetSDK.NET_DVR_SetDVRMessageCallBack_V31(fMSFCallBack_V31, pUser))
                 {
                     System.out.println("设置回调函数失败!");
-                    return "设置回调函数失败!";
+                    return false;
                 }
             }
             System.out.println("设置回调函数成功");
@@ -119,15 +119,15 @@ public class ClientDemo {
             {
                 System.out.println("布防失败");
                 System.out.println("错误代码："+hCNetSDK.NET_DVR_GetLastError());
-                return "布防失败: "+"错误代码："+hCNetSDK.NET_DVR_GetLastError();
+                return false;
 
             }else{
                 System.out.println("布防成功");
-                return "布防成功";
+                return true;
             }
         }else{
             System.out.println("已经布防，不要重复操作");
-            return "已经布防，不要重复操作";
+            return false;
         }
     }
 

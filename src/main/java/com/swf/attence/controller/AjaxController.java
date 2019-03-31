@@ -22,12 +22,12 @@ import java.util.Map;
 
 import static com.swf.attence.service.impl.UserMsgServiceImpl.ATTENCEDATA;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
 /**
  * @author : white.hou
- * @description : ajax请求专用controller
- * @date: 2019/2/11_15:02
+ * @description : ajax controller
+ * @date: 2019/3/31_17:27
  */
+
 @RestController
 public class AjaxController {
     @Autowired
@@ -39,12 +39,14 @@ public class AjaxController {
     @Autowired
     private ILeaveMsgService iLeaveMsgService;
     @Autowired
-    private IAttenceMsgService iAttenceMsgService;
+    private IMeetingCountService iMeetingCountService;
+
 
     private static final Logger logger = LoggerFactory.getLogger(AjaxController.class);
 
+
     /**
-     * ajax检查 添加用户会议信息
+     *
      * @param userid
      * @param cameraidIn
      * @param cameraidOut
@@ -65,8 +67,9 @@ public class AjaxController {
         stringStringHashMap.put("cameraOut",msg1.getCameraPosition());
         return stringStringHashMap;
     }
+
     /**
-     * 导出日月年会议数据
+     *
      * @param day
      * @param num
      * @return
@@ -99,11 +102,14 @@ public class AjaxController {
         }
     }
 
+
     /**
-     * 生成周会议数据
+     *
      * @param day
      * @param num
      * @return
+     * @throws IOException
+     * @throws ParseException
      */
     @RequestMapping(value = "/generateWeekReports",method = POST)
     @ResponseBody
@@ -134,7 +140,9 @@ public class AjaxController {
     }
 
     /**
-     * 通过请假请求
+     *
+     * @param id
+     * @param day
      * @return
      */
     @RequestMapping(value = "/acess",method = POST)
@@ -143,15 +151,16 @@ public class AjaxController {
         LeaveMsg leaveMsg = iLeaveMsgService.selectById(id);
         leaveMsg.setAccess(1);
         iLeaveMsgService.update(leaveMsg,new EntityWrapper<LeaveMsg>().eq("id",id));
-        AttenceMsg attenceMsg = iAttenceMsgService.selectOne(new EntityWrapper<AttenceMsg>().like("check_in_time", day + "%"));
-        attenceMsg.setFailid(1);
-        iAttenceMsgService.update(attenceMsg,new EntityWrapper<AttenceMsg>().eq("id",attenceMsg.getId()));
+        MeetingCount meetingCount =iMeetingCountService .selectOne(new EntityWrapper<MeetingCount>().like("acess_time", day + "%"));
+        meetingCount.setFailId(1);
+        iMeetingCountService.update(meetingCount,new EntityWrapper<MeetingCount>().eq("id",meetingCount.getId()));
         logger.info("已通过该用户请求");
         return "true";
     }
 
+
     /**
-     * 导出生成的excel
+     *
      * @param request
      * @param response
      * @param fileName
