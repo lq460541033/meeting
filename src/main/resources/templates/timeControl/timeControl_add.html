@@ -1,47 +1,16 @@
 <!DOCTYPE html>
-<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="添加会议">
+    <meta name="description" content="新建一场会议事件">
     <meta name="author" content="white.hou">
-    <title>添加会议</title>
-    <!-- Bootstrap core CSS -->
-    <link  th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.css}" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <!--  <link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">-->
+    <title>新建一场会议事件</title>
+    <link  th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/bootstrap-datetimepicker/2.4.2/css/bootstrap-datetimepicker.css}" rel="stylesheet"
           type="text/css">
     <link th:href="@{/webjars/bootstrap-datetimepicker/2.4.2/css/bootstrap-datetimepicker.min.css}" rel="stylesheet"
           type="text/css">
-    <link rel="stylesheet" href="/asserts/css/ystep.css">
-    <style type="text/css">
-        /* Chart.js */
-        @-webkit-keyframes chartjs-render-animation {
-            from {
-                opacity: 0.99
-            }
-            to {
-                opacity: 1
-            }
-        }
-
-        @keyframes chartjs-render-animation {
-            from {
-                opacity: 0.99
-            }
-            to {
-                opacity: 1
-            }
-        }
-
-        .chartjs-render-monitor {
-            -webkit-animation: chartjs-render-animation 0.001s;
-            animation: chartjs-render-animation 0.001s;
-        }
-    </style>
 </head>
 
 <body>
@@ -50,51 +19,98 @@
     <div class="row">
         <div th:replace="commons/bar::#sidebar(activeUri='timeControls')"></div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <div class="ystep1"></div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <form th:action="@{/timeControl}" method="post" autocomplete="off" id="from-addOrUpdate">
-                <input type="hidden" name="_method" value="put" th:if="${timeControl!=null}"/>
-                <strong type="hidden" class="alert alert-warning" th:if="${msg!=null}">Warning!</strong>
-                <input type="hidden" name="id" th:if="${timeControl!=null}" th:value="${id}">
-                <div class="form-group">
-                    <label>事务名称</label>
-                    <input name="thingsName" type="text" class="form-control" required
-                           th:value="${timeControl!=null}?${timeControl.thingsName}" style="width: 200px">
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:20%" id="progress"></div>
+            </div>
+            <ul class="nav nav-tabs" role="tablist" id="number">
+                <li>
+                    <a class="nav-link active" data-toggle="tab" href="#first" id="one">新建会议事件</a>
+                </li>
+                <li>
+                    <a class="nav-link" data-toggle="tab" href="#second" id="two">选择与会人员</a>
+                </li>
+                <li>
+                    <a class="nav-link" data-toggle="tab" href="#third" id="three">安排人员座位</a>
+                </li>
+                <li>
+                    <a class="nav-link" data-toggle="tab" href="#forth" id="four" >下发会议短信</a>
+                </li>
+                <li>
+                    <a class="nav-link" data-toggle="tab" href="#fifth" id="five">完成会议创建</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="first" class="container tab-pane active">
+                    <form th:action="@{/timeControl}" method="post" autocomplete="off" id="from-addOrUpdate">
+                        <input type="hidden" name="_method" value="put" th:if="${timeControl!=null}"/>
+                        <input type="hidden" name="id" th:if="${timeControl!=null}" th:value="${id}">
+                        <div class="form-group">
+                            <label>事务名称</label>
+                            <input name="thingsName" type="text" class="form-control" required
+                                   th:value="${timeControl!=null}?${timeControl.thingsName}" style="width: 200px">
+                        </div>
+                        <div class="form-group">
+                            <label>开始时间</label>
+                            <input name="startTime" class="form_datetime form-control" required="required" id="from-startTime"
+                                   style="width: 200px" th:value="${timeControl!=null}?${timeControl.startTime}">
+                        </div>
+                        <div class="form-group">
+                            <label>结束时间</label>
+                            <input name="endTime" class="form_datetime form-control" required="required" id="from-endTime"
+                                   style="width: 200px" th:value="${timeControl!=null}?${timeControl.endTime}">
+                        </div>
+                        <button type="submit" class="btn btn-primary" >下一步</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label>开始时间</label>
-                    <input name="startTime" class="form_datetime form-control" required="required" id="from-startTime"
-                           style="width: 200px" th:value="${timeControl!=null}?${timeControl.startTime}">
+                <div id="second" class="container tab-pane fade">
+                   2
                 </div>
-                <div class="form-group">
-                    <label>结束时间</label>
-                    <input name="endTime" class="form_datetime form-control" required="required" id="from-endTime"
-                           style="width: 200px" th:value="${timeControl!=null}?${timeControl.endTime}">
+                <div id="third" class="container tab-pane fade">
+                   3
                 </div>
-                <button type="submit" class="btn btn-primary" th:text="${timeControl!=null}?'修改':'添加'">添加</button>
-            </form>
+                <div id="forth" class="container tab-pane fade">
+                    4
+                </div>
+                <div id="fifth" class="container tab-pane fade">
+                    5
+                </div>
+            </div>
+
         </main>
     </div>
 </div>
-<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
-        th:src="@{/webjars/jquery/3.2.1/jquery.js}"></script>
-<script type="text/javascript" src="asserts/js/popper.min.js"
+
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<script type="text/javascript"
         th:src="@{/webjars/popper.js/1.14.3/popper.js}"></script>
-<script type="text/javascript" src="asserts/js/bootstrap.min.js"
-        th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.js}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
 <script type="text/javascript"
         th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/bootstrap-datetimepicker.js}"></script>
 <script type="text/javascript"
         th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/locales/bootstrap-datetimepicker.fr.js}"></script>
 <script type="text/javascript"
         th:src="@{/webjars/bootstrap-datetimepicker/2.4.2/js/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
-<script type="text/javascript" src="/asserts/js/ystep.js"></script>
-<script type="text/javascript" src="/asserts/js/jquery.min.js"></script>
-
 <script type="text/javascript">
+    $("ul#number").on("click","li",function () {
+        var id=$(this).index();
+        var pr=$("#progress");
+        if (id===0){
+            pr.css("width","20%")
+        }else if (id===1){
+            pr.css("width","40%")
+        } else if(id===2){
+            pr.css("width","60%")
+        }else if(id===3){
+            pr.css("width","80%")
+        }else if(id===4){
+            pr.css("width","100%")
+        }
+    })
+</script>
+<script type="text/javascript">
+    //日期插件
     $("#from-startTime").datetimepicker({
         format: 'yyyy-mm-dd hh:ii:ss',//显示格式
         todayHighlight: 1,//今天高亮
@@ -125,44 +141,15 @@
         todayBtn: true,
         showMeridian: 1,
         autoclose: true//选择后自动关闭
-        /* onSelect:function (endTime) {
-             $("#from-endTime").datetimepicker("option","endDate",endTime)
-         }*/
     }).on('changeDate', function (ev) {
         $("#from-startTime").datetimepicker('setEndDate', $("#from-endTime").val());
         $("#from-endTime").datetimepicker('hide')
     })
 </script>
-<script type="text/javascript">
-    $(".ystep1").loadStep({
-        size: "large",
-        color: "blue",
-        steps: [{
-            title: "新建会议",
-            content: "新建会议：输入必备信息"
-        },{
-            title: "选择人员",
-            content: "选择参与本场会议的与会人员"
-        },{
-            title: "安排座位",
-            content: "为选择的与会人员安排座位"
-        },{
-            title: "下发短信",
-            content: "将相关信息发送给相关人员"
-        },{
-            title: "结束",
-            content: "会议事件创建完成"
-        }]
-    });
-
-    //跳转到下一个步骤
-    //$(".ystep1").nextStep();
-    //跳转到上一个步骤
-    //$(".ystep1").prevStep();
-    //跳转到指定步骤
-    //$(".ystep1").setStep(2);
-    //获取当前在第几步
-    //$(".ystep1").getStep();
+<!-- Icons -->
+<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
+<script>
+    feather.replace()
 </script>
 </body>
 

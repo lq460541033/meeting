@@ -10,9 +10,9 @@
     </parent>
     <groupId>com.swf</groupId>
     <artifactId>attence</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>attence</name>
-    <description>This is a attence system from swf</description>
+    <version>1.0</version>
+    <name>meeting</name>
+    <description>This is a meeting system from swf</description>
 
     <properties>
         <java.version>1.8</java.version>
